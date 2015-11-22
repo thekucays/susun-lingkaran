@@ -1,0 +1,54 @@
+
+menu.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+logo
+  rotate: false
+  xy: 0, 4
+  size: 481, 90
+  orig: 481, 90
+  offset: 0, 0
+  index: -1
+btn_info_up
+  rotate: false
+  xy: 481, 45
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+btn_toko_up
+  rotate: false
+  xy: 530, 45
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+btn_hscore_up
+  rotate: false
+  xy: 579, 45
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+btn_toko_down
+  rotate: false
+  xy: 481, 0
+  size: 49, 45
+  orig: 49, 45
+  offset: 0, 0
+  index: -1
+btn_hscore_down
+  rotate: false
+  xy: 530, 0
+  size: 49, 45
+  orig: 49, 45
+  offset: 0, 0
+  index: -1
+btn_info_down
+  rotate: false
+  xy: 579, 0
+  size: 49, 45
+  orig: 49, 45
+  offset: 0, 0
+  index: -1

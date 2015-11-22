@@ -13,3 +13,9 @@ Feel free to ask anything about this repo! Poke me at :
 
 * [Facebook](https://www.facebook.com/luki.rompis)
 * [Twitter](https://twitter.com/thekucays)
+
+
+
+Luki Ramadon
+4512212044
+Fakultas Teknik Informatika - Universitas Pancasila
