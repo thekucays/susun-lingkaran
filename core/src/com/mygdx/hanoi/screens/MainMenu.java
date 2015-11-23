@@ -121,6 +121,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				Gdx.app.log("Image", "Finallyyyy");
+				game.setScreen(new LevelSelect(game));
 			}
 		});
 		
@@ -248,14 +249,6 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		windowHscore.setPosition((Constants.VIEWPORT_GUI_WIDTH/2)-(windowHscore.getWidth()/2), (Constants.VIEWPORT_GUI_HEIGHT/2)-(windowHscore.getHeight()/2));  // taruh di tengah
 		
 		return windowHscore;
-	}
-	
-	// buat tampilin layer info dan high score nya
-	private void loadInfo(){
-		
-	}
-	private void loadHscore(){
-		
 	}
 	
 	@Override
