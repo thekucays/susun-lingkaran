@@ -40,8 +40,8 @@ import com.mygdx.hanoi.util.DataPersister2;
 public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 
 	private Stage stage;  // di dalam Stage nanti ada "actor" (Table, sprite, label, tombol, dsb)
-	private Skin skin;  // buat template tampilan aktor yang akan ditaruh di stage
-	private TextureAtlas atlas;
+	private Skin skin, skin_uiskin;  // buat template tampilan aktor yang akan ditaruh di stage
+	private TextureAtlas atlas, atlas_uiskin;
 	private Table table;
 	private TextButton btnPlay, btnSound, btnExit; //, btnInfo;
 	private Label heading;
@@ -55,6 +55,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 	// start to following ebook
 	private Image imgLogo;
 	private Button btnHscore, btnInfo, btnToko;
+	private TextButton btnOK;
 	private Window windowInfo, windowHscore;
 	private Label lblStart, lblNull;
 	
@@ -70,12 +71,15 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 	private void rebuildStage(){
 		atlas = new TextureAtlas("ui/menu.pack");
 		skin = new Skin(Gdx.files.internal("ui/menu.json"), atlas);
+		atlas_uiskin = new TextureAtlas("ui/uiskin/uiskin.atlas");
+		skin_uiskin = new Skin(Gdx.files.internal("ui/uiskin/uiskin.json"), atlas_uiskin);
 		
 		// bikin layer buat tampilannya.. layer pake tabel
 		Table layerBackground = buildLayerBackground();
 		Table layerLogo = bulidLayerLogo();
 		Table layerControls = buildLayerControls();
-		Table layerOptions = buildLayerOptions();
+		Table layerInfo = buildLayerInfo();
+		Table layerHscore = buildLayerHscore();
 		
 		// taruh table nya ke dalem stack (Stack nya libgdx)
 		stage.clear();
@@ -87,7 +91,8 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		stack.add(layerLogo);
 		stack.add(layerControls);
 		
-		stage.addActor(layerOptions);
+		stage.addActor(layerInfo);
+		stage.addActor(layerHscore);
 	}
 	
 	private Table buildLayerBackground(){
@@ -150,6 +155,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				Gdx.app.log("Button : ", "btnInfo pressed");
+				windowInfo.setVisible(true);
 			}
 		});
 		
@@ -160,9 +166,44 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		
 		return layer;
 	}
-	private Table buildLayerOptions(){
+	private Table buildLayerInfo(){
+		windowInfo = new Window("Info", skin_uiskin);
+		windowInfo.setVisible(false);
+		
+		// bikin button "ok" buat nge-hide window nya
+		btnOK = new TextButton("Ok", skin_uiskin);
+		btnOK.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				windowInfo.setVisible(false);
+			}
+		});
+		
+		// bikin tabel..supaya rapi
+		Table isi = new Table(skin_uiskin);
+		isi.center();
+		isi.add("Susunan Lingkaran").row();
+		isi.add("Luki Ramadon - 4512212044").row();
+		isi.add(btnOK);
+		
+		
+		windowInfo.add(isi);
+		windowInfo.pack();
+		windowInfo.setPosition(Constants.VIEWPORT_GUI_WIDTH/2, Constants.VIEWPORT_GUI_HEIGHT/2);  // taruh di tengah
+		
+		return windowInfo;
+	}
+	private Table buildLayerHscore(){
 		Table layer = new Table();
 		return layer;
+	}
+	
+	// buat tampilin layer info dan high score nya
+	private void loadInfo(){
+		
+	}
+	private void loadHscore(){
+		
 	}
 	
 	@Override
