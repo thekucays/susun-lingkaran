@@ -3,51 +3,58 @@ menu.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+background
+  rotate: false
+  xy: 0, 233
+  size: 1024, 762
+  orig: 1024, 762
+  offset: 0, 0
+  index: -1
 logo
   rotate: false
-  xy: 0, 4
+  xy: 0, 143
   size: 481, 90
   orig: 481, 90
   offset: 0, 0
   index: -1
 btn_info_up
   rotate: false
-  xy: 481, 45
+  xy: 0, 94
   size: 49, 49
   orig: 49, 49
   offset: 0, 0
   index: -1
 btn_toko_up
   rotate: false
-  xy: 530, 45
+  xy: 481, 184
   size: 49, 49
   orig: 49, 49
   offset: 0, 0
   index: -1
 btn_hscore_up
   rotate: false
-  xy: 579, 45
+  xy: 0, 45
   size: 49, 49
   orig: 49, 49
   offset: 0, 0
   index: -1
 btn_toko_down
   rotate: false
-  xy: 481, 0
+  xy: 49, 98
   size: 49, 45
   orig: 49, 45
   offset: 0, 0
   index: -1
 btn_hscore_down
   rotate: false
-  xy: 530, 0
+  xy: 530, 188
   size: 49, 45
   orig: 49, 45
   offset: 0, 0
   index: -1
 btn_info_down
   rotate: false
-  xy: 579, 0
+  xy: 0, 0
   size: 49, 45
   orig: 49, 45
   offset: 0, 0
