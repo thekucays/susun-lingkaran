@@ -94,6 +94,8 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		Table layer = new Table();
 		//layer.setColor(0x64/255.0f, 0x95/255.0f, 0xed/255.0f, 0xff/255.0f);  // cornflower blue..nyomot dari TowerOfHanoiMain.java..for testing purpose
 		//layer.setBackground(background);
+		imgLogo = new Image(skin, "background");
+		layer.add(imgLogo);
 		return layer;
 	}
 	private Table bulidLayerLogo(){
