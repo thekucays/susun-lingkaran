@@ -60,6 +60,9 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 	private Window windowInfo, windowHscore;
 	private Label lblStart, lblNull;
 	
+	// highscore variables;
+	private int timed, survival, move;
+	
 	public MainMenu(Game game) {
 		super(game);
 		Gdx.app.log("Main Server", "Hello, MainMenu class was just started.. Have Fun! ");
@@ -69,11 +72,14 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 	}
 	
 	// start to following ebook
-	private void rebuildStage(){
+	private void rebuildStage(int timed, int survival, int move){
 		atlas = new TextureAtlas("ui/menu.pack");
 		skin = new Skin(Gdx.files.internal("ui/menu.json"), atlas);
 		atlas_uiskin = new TextureAtlas("ui/uiskin/uiskin.atlas");
 		skin_uiskin = new Skin(Gdx.files.internal("ui/uiskin/uiskin.json"), atlas_uiskin);
+		this.timed = timed;
+		this.survival = survival;
+		this.move = move;
 		
 		// bikin layer buat tampilannya.. layer pake tabel
 		Table layerBackground = buildLayerBackground();
@@ -221,18 +227,14 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		});
 		
 		// tes isi pake dummy data dulu
-		Label lblFree = new Label("Free Mode", skin);
 		Label lblTimed = new Label("Timed Mode", skin);
 		Label lblSurvival = new Label("Survival Mode", skin);
 		Label lblMove = new Label("Move Mode", skin);
-		Label lblFreeData = new Label("0", skin);
-		Label lblTimedData = new Label("0", skin);
-		Label lblSurvivalData = new Label("0", skin);
-		Label lblMoveData = new Label("0", skin);
+		Label lblTimedData = new Label(String.valueOf(timed), skin);
+		Label lblSurvivalData = new Label(String.valueOf(survival), skin);
+		Label lblMoveData = new Label(String.valueOf(move), skin);
 		
 		Table isi = new Table(skin_uiskin);
-		isi.add(lblFree).expand().fill().align(Align.left);
-		isi.add(lblFreeData).expand().fill().align(Align.right).row();
 		isi.add(lblTimed).expand().fill().align(Align.left);
 		isi.add(lblTimedData).expand().fill().align(Align.right).row();
 		isi.add(lblSurvival).expand().fill().align(Align.left);
@@ -271,7 +273,12 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		// start to following ebook
 		stage = new Stage(new StretchViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT));
 		Gdx.input.setInputProcessor(stage);
-		rebuildStage();
+		
+		int timed = 10;
+		int survival = 12;
+		int move = 15;
+		rebuildStage(timed, survival, move);  // sebelum jalanin ini, ada proses untuk query ke database dulu untuk ambil highscore, baru masukin parameter ke sini
+		
 		
 		/*
 		stage = new Stage();
