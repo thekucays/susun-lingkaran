@@ -1,0 +1,27 @@
+{
+	"com.badlogic.gdx.graphics.Color": {
+		"white" : { "r": 1, "g": 1, "b": 1, "a": 1 },
+		"black" : { "r": 0, "g": 0, "b": 0, "a": 1 },
+		"red" :   { "r": 1, "g": 0, "b": 0, "a": 1 },
+		"green" : { "r": 0, "g": 1, "b": 0, "a": 1 },
+		"blue" :  { "r": 0, "g": 0, "b": 1, "a": 1 }
+	},
+	"com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle": {
+		btnBack: { down: btn_back_down, up: btn_back_up },
+		btnFree: { down: btn_free_down, up: btn_free_up },
+		btnTimed: { down: btn_timed_down, up: btn_timed_up },
+		btnSurvival: { down: btn_survival_down, up: btn_survival_up },
+		btnMove: { down: btn_move_down, up: btn_move_up },
+	},
+	"com.badlogic.gdx.scenes.scene2d.ui.Image": {
+		header: { drawable: header },
+		background: { drawable: background }
+	},
+	"com.badlogic.gdx.graphics.g2d.BitmapFont": {
+		"white" : { "file": "../../font/ken/ken-white.fnt" },
+		"black" : { "file": "../../font/ken/ken-black.fnt" }
+	},
+	"com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
+		"default" : { "font": white, "fontColor": white }
+	}
+}
