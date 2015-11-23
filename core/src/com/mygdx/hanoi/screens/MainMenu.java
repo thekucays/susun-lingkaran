@@ -29,6 +29,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
@@ -55,7 +56,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 	// start to following ebook
 	private Image imgLogo;
 	private Button btnHscore, btnInfo, btnToko;
-	private TextButton btnOK;
+	private TextButton btnOKInfo, btnOKHscore;
 	private Window windowInfo, windowHscore;
 	private Label lblStart, lblNull;
 	
@@ -137,6 +138,10 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				Gdx.app.log("Button : ", "btnHscore pressed");
+				windowHscore.setVisible(true);
+				btnHscore.setVisible(false);
+				btnToko.setVisible(false);
+				btnInfo.setVisible(false);
 			}
 		});
 		
@@ -156,6 +161,9 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 			public void changed(ChangeEvent event, Actor actor) {
 				Gdx.app.log("Button : ", "btnInfo pressed");
 				windowInfo.setVisible(true);
+				btnHscore.setVisible(false);
+				btnToko.setVisible(false);
+				btnInfo.setVisible(false);
 			}
 		});
 		
@@ -171,11 +179,14 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		windowInfo.setVisible(false);
 		
 		// bikin button "ok" buat nge-hide window nya
-		btnOK = new TextButton("Ok", skin_uiskin);
-		btnOK.addListener(new ChangeListener() {
+		btnOKInfo = new TextButton("Ok", skin_uiskin);
+		btnOKInfo.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				windowInfo.setVisible(false);
+				btnHscore.setVisible(true);
+				btnToko.setVisible(true);
+				btnInfo.setVisible(true);
 			}
 		});
 		
@@ -184,18 +195,57 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		isi.center();
 		isi.add("Susunan Lingkaran").row();
 		isi.add("Luki Ramadon - 4512212044").row();
-		isi.add(btnOK);
+		isi.add(btnOKInfo);
 		
 		
 		windowInfo.add(isi);
 		windowInfo.pack();
-		windowInfo.setPosition(Constants.VIEWPORT_GUI_WIDTH/2, Constants.VIEWPORT_GUI_HEIGHT/2);  // taruh di tengah
+		windowInfo.setPosition((Constants.VIEWPORT_GUI_WIDTH/2)-(windowInfo.getWidth()/2), (Constants.VIEWPORT_GUI_HEIGHT/2)-(windowInfo.getHeight()/2));  // taruh di tengah
 		
 		return windowInfo;
 	}
 	private Table buildLayerHscore(){
-		Table layer = new Table();
-		return layer;
+		windowHscore = new Window("High Score", skin_uiskin);
+		windowHscore.setVisible(false);
+		
+		// isian di dalam window nya
+		btnOKHscore = new TextButton("Ok", skin_uiskin);
+		btnOKHscore.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				windowHscore.setVisible(false);
+				btnHscore.setVisible(true);
+				btnToko.setVisible(true);
+				btnInfo.setVisible(true);
+			}
+		});
+		
+		// tes isi pake dummy data dulu
+		Label lblFree = new Label("Free Mode", skin);
+		Label lblTimed = new Label("Timed Mode", skin);
+		Label lblSurvival = new Label("Survival Mode", skin);
+		Label lblMove = new Label("Move Mode", skin);
+		Label lblFreeData = new Label("0", skin);
+		Label lblTimedData = new Label("0", skin);
+		Label lblSurvivalData = new Label("0", skin);
+		Label lblMoveData = new Label("0", skin);
+		
+		Table isi = new Table(skin_uiskin);
+		isi.add(lblFree).expand().fill().align(Align.left);
+		isi.add(lblFreeData).expand().fill().align(Align.right).row();
+		isi.add(lblTimed).expand().fill().align(Align.left);
+		isi.add(lblTimedData).expand().fill().align(Align.right).row();
+		isi.add(lblSurvival).expand().fill().align(Align.left);
+		isi.add(lblSurvivalData).expand().fill().align(Align.right).row();
+		isi.add(lblMove).expand().fill().align(Align.left);
+		isi.add(lblMoveData).expand().fill().align(Align.right).row();
+		isi.add(btnOKHscore);
+		
+		windowHscore.add(isi);
+		windowHscore.pack();
+		windowHscore.setPosition((Constants.VIEWPORT_GUI_WIDTH/2)-(windowHscore.getWidth()/2), (Constants.VIEWPORT_GUI_HEIGHT/2)-(windowHscore.getHeight()/2));  // taruh di tengah
+		
+		return windowHscore;
 	}
 	
 	// buat tampilin layer info dan high score nya
