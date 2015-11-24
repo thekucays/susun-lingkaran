@@ -14,8 +14,8 @@ public class AndroidLauncher extends AndroidApplication {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		//initialize(new MyGdxGame(), config);
-		//initialize(new TowerOfHanoiMain(), config);
-		initialize(new Main(), config);
+		initialize(new TowerOfHanoiMain(), config);
+		//initialize(new Main(), config);
 	}
 }
 
