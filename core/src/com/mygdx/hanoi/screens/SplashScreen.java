@@ -47,7 +47,8 @@ public class SplashScreen extends AbstractGameScreen{ //implements Screen{ //
 		Tween.to(splash, SpriteAccessor.ALPHA, 2).target(1).repeatYoyo(1, 2).setCallback(new TweenCallback() {
 			@Override
 			public void onEvent(int type, BaseTween<?> source) {
-				((Game)Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));  // karena ini bukan turunan class "Game"
+				//((Game)Gdx.app.getApplicationListener()).setScreen(new MainMenu(game));  // karena ini bukan turunan class "Game"
+				game.setScreen(new MainMenu(game));
 			}
 		}).start(tweenManager); 
 	}
