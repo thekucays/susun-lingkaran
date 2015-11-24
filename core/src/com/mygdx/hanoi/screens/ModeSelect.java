@@ -167,6 +167,11 @@ public class ModeSelect extends AbstractGameScreen {
 	}
 
 	@Override
+	public void resume() {
+
+	}
+	
+	@Override
 	public void dispose() {  // for the sake of efficiency.. i don't know whether this is required or not lol :P
 		skin.dispose();
 		stage.dispose();
