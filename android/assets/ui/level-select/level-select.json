@@ -18,8 +18,8 @@
 		background: { drawable: background }
 	},
 	"com.badlogic.gdx.graphics.g2d.BitmapFont": {
-		"white" : { "file": "../../font/ken/ken-white.fnt" },
-		"black" : { "file": "../../font/ken/ken-black.fnt" }
+		"white" : { "file": "font/ken/ken-white.fnt" },
+		"black" : { "file": "font/ken/ken-black.fnt" }
 	},
 	"com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
 		"default" : { "font": white, "fontColor": white }
