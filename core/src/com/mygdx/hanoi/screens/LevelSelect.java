@@ -118,7 +118,7 @@ public class LevelSelect extends AbstractGameScreen {
 		layer.add(btnTimed);
 		layer.add(btnMove).row();
 		layer.setTransform(true);
-		layer.debug();
+		//layer.debug();
 		
 		return layer;
 	}
