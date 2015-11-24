@@ -1,0 +1,1 @@
+sudo ln -s path-to-real-path path-of-shortcut
