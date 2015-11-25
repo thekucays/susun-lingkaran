@@ -119,7 +119,7 @@ public class Assets implements Disposable, AssetErrorListener{
 		}
 	}
 	
-	public class AssetTombolBg{
+	public class AssetTombolBg{  // maksud nya ini adalah layer yang dipake untuk tempat naruh semua tombol..bukan background di tombolnya
 		public final AtlasRegion tombolBg;
 		
 		public AssetTombolBg(TextureAtlas atlas){
