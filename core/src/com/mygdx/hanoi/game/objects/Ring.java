@@ -2,6 +2,7 @@ package com.mygdx.hanoi.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.mygdx.hanoi.game.Assets;
 
 
@@ -32,6 +33,10 @@ public class Ring extends AbstractGameObject{
 		return this.jenis;
 	}
 	
+	public Vector2 getPosition(){
+		return position;
+	}
+	
 	// setters
 	public void setLength(float length){
 		this.length = length;
@@ -39,6 +44,10 @@ public class Ring extends AbstractGameObject{
 	
 	public void setJenis(String jenis){
 		this.jenis = jenis;
+	}
+	
+	public void setPosition(float x, float y){
+		position.set(x, y);
 	}
 	
 	private void init(){
