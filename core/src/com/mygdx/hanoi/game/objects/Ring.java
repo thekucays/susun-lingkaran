@@ -17,15 +17,34 @@ public class Ring extends AbstractGameObject{
 	public String jenis;
 	
 	public Ring(float length, String jenis){
-		this.length = length;
-		this.jenis = jenis;
+		setLength(length);
+		setJenis(jenis);
+		
 		init();
+	}
+	
+	// getters
+	public float getLength(){
+		return this.length;
+	}
+	
+	public String getJenis(){
+		return this.jenis;
+	}
+	
+	// setters
+	public void setLength(float length){
+		this.length = length;
+	}
+	
+	public void setJenis(String jenis){
+		this.jenis = jenis;
 	}
 	
 	private void init(){
 		dimension.set(length, 1); // dalam satuan meter dalam screen game nya
 		ringOverLay = Assets.instance.ring.ring;  // Assets.instance.namaobjek.atlasregion
-		
+
 		origin.x = -dimension.x/2;
 	}
 	
