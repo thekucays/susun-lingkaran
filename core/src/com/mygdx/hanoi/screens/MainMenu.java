@@ -121,7 +121,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				Gdx.app.log("Image", "Finallyyyy");
-				game.setScreen(new LevelSelect(game));
+				game.setScreen(new ModeSelect(game));
 			}
 		});
 		
@@ -254,6 +254,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 	@Override
 	public void show() {
 		// coba print preferences yang udah dibikin di Main.java disini (oke dah bisaa!!)
+		/*
 		DataPersister2 hs = new DataPersister2();
 		Preferences hScore = hs.getOrCreatePreferences("highScores");
 		Map data = hs.getPreferencesData(hScore);
@@ -262,6 +263,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 	    	Gdx.app.log("for loop main menu", "the name value is" + loop.get(i)[0]);
 	    	Gdx.app.log("for loop main menu", "the score value is" + loop.get(i)[1]);
 	    }
+		*/
 		
 		// start to following ebook
 		stage = new Stage(new StretchViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT));
