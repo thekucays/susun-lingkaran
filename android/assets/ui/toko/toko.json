@@ -1,0 +1,33 @@
+{
+	"com.badlogic.gdx.graphics.Color": {
+		"white" : { "r": 1, "g": 1, "b": 1, "a": 1 },
+		"black" : { "r": 0, "g": 0, "b": 0, "a": 1 },
+		"red" :   { "r": 1, "g": 0, "b": 0, "a": 1 },
+		"green" : { "r": 0, "g": 1, "b": 0, "a": 1 },
+		"blue" :  { "r": 0, "g": 0, "b": 1, "a": 1 }
+	},
+	"com.badlogic.gdx.scenes.scene2d.ui.Image": {
+		header: { drawable: header },
+		background: { drawable: background },
+		ring-default: { drawable: ring-default },
+		ring-pie-coklat: { drawable: ring-pie-coklat },
+		ring-pie-greentea: { drawable: ring-pie-greentea },
+		bg-default: { drawable: bg-default },
+		bg-clouds: { drawable: bg-clouds },
+	},
+	"com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle": {
+		btnBack: { down: btn_back_down, up: btn_back_up },
+		btnBeli: { down: btn_beli_down, up: btn_beli_up },
+		btnPasang: { down: btn_pasang_down, up: btn_pasang_up }
+	},
+	"com.badlogic.gdx.graphics.g2d.BitmapFont": {
+		"white" : { "file": "font/ken/ken-white.fnt" },
+		"black" : { "file": "font/ken/ken-black.fnt" }
+	},
+	"com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
+		"default" : { "font": white, "fontColor": white }
+	},
+	"com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle":{
+		"default" : {  }
+	}
+}

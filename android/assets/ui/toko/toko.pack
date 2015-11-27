@@ -1,0 +1,122 @@
+
+toko.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bg-clouds
+  rotate: false
+  xy: 0, 252
+  size: 1024, 762
+  orig: 1024, 762
+  offset: 0, 0
+  index: -1
+header
+  rotate: false
+  xy: 0, 190
+  size: 168, 62
+  orig: 168, 62
+  offset: 0, 0
+  index: -1
+coin
+  rotate: false
+  xy: 0, 106
+  size: 84, 84
+  orig: 84, 84
+  offset: 0, 0
+  index: -1
+ring-default
+  rotate: false
+  xy: 168, 218
+  size: 122, 34
+  orig: 122, 34
+  offset: 0, 0
+  index: -1
+btn_pasang_down
+  rotate: false
+  xy: 290, 207
+  size: 103, 45
+  orig: 103, 45
+  offset: 0, 0
+  index: -1
+btn_pasang_up
+  rotate: false
+  xy: 393, 203
+  size: 103, 49
+  orig: 103, 49
+  offset: 0, 0
+  index: -1
+ring-pie-greentea
+  rotate: false
+  xy: 496, 202
+  size: 101, 50
+  orig: 101, 50
+  offset: 0, 0
+  index: -1
+ring-pie-coklat
+  rotate: false
+  xy: 597, 202
+  size: 100, 50
+  orig: 100, 50
+  offset: 0, 0
+  index: -1
+hint-10
+  rotate: false
+  xy: 0, 45
+  size: 66, 61
+  orig: 66, 61
+  offset: 0, 0
+  index: -1
+hint-5
+  rotate: false
+  xy: 84, 132
+  size: 56, 58
+  orig: 56, 58
+  offset: 0, 0
+  index: -1
+btn_beli_up
+  rotate: false
+  xy: 697, 203
+  size: 62, 49
+  orig: 62, 49
+  offset: 0, 0
+  index: -1
+btn_beli_down
+  rotate: false
+  xy: 0, 0
+  size: 62, 45
+  orig: 62, 45
+  offset: 0, 0
+  index: -1
+btn_back_up
+  rotate: false
+  xy: 759, 203
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+btn_back_down
+  rotate: false
+  xy: 808, 207
+  size: 49, 45
+  orig: 49, 45
+  offset: 0, 0
+  index: -1
+
+toko2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bg-default
+  rotate: false
+  xy: 0, 0
+  size: 1024, 762
+  orig: 1024, 762
+  offset: 0, 0
+  index: -1
+background
+  rotate: false
+  xy: 0, 0
+  size: 1024, 762
+  orig: 1024, 762
+  offset: 0, 0
+  index: -1
