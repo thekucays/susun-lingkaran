@@ -1,0 +1,24 @@
+
+decorations.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bg-clouds
+  rotate: false
+  xy: 0, 0
+  size: 1024, 762
+  orig: 1024, 762
+  offset: 0, 0
+  index: -1
+
+decorations2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bg-default
+  rotate: false
+  xy: 0, 0
+  size: 1024, 762
+  orig: 1024, 762
+  offset: 0, 0
+  index: -1
