@@ -158,6 +158,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				Gdx.app.log("Button : ", "btnToko pressed");
+				game.setScreen(new Toko(game));
 			}
 		});
 		
