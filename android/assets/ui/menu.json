@@ -4,7 +4,8 @@
 		"black" : { "r": 0, "g": 0, "b": 0, "a": 1 },
 		"red" :   { "r": 1, "g": 0, "b": 0, "a": 1 },
 		"green" : { "r": 0, "g": 1, "b": 0, "a": 1 },
-		"blue" :  { "r": 0, "g": 0, "b": 1, "a": 1 }
+		"blue" :  { "r": 0, "g": 0, "b": 1, "a": 1 },
+		"spc-mulai" : { "r":255, "g": 102, "b":0, "a": 1 }
 	},
 	"com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle": {
 		btnHscore: { down: btn_hscore_down, up: btn_hscore_up },
@@ -16,10 +17,13 @@
 		background: { drawable: background }
 	},
 	"com.badlogic.gdx.graphics.g2d.BitmapFont": {
-		"white" : { "file": "font/ken/ken-white.fnt" },
-		"black" : { "file": "font/ken/ken-black.fnt" }
+		"ken-white" : { "file": "font/ken/ken-white.fnt" },
+		"ken-black" : { "file": "font/ken/ken-black.fnt" },
+		"ubuntu-white" : { "file": "font/ubuntu/ubuntu-white.fnt" },
+		"ubuntu-black" : { "file": "font/ubuntu/ubuntu-black.fnt" }
 	},
 	"com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
-		"default" : { "font": white, "fontColor": white }
+		"default" : { "font": ubuntu-white, "fontColor": white },
+		"mulai" : { "font": ubuntu-white, "fontColor": spc-mulai }
 	}
 }
