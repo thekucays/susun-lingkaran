@@ -5,98 +5,147 @@ filter: Nearest,Nearest
 repeat: none
 bg-clouds
   rotate: false
-  xy: 0, 252
+  xy: 0, 256
   size: 1024, 762
   orig: 1024, 762
   offset: 0, 0
   index: -1
 header
   rotate: false
-  xy: 0, 190
+  xy: 0, 194
   size: 168, 62
   orig: 168, 62
   offset: 0, 0
   index: -1
+ring-pie-greentea-thumb
+  rotate: false
+  xy: 0, 133
+  size: 123, 61
+  orig: 123, 61
+  offset: 0, 0
+  index: -1
+ring-pie-coklat-thumb
+  rotate: false
+  xy: 168, 195
+  size: 122, 61
+  orig: 122, 61
+  offset: 0, 0
+  index: -1
 coin
   rotate: false
-  xy: 0, 106
+  xy: 0, 49
   size: 84, 84
   orig: 84, 84
   offset: 0, 0
   index: -1
 ring-default
   rotate: false
-  xy: 168, 218
+  xy: 290, 222
   size: 122, 34
   orig: 122, 34
   offset: 0, 0
   index: -1
 btn_pasang_down
   rotate: false
-  xy: 290, 207
+  xy: 412, 211
   size: 103, 45
   orig: 103, 45
   offset: 0, 0
   index: -1
 btn_pasang_up
   rotate: false
-  xy: 393, 203
+  xy: 515, 207
   size: 103, 49
   orig: 103, 49
   offset: 0, 0
   index: -1
 ring-pie-greentea
   rotate: false
-  xy: 496, 202
+  xy: 618, 206
   size: 101, 50
   orig: 101, 50
   offset: 0, 0
   index: -1
 ring-pie-coklat
   rotate: false
-  xy: 597, 202
+  xy: 719, 206
   size: 100, 50
   orig: 100, 50
   offset: 0, 0
   index: -1
+bg-default-thumb
+  rotate: false
+  xy: 819, 195
+  size: 82, 61
+  orig: 82, 61
+  offset: 0, 0
+  index: -1
+bg-clouds-thumb
+  rotate: false
+  xy: 901, 195
+  size: 82, 61
+  orig: 82, 61
+  offset: 0, 0
+  index: -1
+btn_beli_up
+  rotate: false
+  xy: 0, 0
+  size: 62, 49
+  orig: 62, 49
+  offset: 0, 0
+  index: -1
+hint-5-thumb
+  rotate: false
+  xy: 123, 133
+  size: 59, 61
+  orig: 59, 61
+  offset: 0, 0
+  index: -1
 hint-10
   rotate: false
-  xy: 0, 45
+  xy: 84, 72
+  size: 66, 61
+  orig: 66, 61
+  offset: 0, 0
+  index: -1
+hint-10-thumb
+  rotate: false
+  xy: 84, 72
+  size: 66, 61
+  orig: 66, 61
+  offset: 0, 0
+  index: -1
+ring-default-thumb
+  rotate: false
+  xy: 182, 134
   size: 66, 61
   orig: 66, 61
   offset: 0, 0
   index: -1
 hint-5
   rotate: false
-  xy: 84, 132
+  xy: 248, 137
   size: 56, 58
   orig: 56, 58
   offset: 0, 0
   index: -1
-btn_beli_up
-  rotate: false
-  xy: 697, 203
-  size: 62, 49
-  orig: 62, 49
-  offset: 0, 0
-  index: -1
 btn_beli_down
   rotate: false
-  xy: 0, 0
+  xy: 84, 27
   size: 62, 45
   orig: 62, 45
   offset: 0, 0
   index: -1
 btn_back_up
   rotate: false
-  xy: 759, 203
+  xy: 150, 84
   size: 49, 49
   orig: 49, 49
   offset: 0, 0
   index: -1
 btn_back_down
   rotate: false
-  xy: 808, 207
+  xy: 199, 89
   size: 49, 45
   orig: 49, 45
   offset: 0, 0

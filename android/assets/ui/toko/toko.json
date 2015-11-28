@@ -14,6 +14,11 @@
 		ring-pie-greentea: { drawable: ring-pie-greentea },
 		bg-default: { drawable: bg-default },
 		bg-clouds: { drawable: bg-clouds },
+		ring-default-thumb: { drawable: ring-default-thumb },
+		ring-pie-coklat-thumb: { drawable: ring-pie-coklat-thumb },
+		ring-pie-greentea-thumb: { drawable: ring-pie-greentea-thumb },
+		bg-default-thumb: { drawable: bg-default-thumb },
+		bg-clouds-thumb: { drawable: bg-clouds-thumb }
 	},
 	"com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle": {
 		btnBack: { down: btn_back_down, up: btn_back_up },
