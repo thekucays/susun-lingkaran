@@ -1,6 +1,6 @@
 package com.mygdx.hanoi.game;
 
-import javafx.scene.text.Text;
+//import javafx.scene.text.Text;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
