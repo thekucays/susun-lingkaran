@@ -21,11 +21,13 @@
 		btnPasang: { down: btn_pasang_down, up: btn_pasang_up }
 	},
 	"com.badlogic.gdx.graphics.g2d.BitmapFont": {
-		"white" : { "file": "font/ken/ken-white.fnt" },
-		"black" : { "file": "font/ken/ken-black.fnt" }
+		"ken-white" : { "file": "font/ken/ken-white.fnt" },
+		"ken-black" : { "file": "font/ken/ken-black.fnt" },
+		"ubuntu-white" : { "file": "font/ubuntu/ubuntu-white.fnt" },
+		"ubuntu-black" : { "file": "font/ubuntu/ubuntu-black.fnt" }
 	},
 	"com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
-		"default" : { "font": white, "fontColor": white }
+		"default" : { "font": ubuntu-white, "fontColor": white }
 	},
 	"com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle":{
 		"default" : {  }
