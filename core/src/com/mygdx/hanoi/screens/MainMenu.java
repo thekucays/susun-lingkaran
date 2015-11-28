@@ -129,7 +129,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		layer.add(lblNull);
 		layer.row();
 		
-		lblStart = new Label("Tekan logo untuk mulai", skin);
+		lblStart = new Label("Tekan logo untuk mulai", skin, "mulai");
 		layer.add(lblStart).bottom();
 		
 		//layer.debug();
@@ -198,11 +198,14 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 			}
 		});
 		
+		Label lblJudul = new Label(Constants.app_name, skin);
+		Label lblCreator = new Label(Constants.app_creator, skin);
+		
 		// bikin tabel..supaya rapi
 		Table isi = new Table(skin_uiskin);
 		isi.center();
-		isi.add("Susunan Lingkaran").row();
-		isi.add("Luki Ramadon - 4512212044").row();
+		isi.add(lblJudul).row();
+		isi.add(lblCreator).row();
 		isi.add(btnOKInfo);
 		
 		
