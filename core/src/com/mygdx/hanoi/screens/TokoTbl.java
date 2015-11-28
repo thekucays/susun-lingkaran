@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -17,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.mygdx.hanoi.util.Constants;
 
 public class TokoTbl {
 	public Table generateContainer(Skin skin, String[] listData, Pixmap pix){
@@ -49,11 +51,10 @@ public class TokoTbl {
 		table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture(pix))));
 		
 		// image buat thumbnail.. karena gabisa setScale() ke anonymous object Image nya
-		imgThumbnail = new Image(skin, listData[0]);
-		//imgThumbnail.scaleBy(Float.valueOf(listData[5])); 
-		
+		imgThumbnail = new Image(skin, listData[0] + Constants.thumbnail_prefix); //createThumbnail(skin, listData[0], listData[1]);  //imgThumbnail.scaleBy(Float.valueOf(listData[5])); 
+
 		// isi data ke tabel
-		//table.add(imgThumbnail).expand().fill().align(Align.left);   
+		table.add(imgThumbnail).align(Align.left);   
 		table.add(lblJenis).fill().align(Align.left);
 		table.add(lblNama).expand().fill().align(Align.left);
 		table.add(lblHarga).fill().align(Align.left);
@@ -63,5 +64,27 @@ public class TokoTbl {
 		//table.debug();
 		
 		return table;
+	}
+	
+	private Image createThumbnail(Skin skin, String drawableName, String jenis){
+		Image thumb = new Image(skin, drawableName);
+		thumb.setSize(0.1f, 0.1f);
+		thumb.setScale(0.1f, 0.1f);
+		thumb.pack();
+		
+		/*switch(jenis) {
+			case "Ring":
+				thumb.setS
+				break;
+			case "Hint":
+				break;
+			case "Background":
+				break;
+			default:
+				Gdx.app.log("Thumbnail", "object type unknown");
+				return null; //break;
+		} */
+		
+		return thumb;
 	}
 }
