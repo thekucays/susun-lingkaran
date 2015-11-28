@@ -53,11 +53,14 @@ public class TokoTbl {
 		//imgThumbnail.scaleBy(Float.valueOf(listData[5])); 
 		
 		// isi data ke tabel
-		table.add(imgThumbnail).expand().fill().align(Align.left);   
-		table.add(lblJenis).expand().fill().align(Align.left);
+		//table.add(imgThumbnail).expand().fill().align(Align.left);   
+		table.add(lblJenis).fill().align(Align.left);
 		table.add(lblNama).expand().fill().align(Align.left);
-		table.add(lblHarga).expand().fill().align(Align.left);
-		table.add(btnAksi).expand().fill().align(Align.right);
+		table.add(lblHarga).fill().align(Align.left);
+		table.add(btnAksi).align(Align.right).padLeft(7);
+		
+		table.padLeft(8).padRight(8).padTop(10).padBottom(10);
+		//table.debug();
 		
 		return table;
 	}

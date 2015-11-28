@@ -100,7 +100,10 @@ public class Toko extends AbstractGameScreen {
 		// inner table buat atur list nya
 		Table innerContainer = new Table();
 		for(int i=0; i<dummyToko.size(); i++){
-			innerContainer.add(new TokoTbl().generateContainer(skin, dummyToko.get(i), pix)).expand().fill();
+			Table temp = new TokoTbl().generateContainer(skin, dummyToko.get(i), pix);
+			
+			innerContainer.add(temp).expand().fill();
+			innerContainer.getCell(temp).spaceTop(10).spaceBottom(10);
 			innerContainer.row();
 		}
 		
