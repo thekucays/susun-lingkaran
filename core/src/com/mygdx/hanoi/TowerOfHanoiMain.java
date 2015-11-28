@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import sun.java2d.pipe.hw.ExtendedBufferCapabilities.VSyncType;
+//import sun.java2d.pipe.hw.ExtendedBufferCapabilities.VSyncType;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
