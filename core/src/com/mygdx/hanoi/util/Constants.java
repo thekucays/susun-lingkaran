@@ -7,6 +7,12 @@ public class Constants {
 	// app id related
 	public static final String app_name = "Susun Lingkaran";
 	public static final String app_creator = "Luki Ramadon - 4512212044";
+	public static final String app_university = "Universitas Pancasila";
+	
+	// thumbnail and lit toko related
+	public static final String thumbnail_prefix = "-thumb";
+	public static final float table_width = 700.0f;
+	public static final float table_height = 260.0f;
 	
 	// ini panjang dan lebar viewport nya (yang ditampilin di layar) sebesar 5 meter 
 	public static final float VIEWPORT_WIDTH = 5.0f;
