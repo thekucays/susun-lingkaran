@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Constants {
+	// app id related
+	public static final String app_name = "Susun Lingkaran";
+	public static final String app_creator = "Luki Ramadon - 4512212044";
+	
 	// ini panjang dan lebar viewport nya (yang ditampilin di layar) sebesar 5 meter 
 	public static final float VIEWPORT_WIDTH = 5.0f;
 	public static final float VIEWPORT_HEIGHT = 5.0f;
