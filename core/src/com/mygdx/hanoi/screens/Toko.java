@@ -22,7 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.hanoi.util.Constants;
-import com.sun.java.swing.plaf.windows.WindowsTreeUI.ExpandedIcon;
+//import com.sun.java.swing.plaf.windows.WindowsTreeUI.ExpandedIcon;
 
 public class Toko extends AbstractGameScreen {
 
@@ -89,13 +89,18 @@ public class Toko extends AbstractGameScreen {
 	private Table buildLayerListItem(){
 		// bikin pixmap color buat background row nya
 		Pixmap pix = new Pixmap(1, 1, Format.RGB565);
-		pix.setColor(Color.valueOf("ff6600"));  //warna sama kaya warna button pix.setColor(Color.CYAN); 
+		pix.setColor(Color.valueOf("ff6600"));  //warna sama kaya warna button //pix.setColor(Color.CYAN); 
 		pix.fill();
 		
 		// dummy list data.. real nya nge-query dari preferences nya
 		ArrayList<String[]> dummyToko = new ArrayList<String[]>();  // declare apa yang mau ditaruh sini, biar ga error di kemudian method
 		dummyToko.add(new String[] {"ring-default", "Ring", "Pie Greentea", "500", "1", "50"});   // yang paling belakang "isPurchased", "scaleFactor"
-		dummyToko.add(new String[] {"bg-default", "Ring", "Background default", "500", "1", "70"});
+		dummyToko.add(new String[] {"bg-default", "Background", "Background default", "500", "0", "70"});
+		dummyToko.add(new String[] {"bg-default", "Background", "Background default", "500", "1", "70"});
+		dummyToko.add(new String[] {"bg-default", "Background", "Background default", "500", "1", "70"});
+		dummyToko.add(new String[] {"bg-default", "Background", "Background default", "500", "1", "70"});
+		dummyToko.add(new String[] {"bg-default", "Background", "Background default", "500", "1", "70"});
+		dummyToko.add(new String[] {"bg-default", "Background", "Background default", "500", "1", "70"});
 		
 		// inner table buat atur list nya
 		Table innerContainer = new Table();
@@ -106,14 +111,18 @@ public class Toko extends AbstractGameScreen {
 			innerContainer.getCell(temp).spaceTop(10).spaceBottom(10);
 			innerContainer.row();
 		}
-		
+
 		// data yang udah jadi masukin scrollPane biar bisa di-scroll
 		scrollPane = new ScrollPane(innerContainer, skin);
+		//scrollPane.setFillParent(true);
 		
 		// terakhir, tambahin ke layer aslinya
 		Table layer = new Table(); 
-		layer.center();
-		layer.add(scrollPane);
+		layer.center(); //layer.setPosition(Constants.VIEWPORT_GUI_WIDTH/2), y);   
+		layer.add(scrollPane).width(Constants.table_width).height(Constants.table_height);
+			//.setActorY(Constants.VIEWPORT_GUI_HEIGHT/2);
+		
+		layer.debug();
 		
 		return layer;
 	}
