@@ -45,7 +45,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 	private TextureAtlas atlas, atlas_uiskin;
 	private Table table;
 	private TextButton btnPlay, btnSound, btnExit; //, btnInfo;
-	private Label heading;
+	private Label heading, lblUang;
 	//private BitmapFont white, black;  // font yang dipake.. format nya true type (.ttf)
 	
 	// variabel buat bikin efek heading (judul game) nya
@@ -54,7 +54,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 	private Container con;
 	
 	// start to following ebook
-	private Image imgLogo;
+	private Image imgLogo, imgCoin;
 	private Button btnHscore, btnInfo, btnToko;
 	private TextButton btnOKInfo, btnOKHscore;
 	private Window windowInfo, windowHscore;
@@ -81,8 +81,11 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		this.survival = survival;
 		this.move = move;
 		
+		int dummyUang = 9999;
+		
 		// bikin layer buat tampilannya.. layer pake tabel
 		Table layerBackground = buildLayerBackground();
+		Table layerUang = buildLayerUang(dummyUang);
 		Table layerLogo = bulidLayerLogo();
 		Table layerControls = buildLayerControls();
 		Table layerInfo = buildLayerInfo();
@@ -95,6 +98,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		stack.setSize(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT);
 		
 		stack.add(layerBackground);
+		stack.add(layerUang);
 		stack.add(layerLogo);
 		stack.add(layerControls);
 		
@@ -108,6 +112,17 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		//layer.setBackground(background);
 		imgLogo = new Image(skin, "background");
 		layer.add(imgLogo);
+		return layer;
+	}
+	private Table buildLayerUang(int dummyUang){
+		Table layer = new Table();
+		layer.left().top();
+		imgCoin = new Image(skin, "coin");
+		lblUang = new Label(String.valueOf(dummyUang), skin);
+		
+		layer.add(imgCoin).width(Constants.COIN_SIZE).height(Constants.COIN_SIZE).padLeft(Constants.GAP_SMALL);
+		layer.add(lblUang).spaceLeft(Constants.GAP_SMALL);
+		
 		return layer;
 	}
 	private Table bulidLayerLogo(){
@@ -198,7 +213,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 			}
 		});
 		
-		Label lblJudul = new Label(Constants.app_name, skin);
+		Label lblJudul = new Label(Constants.app_name + " v" + Constants.app_version, skin);
 		Label lblCreator = new Label(Constants.app_creator, skin);
 		
 		// bikin tabel..supaya rapi
