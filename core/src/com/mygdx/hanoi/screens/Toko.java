@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
@@ -32,6 +33,7 @@ public class Toko extends AbstractGameScreen {
 	private Table table;
 	private Button btnBack;
 	private Image imgHeading, imgCoin, imgBackground;
+	private Label lblUang;
 	
 	// ini buat keperluan list nya
 	private Table container;
@@ -47,15 +49,18 @@ public class Toko extends AbstractGameScreen {
 		stage = new Stage(new StretchViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT));
 		Gdx.input.setInputProcessor(stage);
 		
-		rebuildStage();
+		int dummyUang = 9999;
+		
+		rebuildStage(dummyUang);
 	}
 	
-	private void rebuildStage(){
+	private void rebuildStage(int dummyUang){
 		atlas = new TextureAtlas("ui/toko/toko.pack");
 		skin = new Skin(Gdx.files.internal("ui/toko/toko.json"), atlas);
 		
 		// table untuk layer tampilan nya
 		Table layerBackground = buildLayerBackground();
+		Table layerUang = buildLayerUang(dummyUang);
 		Table layerHeader = buildLayerHeader();
 		Table layerListItem = buildLayerListItem();
 		Table layerBack = buildLayerBack(); // sepertinya perlu dipisah karena posisinya di pojok kanan atas sendiri
@@ -66,6 +71,7 @@ public class Toko extends AbstractGameScreen {
 		stack.setSize(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT);
 		
 		stack.add(layerBackground);
+		stack.add(layerUang);
 		stack.add(layerHeader);
 		stack.add(layerListItem);
 		stack.add(layerBack);
@@ -80,9 +86,20 @@ public class Toko extends AbstractGameScreen {
 	private Table buildLayerHeader(){
 		Table layer = new Table();
 		layer.top();
-		//imgHeading = new Image(skin, "header");
-		//layer.addActor(imgHeading);
-		//imgHeading.setPosition((Constants.VIEWPORT_GUI_WIDTH/2)-(imgHeading.getWidth()/2), Constants.VIEWPORT_GUI_HEIGHT-Constants.HEADER_TOP_GAP);
+		imgHeading = new Image(skin, "header");
+		layer.addActor(imgHeading);
+		imgHeading.setPosition((Constants.VIEWPORT_GUI_WIDTH/2)-(imgHeading.getWidth()/2), Constants.VIEWPORT_GUI_HEIGHT-Constants.HEADER_TOP_GAP);
+		
+		return layer;
+	}
+	private Table buildLayerUang(int dummyUang){
+		Table layer = new Table();
+		layer.left().top();
+		imgCoin = new Image(skin, "coin");
+		lblUang = new Label(String.valueOf(dummyUang), skin);
+		
+		layer.add(imgCoin).width(Constants.COIN_SIZE).height(Constants.COIN_SIZE).padLeft(Constants.GAP_SMALL);
+		layer.add(lblUang).spaceLeft(Constants.GAP_SMALL);
 		
 		return layer;
 	}
@@ -119,8 +136,12 @@ public class Toko extends AbstractGameScreen {
 		// terakhir, tambahin ke layer aslinya
 		Table layer = new Table(); 
 		layer.center(); //layer.setPosition(Constants.VIEWPORT_GUI_WIDTH/2), y);   
-		layer.add(scrollPane).width(Constants.table_width).height(Constants.table_height);
-			//.setActorY(Constants.VIEWPORT_GUI_HEIGHT/2);
+		
+		// addActor(), supaya dia keluar dari parent, jadi bisa di-det koordinat nya sendiri 
+		layer.addActor(scrollPane);
+		scrollPane.setWidth(Constants.table_width);
+		scrollPane.setHeight(Constants.table_height);
+		scrollPane.setPosition((Constants.VIEWPORT_GUI_WIDTH/2)-(scrollPane.getWidth()/2), (Constants.VIEWPORT_GUI_HEIGHT/2)-(scrollPane.getHeight()/2)-Constants.TABLE_TOP_GAP);
 		
 		layer.debug();
 		
