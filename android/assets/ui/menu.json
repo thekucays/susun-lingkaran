@@ -14,7 +14,8 @@
 	},
 	"com.badlogic.gdx.scenes.scene2d.ui.Image": {
 		logo: { drawable: logo },
-		background: { drawable: background }
+		background: { drawable: background },
+		coin: { drawable: coin }
 	},
 	"com.badlogic.gdx.graphics.g2d.BitmapFont": {
 		"ken-white" : { "file": "font/ken/ken-white.fnt" },

@@ -5,56 +5,63 @@ filter: Nearest,Nearest
 repeat: none
 background
   rotate: false
-  xy: 0, 233
+  xy: 0, 223
   size: 1024, 762
   orig: 1024, 762
   offset: 0, 0
   index: -1
 logo
   rotate: false
-  xy: 0, 143
+  xy: 0, 133
   size: 481, 90
   orig: 481, 90
   offset: 0, 0
   index: -1
+coin
+  rotate: false
+  xy: 0, 49
+  size: 84, 84
+  orig: 84, 84
+  offset: 0, 0
+  index: -1
 btn_info_up
   rotate: false
-  xy: 0, 94
+  xy: 481, 174
   size: 49, 49
   orig: 49, 49
   offset: 0, 0
   index: -1
 btn_toko_up
   rotate: false
-  xy: 481, 184
+  xy: 0, 0
   size: 49, 49
   orig: 49, 49
   offset: 0, 0
   index: -1
 btn_hscore_up
   rotate: false
-  xy: 0, 45
+  xy: 84, 84
   size: 49, 49
   orig: 49, 49
   offset: 0, 0
   index: -1
 btn_toko_down
   rotate: false
-  xy: 49, 98
+  xy: 530, 178
   size: 49, 45
   orig: 49, 45
   offset: 0, 0
   index: -1
 btn_hscore_down
   rotate: false
-  xy: 530, 188
+  xy: 133, 88
   size: 49, 45
   orig: 49, 45
   offset: 0, 0
   index: -1
 btn_info_down
   rotate: false
-  xy: 0, 0
+  xy: 579, 178
   size: 49, 45
   orig: 49, 45
   offset: 0, 0
