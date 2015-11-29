@@ -8,6 +8,7 @@
 	},
 	"com.badlogic.gdx.scenes.scene2d.ui.Image": {
 		header: { drawable: header },
+		coin: { drawable: coin },
 		background: { drawable: background },
 		ring-default: { drawable: ring-default },
 		ring-pie-coklat: { drawable: ring-pie-coklat },
