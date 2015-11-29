@@ -113,9 +113,9 @@ public class ModeSelect extends AbstractGameScreen {
 			}
 		});
 		
-		layer.add(btnFree);
-		layer.add(btnSurvival).row();
-		layer.add(btnTimed);
+		layer.add(btnFree).spaceRight(Constants.GAP_MEDIUM).spaceBottom(Constants.GAP_MEDIUM);
+		layer.add(btnSurvival).spaceBottom(Constants.GAP_MEDIUM).row();
+		layer.add(btnTimed).spaceRight(Constants.GAP_MEDIUM);
 		layer.add(btnMove).row();
 		layer.setTransform(true);
 		//layer.debug();
