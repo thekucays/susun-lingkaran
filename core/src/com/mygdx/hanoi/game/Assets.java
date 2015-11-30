@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
 import com.mygdx.hanoi.util.Constants;
 
@@ -33,22 +34,32 @@ public class Assets implements Disposable, AssetErrorListener{
 		
 		//load texture atlas yang udah dibikin pake TexturePacker nya (liat ebook page 167) 
 		assetManager.load(Constants.TEXTURE_ATLAS_OBJECTS, TextureAtlas.class);
+		assetManager.load(Constants.TEXTURE_ATLAS_DECORATION, TextureAtlas.class);
+		assetManager.load(Constants.TEXTURE_ATLAS_GUI, TextureAtlas.class);
 		
 		//load asset nya sampai selesai
 		assetManager.finishLoading();
 		
 		// biar lebih smooth, gambar nya dikasih filter
-		TextureAtlas atlas = assetManager.get(Constants.TEXTURE_ATLAS_OBJECTS);
-		for(Texture t : atlas.getTextures()){
+		TextureAtlas atlasObject = assetManager.get(Constants.TEXTURE_ATLAS_OBJECTS);
+		TextureAtlas atlasDecoration= assetManager.get(Constants.TEXTURE_ATLAS_DECORATION);
+		TextureAtlas atlasGui= assetManager.get(Constants.TEXTURE_ATLAS_GUI);
+		for(Texture t : atlasObject.getTextures()){
+			t.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		}
+		for(Texture t : atlasDecoration.getTextures()){
+			t.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		}
+		for(Texture t : atlasGui.getTextures()){
 			t.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
 		
 		// inner class objects
-		tiang = new AssetTiang(atlas);
-		bg = new AssetBackgroud(atlas, jenisBg);
-		tombol = new AssetTombol(atlas);
-		tombolBg = new AssetTombolBg(atlas);
-		ring = new AssetRing(atlas, jenisRing);
+		tiang = new AssetTiang(atlasObject);
+		bg = new AssetBackgroud(atlasDecoration, jenisBg);
+		tombol = new AssetTombol(atlasGui);
+		tombolBg = new AssetTombolBg(atlasDecoration);
+		ring = new AssetRing(atlasObject, jenisRing);
 	}
 	
 	@Override
