@@ -38,5 +38,7 @@ public class Constants {
 	public static final String pref_hint = "hintUser";
 	
 	// gameplay related
-	public static final String TEXTURE_ATLAS_OBJECTS = "ui/gameplay.pack";  // belom dibikin..cari resource nya dulu
+	public static final String TEXTURE_ATLAS_OBJECTS = "ui/gameplay/objects/objects.pack";
+	public static final String TEXTURE_ATLAS_DECORATION = "ui/gameplay/decorations/decorations.pack";
+	public static final String TEXTURE_ATLAS_GUI = "ui/gameplay/ui-game/ui-game.pack";
 }
