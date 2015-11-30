@@ -40,6 +40,7 @@ public class Ring extends AbstractGameObject{
 	// setters
 	public void setLength(float length){
 		this.length = length;
+		dimension.set(length, 1);
 	}
 	
 	public void setJenis(String jenis){
