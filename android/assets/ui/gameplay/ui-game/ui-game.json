@@ -1,0 +1,23 @@
+{
+	"com.badlogic.gdx.graphics.Color": {
+		"white" : { "r": 1, "g": 1, "b": 1, "a": 1 },
+		"black" : { "r": 0, "g": 0, "b": 0, "a": 1 },
+		"red" :   { "r": 1, "g": 0, "b": 0, "a": 1 },
+		"green" : { "r": 0, "g": 1, "b": 0, "a": 1 },
+		"blue" :  { "r": 0, "g": 0, "b": 1, "a": 1 },
+		"spc-mulai" : { "r":255, "g": 102, "b":0, "a": 1 }
+	},
+	"com.badlogic.gdx.graphics.g2d.BitmapFont": {
+		"ken-white" : { "file": "font/ken/ken-white.fnt" },
+		"ken-black" : { "file": "font/ken/ken-black.fnt" },
+		"ubuntu-white" : { "file": "font/ubuntu/ubuntu-white.fnt" },
+		"ubuntu-black" : { "file": "font/ubuntu/ubuntu-black.fnt" }
+	},
+	"com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
+		"default" : { "font": ubuntu-white, "fontColor": white }
+	},
+	"com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle": {
+		btnHint: { down: btn_hint_down, up: btn_hint_up },
+		btnPause: { down: btn_pause_down, up: btn_pause_up },
+	}
+}

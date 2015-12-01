@@ -1,0 +1,33 @@
+
+ui-game.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+btn_hint_up
+  rotate: false
+  xy: 0, 45
+  size: 60, 49
+  orig: 60, 49
+  offset: 0, 0
+  index: -1
+btn_pause_up
+  rotate: false
+  xy: 60, 45
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+btn_hint_down
+  rotate: false
+  xy: 0, 0
+  size: 59, 45
+  orig: 59, 45
+  offset: 0, 0
+  index: -1
+btn_pause_down
+  rotate: false
+  xy: 59, 0
+  size: 49, 45
+  orig: 49, 45
+  offset: 0, 0
+  index: -1
