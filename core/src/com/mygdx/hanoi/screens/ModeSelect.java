@@ -83,6 +83,7 @@ public class ModeSelect extends AbstractGameScreen {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				Gdx.app.log("Control", "btnFree pressed");
+				game.setScreen(new GamePlay(game));
 			}
 		});
 		
