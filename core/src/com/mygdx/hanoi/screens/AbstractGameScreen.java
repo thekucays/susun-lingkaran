@@ -18,8 +18,8 @@ public abstract class AbstractGameScreen implements Screen {
 	public abstract void hide();
 	public abstract void pause();
 	
-	public void resume(){
-		Assets.instance.init(new AssetManager(), "", "");  // kosongin, jadinya default
+	public void resume(String bg, String ring){
+		Assets.instance.init(new AssetManager(), bg, ring);  // kosongin, jadinya default
 	}
 	
 	public void dispose(){
