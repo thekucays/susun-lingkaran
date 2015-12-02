@@ -1,10 +1,13 @@
 package com.mygdx.hanoi.screens;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.GL20;
 import com.mygdx.hanoi.game.Assets;
 import com.mygdx.hanoi.game.GameController;
 import com.mygdx.hanoi.game.GameRenderer;
+import com.mygdx.hanoi.game.WorldController;
 
 public class GamePlay extends AbstractGameScreen{
 	
@@ -15,33 +18,43 @@ public class GamePlay extends AbstractGameScreen{
 	
 	public GamePlay(Game game) {
 		super(game);
+		
+		// still dummy.. nantinya ngambil dari database nya
+		this.dummyBg = "default-bg";
+		this.dummyRing = "default-ring";
 	}
 
 	@Override
 	public void render(float deltaTime) {
+		if(!paused){
+			gameController.update(deltaTime);
+		}
 		
+		Gdx.gl.glClearColor(0x64 / 255.0f, 0x95 / 255.0f,0xed / 255.0f, 0xff / 255.0f);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		// render game nya
+		gameRenderer.render();
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		
+		gameRenderer.resize(width, height);
 	}
 
 	@Override
 	public void show() {
-		// still dummy.. nantinya ngambil dari database nya
-		this.dummyBg = "default-bg";
-		this.dummyRing = "default-ring";
+		Assets.instance.init(new AssetManager(), this.dummyBg, this.dummyRing);
 		
-		Assets.instance.init(new AssetManager(), dummyBg, dummyRing);
-		
-		gameController = new GameController();
-		gameRenderer = new GameRenderer();
+		gameController = new GameController(game);
+		gameRenderer = new GameRenderer(gameController);
+		Gdx.input.setCatchBackKey(true);
 	}
 
 	@Override
 	public void hide() {
-		
+		gameRenderer.dispose();
+		Gdx.input.setCatchBackKey(false);
 	}
 
 	@Override
@@ -57,7 +70,9 @@ public class GamePlay extends AbstractGameScreen{
 	
 	@Override
 	public void resume() {
-		Assets.instance.init(new AssetManager(), this.dummyBg, this.dummyRing);
+		super.resume(this.dummyBg, this.dummyRing);
+		//Assets.instance.init(new AssetManager(), this.dummyBg, this.dummyRing);
+		
 		paused = false;
 	}
 }
