@@ -7,9 +7,11 @@ import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
@@ -56,6 +58,14 @@ public class WorldController extends InputAdapter{
 		//bikin 5 sprite buat contoh
 		testSprite = new Sprite[5];
 		
+		// testing assets
+		Array<TextureRegion> regions = new Array<TextureRegion>();
+		regions.add(Assets.instance.ring.ring);
+		regions.add(Assets.instance.ring.ring);
+		regions.add(Assets.instance.ring.ring);
+		regions.add(Assets.instance.ring.ring);
+		regions.add(Assets.instance.ring.ring);
+		
 		//panjang dan lebar kotaknya
 		int width = 32;
 		int height = 32;
@@ -66,7 +76,7 @@ public class WorldController extends InputAdapter{
 		
 		//looping bikin random sprite nya
 		for(int i = 0; i<testSprite.length; i++){
-			Sprite spr = new Sprite(texture);
+			Sprite spr = new Sprite(regions.random());//Sprite spr = new Sprite(texture);
 			spr.setSize(1.0f, 1.0f); //1 meter x 1 meter
 			spr.setOrigin(spr.getWidth() / 2.0f, spr.getHeight() / 2.0f);  //origin nya ditengah sprite (sumbu putar nya)
 			
