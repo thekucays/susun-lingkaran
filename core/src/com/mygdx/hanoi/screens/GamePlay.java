@@ -20,8 +20,8 @@ public class GamePlay extends AbstractGameScreen{
 		super(game);
 		
 		// still dummy.. nantinya ngambil dari database nya
-		this.dummyBg = "default-bg";
-		this.dummyRing = "default-ring";
+		this.dummyBg = "bg-default";
+		this.dummyRing = "ring-default";
 	}
 
 	@Override
@@ -30,7 +30,9 @@ public class GamePlay extends AbstractGameScreen{
 			gameController.update(deltaTime);
 		}
 		
-		Gdx.gl.glClearColor(0x64 / 255.0f, 0x95 / 255.0f,0xed / 255.0f, 0xff / 255.0f);
+		//Gdx.gl.glClearColor(0x64 / 255.0f, 0x95 / 255.0f,0xed / 255.0f, 0xff / 255.0f);
+		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		// render game nya
@@ -44,7 +46,8 @@ public class GamePlay extends AbstractGameScreen{
 
 	@Override
 	public void show() {
-		Assets.instance.init(new AssetManager(), this.dummyBg, this.dummyRing);
+		Assets.instance.init(new AssetManager(), "bg-default", "ring-default");
+		Gdx.app.log("GamePlay", "After show() method");
 		
 		gameController = new GameController(game);
 		gameRenderer = new GameRenderer(gameController);

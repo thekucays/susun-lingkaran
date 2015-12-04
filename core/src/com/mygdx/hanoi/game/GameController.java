@@ -13,6 +13,7 @@ import com.mygdx.hanoi.game.objects.Background;
 import com.mygdx.hanoi.game.objects.Ring;
 import com.mygdx.hanoi.game.objects.Tiang;
 import com.mygdx.hanoi.screens.AbstractGameScreen;
+import com.mygdx.hanoi.util.Constants;
 
 
 public class GameController extends InputAdapter{
@@ -43,14 +44,15 @@ public class GameController extends InputAdapter{
 	private void initObjects(){
 		AbstractGameObject obj = null;
 		obj = new Ring(1, "default");
-		/*obj.addListener(new ChangeListener() {
+		obj.addListener(new ChangeListener() {  // ini blum jalan..pake nya mungkin bukan change listener
 			
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				Gdx.app.log("tag", "test");
 			}
-		}); */
-		obj.position.set(0, 2);
+		}); 
+		//obj.position.set(Constants.VIEWPORT_GUI_WIDTH-150.0f, Constants.VIEWPORT_GUI_HEIGHT-150.0f);
+		//obj.position.set(0f,-3.75f);
 		
 		rings.add((Ring)obj);
 	}

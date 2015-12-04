@@ -44,9 +44,14 @@ public class GameRenderer implements Disposable{
 	}
 	
 	private void renderObjects(){
+		batch.setProjectionMatrix(camera.combined);
+		batch.begin();
+		
 		for(Ring rings : controller.rings){
 			rings.render(batch);
 		}
+		
+		batch.end();
 	}
 	
 	@Override

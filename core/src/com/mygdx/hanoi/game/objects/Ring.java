@@ -18,10 +18,10 @@ public class Ring extends AbstractGameObject{
 	public String jenis;
 	
 	public Ring(float length, String jenis){
+		init();
+		
 		setLength(length);
 		setJenis(jenis);
-		
-		init();
 	}
 	
 	// getters
@@ -40,7 +40,7 @@ public class Ring extends AbstractGameObject{
 	// setters
 	public void setLength(float length){
 		this.length = length;
-		dimension.set(length, 1);
+		dimension.set(length, 1.5f);
 	}
 	
 	public void setJenis(String jenis){
@@ -52,21 +52,26 @@ public class Ring extends AbstractGameObject{
 	}
 	
 	private void init(){
-		dimension.set(length, 1); // dalam satuan meter dalam screen game nya
+		//dimension.set(length, 1); // dalam satuan meter dalam screen game nya
 		ringOverLay = Assets.instance.ring.ring;  // Assets.instance.namaobjek.atlasregion
 
-		origin.x = -dimension.x/2;
+		origin.x = dimension.x/2;  // -dimension.x/2;
+		origin.y = dimension.y/2;
+		
+		position.x = -1.0f;
+		position.y = -1.0f;
 	}
 	
 	@Override
 	public void render(SpriteBatch batch) {
 		TextureRegion reg = null;
 		reg = ringOverLay;
-		
+
 		// perlu ditinjau ulang bagian ini.. ga semua game object parameter draw nya sama
-		batch.draw(reg.getTexture(), position.x + origin.x, position.y + origin.y, origin.x, origin.y, dimension.x, dimension.y, scale.x, scale.y, rotation, 
-				reg.getRegionX(), reg.getRegionY(), reg.getRegionWidth(), reg.getRegionHeight(), 
-				false, false);
+		batch.draw(reg.getTexture(), position.x + origin.x, position.y + origin.y, origin.x, origin.y, dimension.x, dimension.y, scale.x, scale.y, rotation, reg.getRegionX(), reg.getRegionY(), reg.getRegionWidth(), reg.getRegionHeight(), false, false);
+		//batch.draw(reg.getTexture(), position.x, position.y);
+		
+		
 	}
 
 }

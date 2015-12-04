@@ -1,5 +1,6 @@
 package com.mygdx.hanoi.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
@@ -40,6 +41,12 @@ public class Assets implements Disposable, AssetErrorListener{
 		//load asset nya sampai selesai
 		assetManager.finishLoading();
 		
+		Gdx.app.log(TAG, "# of assets loaded: " + assetManager.getAssetNames().size);
+		for (String a : assetManager.getAssetNames()){
+			Gdx.app.log(TAG, "asset: " + a);
+		}
+		
+		
 		// biar lebih smooth, gambar nya dikasih filter
 		TextureAtlas atlasObject = assetManager.get(Constants.TEXTURE_ATLAS_OBJECTS);
 		TextureAtlas atlasDecoration= assetManager.get(Constants.TEXTURE_ATLAS_DECORATION);
@@ -78,13 +85,13 @@ public class Assets implements Disposable, AssetErrorListener{
 	 * satu objek satu inner class
 	 * (liat ebook page 170)
 	 */
-	public class AssetGoldCoin{
+	/*public class AssetGoldCoin{
 		public final AtlasRegion goldCoin;
 		
 		public AssetGoldCoin(TextureAtlas atlas){
 			goldCoin = atlas.findRegion("item_gold");
 		}
-	}
+	}*/
 	
 	public class AssetTiang{
 		public final AtlasRegion tiang;
@@ -99,11 +106,11 @@ public class Assets implements Disposable, AssetErrorListener{
 		
 		// jenis ring dimasukin disini, karena jenis ring bisa diganti-ganti sesuai yang dipilih
 		public AssetRing(TextureAtlas atlas, String jenisRing){
-			if(jenisRing.equals("")){
+			if(!jenisRing.equals("")){
 				ring = atlas.findRegion(jenisRing);
 			}
 			else{
-				ring = atlas.findRegion("ring_default");
+				ring = atlas.findRegion("ring-default");
 			}
 		}
 	}
