@@ -4,6 +4,7 @@ import java.util.Stack;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Event;
 import com.mygdx.hanoi.game.Assets;
 
 
@@ -23,7 +24,7 @@ public class Tiang extends AbstractGameObject{
 	public Tiang(float length, int maxLoad, int currLoad){
 		this.length = length;
 		this.maxLoad = maxLoad;
-		this.currLoad = currLoad;
+		this.currLoad = currLoad; 
 		init();
 	}
 	
@@ -58,4 +59,9 @@ public class Tiang extends AbstractGameObject{
 				false, false);
 	}
 
+	/*@Override
+	public boolean handle(Event event) {
+		// TODO Auto-generated method stub
+		return false;
+	}*/
 }

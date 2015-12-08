@@ -173,6 +173,8 @@ public class Toko extends AbstractGameScreen {
 		
 		stage.act(deltaTime);
 		stage.draw();
+		
+		Gdx.app.log("log", "delta time");
 	}
 
 	@Override

@@ -40,7 +40,7 @@ public class Ring extends AbstractGameObject{
 	// setters
 	public void setLength(float length){
 		this.length = length;
-		dimension.set(length, 1.5f);
+		dimension.set(5.0f, 1.0f);
 	}
 	
 	public void setJenis(String jenis){
@@ -58,8 +58,8 @@ public class Ring extends AbstractGameObject{
 		origin.x = dimension.x/2;  // -dimension.x/2;
 		origin.y = dimension.y/2;
 		
-		position.x = -1.0f;
-		position.y = -1.0f;
+		position.x = -5.0f;
+		position.y = -2.5f;
 	}
 	
 	@Override
@@ -68,10 +68,9 @@ public class Ring extends AbstractGameObject{
 		reg = ringOverLay;
 
 		// perlu ditinjau ulang bagian ini.. ga semua game object parameter draw nya sama
-		batch.draw(reg.getTexture(), position.x + origin.x, position.y + origin.y, origin.x, origin.y, dimension.x, dimension.y, scale.x, scale.y, rotation, reg.getRegionX(), reg.getRegionY(), reg.getRegionWidth(), reg.getRegionHeight(), false, false);
+		batch.draw(reg.getTexture(), position.x, position.y, origin.x, origin.y, dimension.x, dimension.y, scale.x, scale.y, rotation, reg.getRegionX(), reg.getRegionY(), reg.getRegionWidth(), reg.getRegionHeight(), false, false);
+		//batch.draw(region, x, y, originX, originY, width, height, scaleX, scaleY, length);
 		//batch.draw(reg.getTexture(), position.x, position.y);
-		
-		
 	}
 
 }

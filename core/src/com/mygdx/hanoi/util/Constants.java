@@ -28,7 +28,9 @@ public class Constants {
 	
 	// GUI related
 	public static final float VIEWPORT_GUI_WIDTH = 800.0f;
+	public static final int VIEWPORT_GUI_WIDTH_INT = 800;
 	public static final float VIEWPORT_GUI_HEIGHT = 480.0f;
+	public static final int VIEWPORT_GUI_HEIGHT_INT = 480;
 	public static final float HEADER_TOP_GAP = 80.0f;
 	
 	// preferences related

@@ -6,11 +6,13 @@ import java.util.Map;
 
 //import sun.java2d.pipe.hw.ExtendedBufferCapabilities.VSyncType;
 
+
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.mygdx.hanoi.game.Assets;
 import com.mygdx.hanoi.game.WorldController;
@@ -29,8 +31,8 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 	@Override
 	public void create(){
 		setScreen(new SplashScreen(this)); //pake this supaya this.game di AbstractGameScreen keisi..jadi bisa dipanggil semua
+		/*Assets.instance.init(new AssetManager(), "bg-default", "ring-default");
 		
-		/*
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 		Gdx.app.log("Greetings", "Hello, greetings from tge main class");
 		
@@ -53,13 +55,13 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 		temp.put("soundvolume", 75);
 		prefs.put(temp);
 		prefs.flush();
-		Gdx.app.log("Map print", "the sound volume was changed to " + prefs.get().get("soundvolume"));
+		Gdx.app.log("Map print", "the sound volume was changed to " + prefs.get().get("soundvolume")); 
 		
 		worldController = new WorldController();
 		worldRenderer = new WorldRenderer(worldController);
 		
 		//pastinya pertama-tama game ga di-pause
-		paused = false;  */
+		paused = false; */  
 	}
 	
 	@Override
@@ -76,7 +78,7 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		//render game nya ke layar
-		worldRenderer.render(); */
+		worldRenderer.render(); */ 
 	}
 	
 	@Override 
@@ -100,6 +102,7 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 	@Override
 	public void dispose(){
 		super.dispose();
+		//Assets.instance.dispose();
 		//worldRenderer.dispose();
 	}
 }

@@ -2,6 +2,7 @@ package com.mygdx.hanoi.game;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.utils.Disposable;
 import com.mygdx.hanoi.game.objects.Ring;
 import com.mygdx.hanoi.util.Constants;
@@ -29,10 +30,11 @@ public class GameRenderer implements Disposable{
 		camera.update();
 	}
 	
-	public void render(){
+	public void render(float delta){
 		renderGui();
 		renderDecorations();
 		renderObjects();
+		renderStage(delta);
 	}
 	
 	private void renderGui(){
@@ -43,11 +45,17 @@ public class GameRenderer implements Disposable{
 		
 	}
 	
+	private void renderStage(float delta){
+		controller.stage.act(delta);
+		controller.stage.draw();
+	}
+	
 	private void renderObjects(){
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		
 		for(Ring rings : controller.rings){
+			controller.stage.addActor(rings);
 			rings.render(batch);
 		}
 		

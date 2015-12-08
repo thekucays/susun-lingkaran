@@ -78,7 +78,7 @@ public class WorldController extends InputAdapter{
 		for(int i = 0; i<testSprite.length; i++){
 			Sprite spr = new Sprite(regions.random());//Sprite spr = new Sprite(texture);
 			spr.setSize(1.0f, 1.0f); //1 meter x 1 meter
-			spr.setOrigin(spr.getWidth() / 2.0f, spr.getHeight() / 2.0f);  //origin nya ditengah sprite (sumbu putar nya)
+			spr.setOrigin(spr.getWidth() / 2.0f, spr.getHeight() / 2.0f);  //origin nya ditengah sprite (sumbu putar nya) 
 			
 			//posisi nya di random
 			/*float randomX = MathUtils.random(-2.0f, 2.0f);

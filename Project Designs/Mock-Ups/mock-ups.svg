@@ -217,6 +217,80 @@
          d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
          id="path5466" />
     </marker>
+    <filter
+       id="filter4857-1-1"
+       inkscape:label="Color outline"
+       inkscape:menu="Morphology"
+       inkscape:menu-tooltip="Draws a colored outline around"
+       width="1.5"
+       height="1.5"
+       x="-0.25"
+       y="-0.25"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur4859-33-0"
+         in="SourceAlpha"
+         stdDeviation="3"
+         result="blur" />
+      <feColorMatrix
+         id="feColorMatrix4861-1-9"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 10 -1 "
+         result="result4" />
+      <feFlood
+         id="feFlood4863-7-8"
+         result="result1"
+         flood-color="rgb(154,27,74)"
+         in="blur" />
+      <feComposite
+         id="feComposite4865-5-1"
+         in2="result4"
+         result="result2"
+         in="result1"
+         operator="atop" />
+      <feComposite
+         id="feComposite4867-9-7"
+         in2="result2"
+         in="SourceGraphic"
+         result="result3"
+         operator="atop" />
+    </filter>
+    <filter
+       id="filter4971-9"
+       inkscape:label="Color outline"
+       inkscape:menu="Morphology"
+       inkscape:menu-tooltip="Draws a colored outline around"
+       width="1.5"
+       height="1.5"
+       x="-0.25"
+       y="-0.25"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur4973-3"
+         in="SourceAlpha"
+         stdDeviation="3"
+         result="blur" />
+      <feColorMatrix
+         id="feColorMatrix4975-2"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 10 -1 "
+         result="result4" />
+      <feFlood
+         id="feFlood4977-8"
+         result="result1"
+         flood-color="rgb(154,27,74)"
+         in="blur" />
+      <feComposite
+         id="feComposite4979-6"
+         in2="result4"
+         result="result2"
+         in="result1"
+         operator="atop" />
+      <feComposite
+         id="feComposite4981-1"
+         in2="result2"
+         in="SourceGraphic"
+         result="result3"
+         operator="atop" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -225,9 +299,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="55.448547"
-     inkscape:cy="562.3842"
+     inkscape:zoom="1.979899"
+     inkscape:cx="732.88301"
+     inkscape:cy="982.95789"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -351,24 +425,27 @@
        inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/level-select/png/btn_back_down.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
-    <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1.50553358;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       id="rect3871"
-       width="8.3516445"
-       height="28.351608"
-       x="781.89557"
-       y="-41.456482"
-       ry="5.4522328"
-       rx="0" />
-    <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1.50553358;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       id="rect3871-9"
-       width="8.3516445"
-       height="28.351608"
-       x="798.68127"
-       y="-41.813622"
-       ry="5.4522328"
-       rx="0" />
+    <g
+       id="g3217">
+      <rect
+         rx="0"
+         ry="5.4522328"
+         y="-41.456482"
+         x="781.89557"
+         height="28.351608"
+         width="8.3516445"
+         id="rect3871"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1.50553358;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <rect
+         rx="0"
+         ry="5.4522328"
+         y="-41.813622"
+         x="798.68127"
+         height="28.351608"
+         width="8.3516445"
+         id="rect3871-9"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1.50553358;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
     <image
        width="59.101524"
        height="45"
@@ -411,9 +488,12 @@
          style="fill:#ff6600;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
     </g>
     <g
-       transform="translate(543.96715,-2.52539)"
+       transform="translate(895.50023,118.69291)"
        id="g3919-3"
-       style="stroke:#000000;stroke-opacity:1">
+       style="stroke:#000000;stroke-opacity:1"
+       inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/GamePlay/png/objects/tiang-default.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <rect
          ry="0"
          y="371.51938"
@@ -560,7 +640,10 @@
        height="22.857143"
        x="375"
        y="316.64792"
-       ry="11.428572" />
+       ry="11.428572"
+       inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/GamePlay/png/objects/ring-default.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <image
        y="1047.3912"
        x="-787.04144"
@@ -689,7 +772,10 @@
        rx="8.5714283" />
     <g
        id="g5083"
-       transform="translate(12,2)">
+       transform="translate(12,2)"
+       inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/toko/png/hint-5.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <rect
          ry="18.22863"
          rx="0"
@@ -834,5 +920,302 @@
          x="88.893425"
          y="562.43823"
          style="font-size:35px;fill:#eeeeee">99999</tspan></text>
+    <rect
+       style="fill:#ffff00;fill-opacity:1;stroke:none;filter:url(#filter4857-1-1)"
+       id="rect4855-2-5"
+       width="81.428574"
+       height="22.857143"
+       x="973.47888"
+       y="261.09586"
+       ry="11.428572"
+       inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/GamePlay/png/objects/ring-default.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       id="g5021-1"
+       transform="translate(369.41715,22.587999)"
+       inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/toko/png/btn_beli_up.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <image
+         width="61.857143"
+         height="49"
+         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAxCAYAAABznEEcAAAABHNCSVQICAgIfAhkiAAAAhZJREFU aIHt2T1uE0EYxvH/O7txQryI2MQKoorEBVwhQZMcAegQEoQb+AjACeAEWDR0QfQgOQ2cACEKUApk abX+DHYWdj0zFMaIEKQ4ILHjaH7daqd43n2ad7TCD7d3r20tiexYYzYBVKi2cYyZmBaAKLWfW9t8 fuvtHoAA3H1x/akodoqL93esofns5pv7cmf36r0wCJsAlfU1zl+IAChHq0Xm+6Px6BCAL8MR/c4A gIme7ISBBA2Ajcs1qrVKcQnnMPuw5WiVUmmJuJ0QSNAIRUldKfVzAGttkTnnIiJUaxXidoIoqYcA xhhgOsAiDAHTQWbC318Ya/57oNNSoo48h8dOLEYRRxwbwi7gFL4JV/gmXOGbcIVvwhXq5CPuO97E giyAv/JNuMI34QrfhCt8E67wTbjijDaxgFusv0+4wjfhCt+EK3wTrjgba4fOpn+GsiwHYGV5pcg8 J5rlm+XVmSHMU01QUgx7B9QuXSQqR0TlqMiccxn2DgDIU4067GQAdOIuvaRfZK659ZI+nbgLwGEn I8zGmrSXca5aIm4nxO2k4IjzS3sZ2VgTGsNg+PnrWjbWRBvLBCX3t3OdGUbxN9J+jjEMQiu0gBtp Pyft50XnOzUrtBSTvFl0kH+hc3kcfNrrfriytb4pSupFBzotq03z9aN3TwKAj63k5eZ2dV8sdRFZ KzrcSawx+9rqxqsH7x8CfAd6OeZj2ayYKQAAAABJRU5ErkJggg== "
+         id="image5010-9"
+         x="621.92865"
+         y="680.00507" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text5017-50"
+         y="709.50507"
+         x="627.85712"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+         xml:space="preserve"><tspan
+           style="font-size:25px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+           y="709.50507"
+           x="627.85712"
+           id="tspan5019-89"
+           sodipodi:role="line">Beli!</tspan></text>
+    </g>
+    <image
+       y="773.6825"
+       x="1009.1385"
+       id="image5034-0"
+       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAxCAYAAABznEEcAAAABHNCSVQICAgIfAhkiAAAAhZJREFU aIHt2T1uE0EYxvH/O7txQryI2MQKoorEBVwhQZMcAegQEoQb+AjACeAEWDR0QfQgOQ2cACEKUApk abX+DHYWdj0zFMaIEKQ4ILHjaH7daqd43n2ad7TCD7d3r20tiexYYzYBVKi2cYyZmBaAKLWfW9t8 fuvtHoAA3H1x/akodoqL93esofns5pv7cmf36r0wCJsAlfU1zl+IAChHq0Xm+6Px6BCAL8MR/c4A gIme7ISBBA2Ajcs1qrVKcQnnMPuw5WiVUmmJuJ0QSNAIRUldKfVzAGttkTnnIiJUaxXidoIoqYcA xhhgOsAiDAHTQWbC318Ya/57oNNSoo48h8dOLEYRRxwbwi7gFL4JV/gmXOGbcIVvwhXq5CPuO97E giyAv/JNuMI34QrfhCt8E67wTbjijDaxgFusv0+4wjfhCt+EK3wTrjgba4fOpn+GsiwHYGV5pcg8 J5rlm+XVmSHMU01QUgx7B9QuXSQqR0TlqMiccxn2DgDIU4067GQAdOIuvaRfZK659ZI+nbgLwGEn I8zGmrSXca5aIm4nxO2k4IjzS3sZ2VgTGsNg+PnrWjbWRBvLBCX3t3OdGUbxN9J+jjEMQiu0gBtp Pyft50XnOzUrtBSTvFl0kH+hc3kcfNrrfriytb4pSupFBzotq03z9aN3TwKAj63k5eZ2dV8sdRFZ KzrcSawx+9rqxqsH7x8CfAd6OeZj2ayYKQAAAABJRU5ErkJggg== "
+       height="49"
+       width="103.04316"
+       inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/toko/png/btn_pasang_up.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="1017.2236"
+       y="803.35962"
+       id="text3177"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3179"
+         x="1017.2236"
+         y="803.35962"
+         style="font-size:25px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;font-family:Ubuntu;-inkscape-font-specification:Ubuntu">Pasang!</tspan></text>
+    <image
+       y="703.43359"
+       x="1061.2144"
+       id="image3200"
+       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAtCAYAAAAHiIP8AAAABHNCSVQICAgIfAhkiAAAAYxJREFU aIHt2jFuGkEYhuH3/3ehYIkCCMuSqxyBylLSJFcgXRQpWW7AUXIDIxp3to+QNLjNEbaKhMBgEsAS 7M6kCY29kTYkYUdonnKq7x1NOcIv765evq6IxNaYFwAa6hscY1LzGUBUk621g8u3t18ABODD9asL UeLy5u3HGgbD7qgn76/OP4ZBOABoths8e14HIKrXytyXa7VcA/BjsWQ+vQcgzdI4DCToA5yendA6 aZa3sIDdxUb1GtVqhfG3CYEEfRWVjqo6H/DYbq+odBTAGFPqoL+lZQ/4F3yEK3yEK3yEK3yEK3yE K3yEK3yEK44iIsw7XK1Xh95RWFSLnpzlRqwf1v99zL7yIo7iOfkIV/gIV/gIV/gIV/gIV/gIV/gI V+RGiMihdxTyu12hNdyL0thstlSrFQDarfYht+1ls9kCYI1JFLgBWMy+l7npj+32WuxX3Vo7AJiO 75hN5mXuKiTLMmaTOdPxHQCp1U9H8aNAAYbdUS8zWd8ak5S8qxBrTJJmaTzsjnoAPwHb5HhT/EdY NgAAAABJRU5ErkJggg== "
+       height="45"
+       width="61.857143"
+       inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/toko/png/btn_beli_down.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="1067.1429"
+       y="733.07648"
+       id="text3203"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3205"
+         x="1067.1429"
+         y="733.07648"
+         style="font-size:25px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;font-family:Ubuntu;-inkscape-font-specification:Ubuntu">Beli!</tspan></text>
+    <image
+       y="830.7193"
+       x="1009.7857"
+       id="image3200-1"
+       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAtCAYAAAAHiIP8AAAABHNCSVQICAgIfAhkiAAAAYxJREFU aIHt2jFuGkEYhuH3/3ehYIkCCMuSqxyBylLSJFcgXRQpWW7AUXIDIxp3to+QNLjNEbaKhMBgEsAS 7M6kCY29kTYkYUdonnKq7x1NOcIv765evq6IxNaYFwAa6hscY1LzGUBUk621g8u3t18ABODD9asL UeLy5u3HGgbD7qgn76/OP4ZBOABoths8e14HIKrXytyXa7VcA/BjsWQ+vQcgzdI4DCToA5yendA6 aZa3sIDdxUb1GtVqhfG3CYEEfRWVjqo6H/DYbq+odBTAGFPqoL+lZQ/4F3yEK3yEK3yEK3yEK3yE K3yEK3yEK44iIsw7XK1Xh95RWFSLnpzlRqwf1v99zL7yIo7iOfkIV/gIV/gIV/gIV/gIV/gIV/gI V+RGiMihdxTyu12hNdyL0thstlSrFQDarfYht+1ls9kCYI1JFLgBWMy+l7npj+32WuxX3Vo7AJiO 75hN5mXuKiTLMmaTOdPxHQCp1U9H8aNAAYbdUS8zWd8ak5S8qxBrTJJmaTzsjnoAPwHb5HhT/EdY NgAAAABJRU5ErkJggg== "
+       height="45"
+       width="102.57143"
+       inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/toko/png/btn_pasang_down.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="1018.1489"
+       y="861.04791"
+       id="text3177-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3179-3"
+         x="1018.1489"
+         y="861.04791"
+         style="font-size:25px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;font-family:Ubuntu;-inkscape-font-specification:Ubuntu">Pasang!</tspan></text>
+    <rect
+       style="fill:#ff6600;fill-opacity:1;stroke:none"
+       id="rect5000-7"
+       width="608.57147"
+       height="78.571426"
+       x="859.28571"
+       y="882.36218"
+       ry="18.644068"
+       rx="8.5714283" />
+    <g
+       id="g5083-9"
+       transform="translate(1018.2143,-152.14283)"
+       inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/toko/png/hint-5.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         ry="18.22863"
+         rx="0"
+         y="766.18921"
+         x="148.82704"
+         height="53.774479"
+         width="51.631603"
+         id="rect5077-9"
+         style="fill:none;stroke:#ffffff;stroke-width:4.08268213;stroke-miterlimit:4.0999999;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text5079-2"
+         y="803.79077"
+         x="153.57144"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+         xml:space="preserve"><tspan
+           style="font-size:35px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#eeeeee;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+           y="803.79077"
+           x="153.57144"
+           id="tspan5081-7"
+           sodipodi:role="line">+5</tspan></text>
+    </g>
+    <g
+       transform="translate(1004.0207,-88.086632)"
+       id="g5200-0"
+       inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/toko/png/hint-10.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         style="fill:none;stroke:#ffffff;stroke-width:4.55191183;stroke-miterlimit:4.0999999;stroke-opacity:1;stroke-dasharray:none"
+         id="rect5077-1-4"
+         width="61.263901"
+         height="56.335709"
+         x="158.20453"
+         y="853.70953"
+         rx="0"
+         ry="19.096842" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text5196-9"
+         y="892.75806"
+         x="156.57364"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+         xml:space="preserve"><tspan
+           style="font-size:35px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#eeeeee;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+           y="892.75806"
+           x="156.57364"
+           id="tspan5198-1"
+           sodipodi:role="line">+10</tspan></text>
+    </g>
+    <path
+       sodipodi:type="inkscape:offset"
+       inkscape:radius="2.5253813"
+       inkscape:original="M 344.03125 543.71875 L 344.03125 547.9375 L 355.8125 547.9375 L 355.8125 579.5 L 360.5625 579.5 L 360.5625 547.9375 L 372.40625 547.9375 L 372.40625 543.71875 L 344.03125 543.71875 z M 402.09375 543.71875 L 402.09375 579.5 L 406.5 579.5 L 406.5 569.21875 L 409.59375 566.25 L 418.15625 579.5 L 423.59375 579.5 L 412.6875 563.1875 L 422.59375 553.5625 L 416.90625 553.5625 L 406.5 564.125 L 406.5 543.71875 L 402.09375 543.71875 z M 383.21875 553 C 380.01236 553.00003 377.29231 553.95445 375.0625 555.875 C 372.39323 558.18622 371.0625 561.72984 371.0625 566.53125 C 371.0625 570.90951 372.17643 574.26628 374.40625 576.59375 C 376.65234 578.92122 379.58918 580.09375 383.21875 580.09375 C 385.4811 580.09375 387.56443 579.55794 389.46875 578.5 C 391.3893 577.44206 392.85089 575.9668 393.84375 574.0625 C 394.85284 572.14193 395.34372 569.5241 395.34375 566.1875 C 395.34372 562.06968 394.23109 558.82749 391.96875 556.5 C 389.70636 554.15628 386.78319 553.00003 383.21875 553 z M 439.09375 553 C 435.88736 553.00003 433.16731 553.95445 430.9375 555.875 C 428.26823 558.18622 426.9375 561.72984 426.9375 566.53125 C 426.9375 570.90951 428.05143 574.26628 430.28125 576.59375 C 432.52734 578.92122 435.46418 580.09375 439.09375 580.09375 C 441.3561 580.09375 443.43943 579.55794 445.34375 578.5 C 447.2643 577.44206 448.72589 575.9668 449.71875 574.0625 C 450.72784 572.14193 451.24997 569.5241 451.25 566.1875 C 451.24997 562.06968 450.10609 558.82749 447.84375 556.5 C 445.58136 554.15628 442.65819 553.00003 439.09375 553 z M 383.21875 556.625 C 385.38345 556.62502 387.20766 557.46487 388.65625 559.125 C 390.12107 560.7689 390.84373 563.19989 390.84375 566.40625 C 390.84373 569.80795 390.1048 572.33985 388.65625 574 C 387.20766 575.66016 385.39972 576.46875 383.21875 576.46875 C 381.02147 576.46875 379.19856 575.64388 377.75 574 C 376.30143 572.33985 375.59374 569.85157 375.59375 566.53125 C 375.59374 563.21095 376.30143 560.73765 377.75 559.09375 C 379.19856 557.44989 381.02147 556.62502 383.21875 556.625 z M 439.09375 556.625 C 441.25845 556.62502 443.08266 557.46487 444.53125 559.125 C 445.99607 560.7689 446.71873 563.19989 446.71875 566.40625 C 446.71873 569.80795 446.01105 572.33985 444.5625 574 C 443.11391 575.66016 441.27472 576.46875 439.09375 576.46875 C 436.89647 576.46875 435.07356 575.64388 433.625 574 C 432.17643 572.33985 431.46874 569.85157 431.46875 566.53125 C 431.46874 563.21095 432.17643 560.73765 433.625 559.09375 C 435.07356 557.44989 436.89647 556.62502 439.09375 556.625 z "
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff6600;fill-opacity:1;stroke:none;filter:url(#filter4971-9);font-family:Arial;-inkscape-font-specification:Arial"
+       id="path4969-6"
+       d="M 344.03125,541.1875 A 2.5256339,2.5256339 0 0 0 341.5,543.71875 l 0,4.21875 a 2.5256339,2.5256339 0 0 0 2.53125,2.53125 l 9.25,0 0,29.03125 a 2.5256339,2.5256339 0 0 0 2.53125,2.53125 l 4.75,0 A 2.5256339,2.5256339 0 0 0 363.09375,579.5 l 0,-29.03125 9.3125,0 a 2.5256339,2.5256339 0 0 0 2.53125,-2.53125 l 0,-4.21875 a 2.5256339,2.5256339 0 0 0 -2.53125,-2.53125 l -28.375,0 z m 58.0625,0 a 2.5256339,2.5256339 0 0 0 -2.53125,2.53125 l 0,35.78125 a 2.5256339,2.5256339 0 0 0 2.53125,2.53125 l 4.40625,0 A 2.5256339,2.5256339 0 0 0 409.03125,579.5 l 0,-9.21875 0.0937,-0.0937 6.90625,10.6875 a 2.5256339,2.5256339 0 0 0 2.125,1.15625 l 5.4375,0 a 2.5256339,2.5256339 0 0 0 2.09375,-3.9375 l -9.75,-14.5625 8.40625,-8.15625 a 2.5256339,2.5256339 0 0 0 -1.75,-4.34375 l -5.6875,0 a 2.5256339,2.5256339 0 0 0 -1.8125,0.75 l -6.0625,6.15625 0,-14.21875 A 2.5256339,2.5256339 0 0 0 406.5,541.1875 l -4.40625,0 z m -18.875,9.28125 c -3.70752,3e-5 -7.1267,1.1867 -9.8125,3.5 -3.32096,2.87549 -4.875,7.29448 -4.875,12.5625 0,4.8066 1.28421,8.91255 4.0625,11.8125 2.71563,2.81402 6.45155,4.28125 10.625,4.28125 2.66109,0 5.19735,-0.64438 7.46875,-1.90625 2.30235,-1.26825 4.15919,-3.15579 5.375,-5.46875 l 0.0312,0 c 0.004,-0.008 -0.004,-0.0237 0,-0.0312 1.28193,-2.45385 1.78122,-5.45919 1.78125,-9.03125 -3e-5,-4.57271 -1.30287,-8.56625 -4.09375,-11.4375 -2.72907,-2.82717 -6.45194,-4.28122 -10.5625,-4.28125 z m 55.875,0 c -3.70752,3e-5 -7.1267,1.1867 -9.8125,3.5 -3.32096,2.87549 -4.875,7.29448 -4.875,12.5625 0,4.8066 1.28421,8.91255 4.0625,11.8125 2.71563,2.81402 6.45155,4.28125 10.625,4.28125 2.66109,0 5.19735,-0.64438 7.46875,-1.90625 2.30235,-1.26825 4.15919,-3.15579 5.375,-5.46875 l 0.0312,0 c 0.004,-0.008 -0.004,-0.0237 0,-0.0312 1.27227,-2.43503 1.81247,-5.44355 1.8125,-9.03125 -3e-5,-4.58549 -1.34222,-8.57458 -4.125,-11.4375 -2.72907,-2.82717 -6.45194,-4.28122 -10.5625,-4.28125 z m -55.875,8.6875 c 1.51152,10e-6 2.49579,0.43833 3.53125,1.625 a 2.5256339,2.5256339 0 0 0 0.0312,0.0312 c 0.9166,1.02866 1.53123,2.76683 1.53125,5.59375 -2e-5,3.03599 -0.6705,4.9152 -1.5625,5.9375 -1.03129,1.18191 -1.97447,1.59375 -3.53125,1.59375 -1.56525,0 -2.53169,-0.42395 -3.5625,-1.59375 -0.89459,-1.02525 -1.53126,-2.85102 -1.53125,-5.8125 -10e-6,-2.96146 0.64362,-4.77392 1.53125,-5.78125 1.03081,-1.16978 1.99723,-1.59374 3.5625,-1.59375 z m 55.875,0 c 1.51152,10e-6 2.49579,0.43833 3.53125,1.625 a 2.5256339,2.5256339 0 0 0 0.0312,0.0312 c 0.9166,1.02866 1.53123,2.76683 1.53125,5.59375 -2e-5,3.05146 -0.65108,4.92876 -1.53125,5.9375 -1.01946,1.16836 -2.00572,1.59375 -3.5625,1.59375 -1.56525,0 -2.53169,-0.42395 -3.5625,-1.59375 -0.89459,-1.02525 -1.53126,-2.85102 -1.53125,-5.8125 -10e-6,-2.96146 0.64362,-4.77392 1.53125,-5.78125 1.03081,-1.16978 1.99723,-1.59374 3.5625,-1.59375 z"
+       transform="translate(645.21651,21.88451)"
+       inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/toko/png/header.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <image
+       width="59.101524"
+       height="45"
+       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAtCAYAAAAHiIP8AAAABHNCSVQICAgIfAhkiAAAAY5JREFU aIHt2kFKG1Ecx/Hv+2dMjR1DFLFQEDxCN3FrryFdNLlBjuBNnE1w6xHSZdtLZCdIGB9xRElm/q+L mFBwhBA18yLvsxoeWfy+YQgME8OTP2fxqZF6R9FjgEjkO57JVQcAggydTpKTy+wXgAH4+2P/QoRO dfNWo0rS7qdd8/ts92cUbSUArd2YvWYMQNzYrnBeuezhEYDbcYa9ywDI82knMlLrwSzg6MtBdQuX MP9i48Y2jU91rkcpRmo9cWD//8CmaH7eAcCBlZrhG7C4jTZFfSsCZj9AYoy0Kt7zalL1gLcQInwR InwRInwRInwRInwRInwRInwRlR0+ZON171haI24+OyuPuL979zGrKov4ELdTiPBFiPBFiPBFiPBF iPBFiPBFiPBFaYQxZt07lvLSrsg5tcZIazLNF6+Q9g6/rnPbSibTfHEtzskVwO3TK9VNMd+bqw7E 6SQBuEktI+vvs/VcUSgjO+YmtbMDLZIP8Y8CAWj3025R5D1VHVa8aynOqdVCz9v9tAvwDwHfeN5j ZuRiAAAAAElFTkSuQmCC "
+       id="image3334-2-6-2"
+       x="848.27179"
+       y="-27.767534"
+       inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/GamePlay/png/gui/btn_hint-up.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <image
+       width="49"
+       height="45"
+       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAtCAYAAAAHiIP8AAAABHNCSVQICAgIfAhkiAAAAY5JREFU aIHt2kFKG1Ecx/Hv+2dMjR1DFLFQEDxCN3FrryFdNLlBjuBNnE1w6xHSZdtLZCdIGB9xRElm/q+L mFBwhBA18yLvsxoeWfy+YQgME8OTP2fxqZF6R9FjgEjkO57JVQcAggydTpKTy+wXgAH4+2P/QoRO dfNWo0rS7qdd8/ts92cUbSUArd2YvWYMQNzYrnBeuezhEYDbcYa9ywDI82knMlLrwSzg6MtBdQuX MP9i48Y2jU91rkcpRmo9cWD//8CmaH7eAcCBlZrhG7C4jTZFfSsCZj9AYoy0Kt7zalL1gLcQInwR InwRInwRInwRInwRInwRInwRlR0+ZON171haI24+OyuPuL979zGrKov4ELdTiPBFiPBFiPBFiPBF iPBFiPBFiPBFaYQxZt07lvLSrsg5tcZIazLNF6+Q9g6/rnPbSibTfHEtzskVwO3TK9VNMd+bqw7E 6SQBuEktI+vvs/VcUSgjO+YmtbMDLZIP8Y8CAWj3025R5D1VHVa8aynOqdVCz9v9tAvwDwHfeN5j ZuRiAAAAAElFTkSuQmCC "
+       id="image3334-3"
+       x="921.50781"
+       y="-26.75738"
+       inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/GamePlay/png/gui/btn_pause_up.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       transform="translate(151.54361,24.191715)"
+       id="g3217-9">
+      <rect
+         rx="0"
+         ry="5.4522328"
+         y="-41.456482"
+         x="781.89557"
+         height="28.351608"
+         width="8.3516445"
+         id="rect3871-4"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1.50553358;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <rect
+         rx="0"
+         ry="5.4522328"
+         y="-41.813622"
+         x="798.68127"
+         height="28.351608"
+         width="8.3516445"
+         id="rect3871-9-9"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1.50553358;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="853.79266"
+       y="1.7746609"
+       id="text3909-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3911-1"
+         x="853.79266"
+         y="1.7746609"
+         style="font-size:25px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;font-family:Ubuntu;-inkscape-font-specification:Ubuntu">Hint</tspan></text>
+    <image
+       y="21.245176"
+       x="848.77686"
+       id="image3348"
+       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAxCAYAAABznEEcAAAABHNCSVQICAgIfAhkiAAAAetJREFU
+aIHt2rFu00Acx/HvXZzQgBu1CIGEhNSFnQVWeAQGBloGwhuUN+ENSAfEwlCG7GEEHoGlW6TUck92
+aBI79z+GNFUlghSlEF/QfcaTh9/XsixFjuLCt/34qdKNtiB7AJHWz/DMVKQHoNEnTorOk4/DLwAK
+4Pur2++1pl3dvNWI0Hn8IX2jvu5vv46iegdgZztmtxUDEDe3Kpy32HA0BuAsG2LyIQDTadmOlK4d
+wizgwb071S1cwvzGxs0tmjca9JMUpWuH2oG5esGmaN26CYADo2uKR8DlY7QpGvUImL2AtFJ6p+I9
+16arHvA3hAhfhAhfhAhfhAhfhAhfhAhfhAhfRIsOR8Ns3TuW1oxbv50tjviZ//Mxq1oU8V88TiHC
+FyHCFyHCFyHCFyHCFyHCFyHCFwsjlFLr3rGUP+2KSnHUtaIop5efkHbv3l/ntpUU5RSAUhy6sLPD
+s4tPqptivrewoM1kdjhIDYnx97f1VYnJGKQGADOBaGwhKxythqKfpPSTtOKJy8sKx9iCtk7M6QgG
+545SXNW7llKKY3DuOB2BdWIi5eiheJ6XkJcAmxEypxw9LU6Oqx5yHeLkWB908yOxtlP1mFWItZ2D
+bn5UA/j0Y/L5xcMGTthTWnn/DwOxcgLy7mU3ewvwC/MtqeimV5d7AAAAAElFTkSuQmCC
+"
+       height="49"
+       width="59.606602"
+       inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/GamePlay/png/gui/btn_hint_up.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <image
+       y="21.245171"
+       x="922.01288"
+       id="image3348-5"
+       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAxCAYAAABznEEcAAAABHNCSVQICAgIfAhkiAAAAetJREFU aIHt2rFu00Acx/HvXZzQgBu1CIGEhNSFnQVWeAQGBloGwhuUN+ENSAfEwlCG7GEEHoGlW6TUck92 aBI79z+GNFUlghSlEF/QfcaTh9/XsixFjuLCt/34qdKNtiB7AJHWz/DMVKQHoNEnTorOk4/DLwAK 4Pur2++1pl3dvNWI0Hn8IX2jvu5vv46iegdgZztmtxUDEDe3Kpy32HA0BuAsG2LyIQDTadmOlK4d wizgwb071S1cwvzGxs0tmjca9JMUpWuH2oG5esGmaN26CYADo2uKR8DlY7QpGvUImL2AtFJ6p+I9 16arHvA3hAhfhAhfhAhfhAhfhAhfhAhfhAhfRIsOR8Ns3TuW1oxbv50tjviZ//Mxq1oU8V88TiHC FyHCFyHCFyHCFyHCFyHCFyHCFwsjlFLr3rGUP+2KSnHUtaIop5efkHbv3l/ntpUU5RSAUhy6sLPD s4tPqptivrewoM1kdjhIDYnx97f1VYnJGKQGADOBaGwhKxythqKfpPSTtOKJy8sKx9iCtk7M6QgG 545SXNW7llKKY3DuOB2BdWIi5eiheJ6XkJcAmxEypxw9LU6Oqx5yHeLkWB908yOxtlP1mFWItZ2D bn5UA/j0Y/L5xcMGTthTWnn/DwOxcgLy7mU3ewvwC/MtqeimV5d7AAAAAElFTkSuQmCC "
+       height="49"
+       width="49"
+       inkscape:export-filename="/home/thekucays/Documents/UP/TUGAS AKHIR/Misc Assets/GamePlay/png/gui/btn_pause_up.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="854.31805"
+       y="52.282291"
+       id="text3909-3-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3911-1-3"
+         x="854.31805"
+         y="52.282291"
+         style="font-size:25px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;font-family:Ubuntu;-inkscape-font-specification:Ubuntu">Hint</tspan></text>
+    <g
+       transform="translate(151.62484,71.767859)"
+       id="g3217-9-6">
+      <rect
+         rx="0"
+         ry="5.4522328"
+         y="-41.456482"
+         x="781.89557"
+         height="28.351608"
+         width="8.3516445"
+         id="rect3871-4-9"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1.50553358;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <rect
+         rx="0"
+         ry="5.4522328"
+         y="-41.813622"
+         x="798.68127"
+         height="28.351608"
+         width="8.3516445"
+         id="rect3871-9-9-2"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1.50553358;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
   </g>
 </svg>
