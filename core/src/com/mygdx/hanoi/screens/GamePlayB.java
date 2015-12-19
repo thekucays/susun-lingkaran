@@ -101,19 +101,20 @@ public class GamePlayB extends AbstractGameScreen{
 		Table layer = new Table();
 		layer.top().right();
 		
-		btnHint = new Button(skin_ui, "btnHint");
-		btnHint.addListener(new ChangeListener() {
-			@Override
-			public void changed(ChangeEvent event, Actor actor) {
-				Gdx.app.log("GuiRight", "btnHint pressed");
-			}
-		});
 		btnPause = new Button(skin_ui, "btnPause");
 		btnPause.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				pause = true;
 				windowPause.setVisible(true);
+			}
+		});
+		btnHint = new Button(skin_ui, "btnHint");
+		btnHint.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				Gdx.app.log("GuiRight", "btnHint pressed");
+				waktu--;
 			}
 		});
 		
@@ -126,19 +127,20 @@ public class GamePlayB extends AbstractGameScreen{
 		Table layer = new Table();
 		layer.top().left();
 		
-		lblMode_ = new Label("Mode : ", skin_ui);
-		lblMode = new Label(this.gameMode, skin_ui);
-		lblWaktu_ = new Label("Waktu : ", skin_ui);
-		lblWaktu = new Label(String.valueOf(this.waktu), skin_ui);
-		lblHint_ = new Label("Hint : ", skin_ui);
-		lblHint = new Label(String.valueOf(this.hint), skin_ui);
+		this.lblMode_ = new Label("Mode : ", skin_ui);
+		this.lblMode = new Label(this.gameMode, skin_ui);
+		this.lblWaktu_ = new Label("Waktu : ", skin_ui);
+		this.lblWaktu = new Label(String.valueOf(this.waktu), skin_ui);
+		this.lblHint_ = new Label("Hint : ", skin_ui);
+		this.lblHint = new Label(String.valueOf(this.hint), skin_ui);
 		
-		layer.add(lblMode_).align(Align.left);
-		layer.add(lblMode).align(Align.left).row();
-		layer.add(lblWaktu_).align(Align.left);
-		layer.add(lblWaktu).align(Align.left).row();
-		layer.add(lblHint_).align(Align.left);
-		layer.add(lblHint).align(Align.left).row();
+		
+		layer.add(this.lblMode_).align(Align.left);
+		layer.add(this.lblMode).align(Align.left).row();
+		layer.add(this.lblWaktu_).align(Align.left);
+		layer.add(this.lblWaktu).align(Align.left).row();
+		layer.add(this.lblHint_).align(Align.left);
+		layer.add(this.lblHint).align(Align.left).row();
 		
 		return layer;
 	}
@@ -271,6 +273,9 @@ public class GamePlayB extends AbstractGameScreen{
 	public void render(float deltaTime) {
 		stage.act(deltaTime);
 		stage.draw();
+		
+		Gdx.app.log("render()", String.valueOf(this.waktu));
+		this.lblWaktu.setText(String.valueOf(this.waktu));
 	}
 
 	@Override
