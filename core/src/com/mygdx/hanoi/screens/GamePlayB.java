@@ -112,7 +112,6 @@ public class GamePlayB extends AbstractGameScreen{
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				pause = true;
-				Gdx.app.log("GuiRight", "btnPause pressed");
 				windowPause.setVisible(true);
 			}
 		});
@@ -149,6 +148,7 @@ public class GamePlayB extends AbstractGameScreen{
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				confirmOption = Constants.PAUSE_OPTION_KELUAR;
+				windowPause.setVisible(false);
 				windowConfirm.setVisible(true);
 			}
 		});
@@ -157,6 +157,7 @@ public class GamePlayB extends AbstractGameScreen{
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				confirmOption = Constants.PAUSE_OPTION_ULANGI;
+				windowPause.setVisible(false);
 				windowConfirm.setVisible(true);
 			}
 		});
@@ -205,9 +206,9 @@ public class GamePlayB extends AbstractGameScreen{
 		btnTidak.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				pause = false;
+				//pause = false;
 				windowConfirm.setVisible(false);
-				windowPause.setVisible(false);
+				windowPause.setVisible(true);
 			}
 		});
 		
