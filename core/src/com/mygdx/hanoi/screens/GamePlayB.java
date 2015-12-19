@@ -173,9 +173,9 @@ public class GamePlayB extends AbstractGameScreen{
 		Table isi = new Table(skin_window);
 		isi.center();
 		isi.add(btnMainLagi);
-		isi.add(btnUlangi);
+		isi.add(btnUlangi).space(Constants.GAP_MEDIUM);
 		isi.add(btnKeluar);
-		//isi.row();
+		isi.pad(Constants.GAP_BIG);
 		
 		windowPause.add(isi);
 		windowPause.pack();
@@ -214,9 +214,9 @@ public class GamePlayB extends AbstractGameScreen{
 		
 		Table isi = new Table(skin_window);
 		isi.center();
-		isi.add(btnYa);
+		isi.add(btnYa).spaceRight(Constants.GAP_MEDIUM);
 		isi.add(btnTidak);
-		isi.row();
+		isi.pad(Constants.GAP_BIG);
 		windowConfirm.add(isi);
 		windowConfirm.pack();
 		windowConfirm.setPosition((Constants.VIEWPORT_GUI_WIDTH/2)-(windowConfirm.getWidth()/2), (Constants.VIEWPORT_GUI_HEIGHT/2)-(windowConfirm.getHeight()/2));  // taruh di tengah
