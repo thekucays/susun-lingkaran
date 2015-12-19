@@ -3,6 +3,7 @@ package com.mygdx.hanoi.game.objects;
 import java.util.Stack;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 /*
  * PLAN B CLASS
@@ -21,7 +22,12 @@ public class TiangB extends Image{
 	private int maxLoad, currLoad;
 	private Stack<RingB> tumpukan;
 	
-	public TiangB(int maxLoad){
+	// buat nyimpen koordinat ring paling atas
+	private float topRingY;
+	
+	public TiangB(Skin skin, String drawName, int maxLoad){
+		super(skin, drawName);
+		
 		this.maxLoad = maxLoad;
 		this.currLoad = 0;
 		this.tumpukan = new Stack<RingB>();

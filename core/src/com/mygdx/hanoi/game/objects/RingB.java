@@ -1,6 +1,7 @@
 package com.mygdx.hanoi.game.objects;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 /*
  * PLAN B CLASS
@@ -11,10 +12,12 @@ public class RingB extends Image{
 	private String jenis;
 	private int length;
 	
-	public RingB(String jenis, int length){
+	public RingB(Skin skin, String drawName, String jenis, int length){
+		super(skin, drawName);
+		
 		this.length = length;
 		this.jenis = jenis;
-	}
+	} 
 	
 	// setters
 	public void setJenis(String j){
