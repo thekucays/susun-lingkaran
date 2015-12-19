@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -124,6 +125,20 @@ public class GamePlayB extends AbstractGameScreen{
 	private Table buildLayerGuiLeft(){		
 		Table layer = new Table();
 		layer.top().left();
+		
+		lblMode_ = new Label("Mode : ", skin_ui);
+		lblMode = new Label(this.gameMode, skin_ui);
+		lblWaktu_ = new Label("Waktu : ", skin_ui);
+		lblWaktu = new Label(String.valueOf(this.waktu), skin_ui);
+		lblHint_ = new Label("Hint : ", skin_ui);
+		lblHint = new Label(String.valueOf(this.hint), skin_ui);
+		
+		layer.add(lblMode_).align(Align.left);
+		layer.add(lblMode).align(Align.left).row();
+		layer.add(lblWaktu_).align(Align.left);
+		layer.add(lblWaktu).align(Align.left).row();
+		layer.add(lblHint_).align(Align.left);
+		layer.add(lblHint).align(Align.left).row();
 		
 		return layer;
 	}
