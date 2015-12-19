@@ -86,18 +86,39 @@ public class GamePlayB extends AbstractGameScreen{
 		stack.setSize(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT);
 		
 		stack.add(layerBackground);
-		stack.add(layerGuiRight);
+		stack.add(layerGuiRight);	
 		stack.add(layerGuiLeft);
 		stack.add(layerGamePlay);
 		
-		stack.addActor(layerPause);
-		stack.addActor(layerWin);
-		stack.addActor(layerLose);
+		stage.addActor(layerPause);
+		stage.addActor(layerConfirm);
+		stage.addActor(layerWin);
+		stage.addActor(layerLose);
 	}
 
 	private Table buildLayerGuiRight(){
 		Table layer = new Table();
 		layer.top().right();
+		
+		btnHint = new Button(skin_ui, "btnHint");
+		btnHint.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				Gdx.app.log("GuiRight", "btnHint pressed");
+			}
+		});
+		btnPause = new Button(skin_ui, "btnPause");
+		btnPause.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				pause = true;
+				Gdx.app.log("GuiRight", "btnPause pressed");
+				windowPause.setVisible(true);
+			}
+		});
+		
+		layer.add(btnHint).spaceRight(Constants.GAP_SMALL);
+		layer.add(btnPause);
 		
 		return layer;
 	}
@@ -153,7 +174,8 @@ public class GamePlayB extends AbstractGameScreen{
 		isi.add(btnMainLagi);
 		isi.add(btnUlangi);
 		isi.add(btnKeluar);
-		isi.row();
+		//isi.row();
+		
 		windowPause.add(isi);
 		windowPause.pack();
 		windowPause.setPosition((Constants.VIEWPORT_GUI_WIDTH/2)-(windowPause.getWidth()/2), (Constants.VIEWPORT_GUI_HEIGHT/2)-(windowPause.getHeight()/2));  // taruh di tengah
