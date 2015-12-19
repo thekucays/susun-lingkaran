@@ -43,4 +43,13 @@ public class Constants {
 	public static final String TEXTURE_ATLAS_OBJECTS = "ui/gameplay/objects/objects.pack";
 	public static final String TEXTURE_ATLAS_DECORATION = "ui/gameplay/decorations/decorations.pack";
 	public static final String TEXTURE_ATLAS_GUI = "ui/gameplay/ui-game/ui-game.pack";
+	public static final String PAUSE_TITLE = "Pause";
+	public static final String PAUSE_MAIN_LAGI = "Main Lagi";
+	public static final String PAUSE_ULANGI = "Ulangi";
+	public static final String PAUSE_KELUAR = "Keluar";
+	public static final String PAUSE_OPTION_ULANGI = "ulangi";
+	public static final String PAUSE_OPTION_KELUAR = "keluar";
+	public static final String CONFIRM_TITLE = "Yakin?";
+	public static final String CONFIRM_YES = "Ya";
+	public static final String CONFIRM_NO = "Tidak";
 }
