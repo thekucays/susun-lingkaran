@@ -276,6 +276,7 @@ public class GamePlayB extends AbstractGameScreen{
 		
 		Gdx.app.log("render()", String.valueOf(this.waktu));
 		this.lblWaktu.setText(String.valueOf(this.waktu));
+		this.lblHint.setText(String.valueOf(this.hint));
 	}
 
 	@Override
