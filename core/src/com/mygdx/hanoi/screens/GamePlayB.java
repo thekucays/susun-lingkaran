@@ -110,7 +110,7 @@ public class GamePlayB extends AbstractGameScreen{
 		timer = new Timer();
 		TimerTask taskWaktu = new GameTimer(this);
 		
-		timer.scheduleAtFixedRate(taskWaktu, 0, 1000);
+		timer.scheduleAtFixedRate(taskWaktu, 1000, 1000);
 		
 		/*try{
 			Thread.sleep(10000);
