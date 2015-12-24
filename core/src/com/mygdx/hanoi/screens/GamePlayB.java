@@ -1,5 +1,8 @@
 package com.mygdx.hanoi.screens;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -20,6 +23,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.hanoi.game.objects.RingB;
 import com.mygdx.hanoi.game.objects.TiangB;
 import com.mygdx.hanoi.util.Constants;
+import com.mygdx.hanoi.util.GameTimer;
 
 public class GamePlayB extends AbstractGameScreen{
 
@@ -95,8 +99,23 @@ public class GamePlayB extends AbstractGameScreen{
 		stage.addActor(layerConfirm);
 		stage.addActor(layerWin);
 		stage.addActor(layerLose);
+		
+		if(gameMode.equals(Constants.MODE_TIMED)){
+			executeTimer();
+		}
 	}
 
+	private void executeTimer(){
+		Timer timer = new Timer();
+		TimerTask taskWaktu = new GameTimer(this);
+		
+		timer.scheduleAtFixedRate(taskWaktu, 0, 1000);
+	}
+	
+	public void hitungWaktu(){
+		this.waktu--;
+	}
+	
 	private Table buildLayerGuiRight(){
 		Table layer = new Table();
 		layer.top().right();
@@ -268,14 +287,15 @@ public class GamePlayB extends AbstractGameScreen{
 	public void resume() {
 		pause = false;
 	}
-
+	
 	@Override
 	public void render(float deltaTime) {
 		stage.act(deltaTime);
 		stage.draw();
 		
-		Gdx.app.log("render()", String.valueOf(this.waktu));
+		
 		this.lblWaktu.setText(String.valueOf(this.waktu));
+		//this.lblWaktu.setText(String.valueOf(GameTimer.waktu));
 		this.lblHint.setText(String.valueOf(this.hint));
 	}
 
