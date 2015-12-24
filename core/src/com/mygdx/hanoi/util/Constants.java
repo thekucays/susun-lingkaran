@@ -52,4 +52,10 @@ public class Constants {
 	public static final String CONFIRM_TITLE = "Yakin?";
 	public static final String CONFIRM_YES = "Ya";
 	public static final String CONFIRM_NO = "Tidak";
+	
+	// game modes
+	public static final String MODE_FREE = "free";
+	public static final String MODE_TIMED = "timed";
+	public static final String MODE_SURVIVAL = "survival";
+	public static final String MODE_MOVE = "move";
 }
