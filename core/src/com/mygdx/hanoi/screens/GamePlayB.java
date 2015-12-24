@@ -49,6 +49,7 @@ public class GamePlayB extends AbstractGameScreen{
 	
 	// dummy game settings.. nanti ambil dari database
 	private String resRing, resBg, resTiang;
+	private Timer timer;
 	
 	public GamePlayB(Game game, String gMode, int hint, int waktu) {
 		super(game);
@@ -106,10 +107,17 @@ public class GamePlayB extends AbstractGameScreen{
 	}
 
 	private void executeTimer(){
-		Timer timer = new Timer();
+		timer = new Timer();
 		TimerTask taskWaktu = new GameTimer(this);
 		
 		timer.scheduleAtFixedRate(taskWaktu, 0, 1000);
+		
+		/*try{
+			Thread.sleep(10000);
+		} catch(InterruptedException ie){ Gdx.app.log("TIMER", "timer error"); }
+		
+		Gdx.app.log("TIMER", "Cancelling timer");
+		timer.cancel(); */ 
 	}
 	
 	public void hitungWaktu(){
@@ -293,10 +301,13 @@ public class GamePlayB extends AbstractGameScreen{
 		stage.act(deltaTime);
 		stage.draw();
 		
-		
+		if(this.waktu <= 0){
+			timer.cancel();
+		}
 		this.lblWaktu.setText(String.valueOf(this.waktu));
-		//this.lblWaktu.setText(String.valueOf(GameTimer.waktu));
 		this.lblHint.setText(String.valueOf(this.hint));
+		
+		
 	}
 
 	@Override
