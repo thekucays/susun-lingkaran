@@ -301,7 +301,7 @@ public class GamePlayB extends AbstractGameScreen{
 		stage.act(deltaTime);
 		stage.draw();
 		
-		if(this.waktu <= 0){
+		if(this.gameMode.equals(Constants.MODE_TIMED) && this.waktu <= 0){
 			timer.cancel();
 		}
 		this.lblWaktu.setText(String.valueOf(this.waktu));
