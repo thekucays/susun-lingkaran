@@ -105,7 +105,7 @@ public class ModeSelect extends AbstractGameScreen {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				Gdx.app.log("Control", "btnTimed pressed");
-				game.setScreen(new GamePlayB(game, Constants.MODE_TIMED, 5, 10));
+				game.setScreen(new GamePlayB(game, Constants.MODE_TIMED, 5, 10, 1, 1));
 			}
 		});
 		
