@@ -1,5 +1,7 @@
 package com.mygdx.hanoi.screens;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -38,11 +40,11 @@ public class GamePlayB extends AbstractGameScreen{
 	private Window windowPause, windowConfirm;
 	
 	private Image imgBackground;
-	private RingB[] rings;
-	private TiangB[] tiangs;
+	private List<RingB> rings = new ArrayList<RingB>(); //private RingB[] rings;
+	private List<TiangB> tiangs = new ArrayList<TiangB>(); //private TiangB[] tiangs;
 	private String gameMode;
 	private String confirmOption;  // isinya bisa main lagi, ulangi, keluar.. buat nentuin event di window confirm nya
-	private int hint, waktu;
+	private int hint, waktu, jmlRing, jmlTiang;
 	
 	// listener buat tiang nya
 	private boolean isFirstClick, pause;
@@ -51,7 +53,7 @@ public class GamePlayB extends AbstractGameScreen{
 	private String resRing, resBg, resTiang;
 	private Timer timer;
 	
-	public GamePlayB(Game game, String gMode, int hint, int waktu) {
+	public GamePlayB(Game game, String gMode, int hint, int waktu, int jmlRing, int jmlTiang) {
 		super(game);
 		this.isFirstClick = false;
 		this.gameMode = gMode;
@@ -62,6 +64,9 @@ public class GamePlayB extends AbstractGameScreen{
 		this.resBg = "bg-default";
 		this.resRing = "ring-default";
 		this.resTiang = "tiang-default";
+		
+		this.jmlRing = jmlRing;
+		this.jmlTiang = jmlTiang;
 	}
 	
 	private void rebuildStage(){
@@ -74,6 +79,10 @@ public class GamePlayB extends AbstractGameScreen{
 		skin_decorations = new Skin(Gdx.files.internal("ui/gameplay/decorations/decorations.json"), atlas_decorations);
 		skin_ui = new Skin(Gdx.files.internal("ui/gameplay/ui-game/ui-game.json"), atlas_ui);
 		skin_window = new Skin(Gdx.files.internal("ui/uiskin/uiskin.json"), atlas_window);
+		
+		// buat bikin ring dan tiang
+		buildRings();
+		buildTiangs();
 		
 		Table layerGuiRight = buildLayerGuiRight(); 
 		Table layerGuiLeft = buildLayerGuiLeft();
@@ -106,6 +115,17 @@ public class GamePlayB extends AbstractGameScreen{
 		}
 	}
 
+	private void buildRings(){
+		for(int i=0; i<this.jmlRing; i++){
+			rings.add(new RingB(skin_object, "ring-default", "jenis", 1));
+		}
+	}
+	private void buildTiangs(){
+		for(int i=0; i<this.jmlTiang; i++){
+			//tiangs.add(new TiangB(skin, drawName, maxLoad))
+		}
+	}
+	
 	private void executeTimer(){
 		timer = new Timer();
 		TimerTask taskWaktu = new GameTimer(this);
@@ -180,6 +200,9 @@ public class GamePlayB extends AbstractGameScreen{
 	}
 	private Table buildLayerGamePlay(){		
 		Table layer = new Table();
+		layer.center();
+		
+		layer.add(rings.get(0));
 		
 		return layer;
 	}
