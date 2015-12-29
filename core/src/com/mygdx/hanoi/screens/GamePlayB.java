@@ -83,8 +83,9 @@ public class GamePlayB extends AbstractGameScreen{
 		skin_window = new Skin(Gdx.files.internal("ui/uiskin/uiskin.json"), atlas_window);
 		
 		// buat bikin ring dan tiang
-		buildRings();
 		buildTiangs();
+		buildRings();
+		
 		
 		Table layerGuiRight = buildLayerGuiRight(); 
 		Table layerGuiLeft = buildLayerGuiLeft();
@@ -119,7 +120,8 @@ public class GamePlayB extends AbstractGameScreen{
 
 	private void buildRings(){
 		for(int i=0; i<this.jmlRing; i++){
-			RingB ring = new RingB(skin_object, "ring-default", "jenis", 1);
+			RingB ring = new RingB(skin_object, this.resRing, "jenis", 5);
+			ring.setPosition(tiangs.get(0).getX(), tiangs.get(0).getY());  // tes taruh di tiang
 			ring.addListener(new ClickListener(){
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
@@ -128,12 +130,22 @@ public class GamePlayB extends AbstractGameScreen{
 				}
 			});
 			rings.add(ring);
-			
 		}
 	}
 	private void buildTiangs(){
 		for(int i=0; i<this.jmlTiang; i++){
-			//tiangs.add(new TiangB(skin, drawName, maxLoad))
+			final TiangB tiang = new TiangB(skin_object, this.resTiang, this.jmlRing);
+			tiang.setPosition(Constants.VIEWPORT_GUI_WIDTH/2, Constants.VIEWPORT_GUI_HEIGHT/2);
+			tiang.addListener(new ClickListener(){
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					//super.clicked(event, x, y);
+					Gdx.app.log("TIANG", "tiang clicked");
+					RingB ringPeek = tiang.peek();
+					ringPeek.setPosition(ringPeek.getX(), ringPeek.getY()+Constants.GAP_MEDIUM);
+				}
+			});
+			tiangs.add(tiang);
 		}
 	}
 	
@@ -212,8 +224,20 @@ public class GamePlayB extends AbstractGameScreen{
 	private Table buildLayerGamePlay(){		
 		Table layer = new Table();
 		layer.center();
+		layer.debug();
 		
-		layer.add(rings.get(0));
+		// add tiangs
+		for(int i=0; i<tiangs.size(); i++){
+			layer.addActor(tiangs.get(i));
+		}
+		
+		// add rings
+		for(int i=0; i<rings.size(); i++){
+			layer.addActor(rings.get(i));
+		}
+		
+		// test pushing
+		tiangs.get(0).push(rings.get(0));
 		
 		return layer;
 	}
