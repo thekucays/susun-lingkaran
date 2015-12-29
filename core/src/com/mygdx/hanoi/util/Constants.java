@@ -49,9 +49,22 @@ public class Constants {
 	public static final String PAUSE_KELUAR = "Keluar";
 	public static final String PAUSE_OPTION_ULANGI = "ulangi";
 	public static final String PAUSE_OPTION_KELUAR = "keluar";
+	
 	public static final String CONFIRM_TITLE = "Yakin?";
 	public static final String CONFIRM_YES = "Ya";
 	public static final String CONFIRM_NO = "Tidak";
+	
+	public static final String LOSE_TITLE = "Kalah";
+	public static final String LOSE_NOTE = "Waktu Habis. Kamu Kalah!";
+	public static final String LOSE_OK = "Oke";
+	
+	public static final String WIN_TITLE = "Menang";
+	public static final String WIN_NOTE = "Selamat! Kamu Menang!";
+	public static final String WIN_KELUAR = "Keluar";
+	public static final String WIN_ULANGI = "Ulangi";
+	public static final String WIN_LANJUT = "Lanjut";
+	
+	
 	
 	// game modes
 	public static final String MODE_FREE = "free";
