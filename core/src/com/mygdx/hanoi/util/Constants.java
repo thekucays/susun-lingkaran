@@ -58,4 +58,6 @@ public class Constants {
 	public static final String MODE_TIMED = "timed";
 	public static final String MODE_SURVIVAL = "survival";
 	public static final String MODE_MOVE = "move";
+	
+	public static final String GAME_MODES [][] = {{"a"}, {"b"}};
 }
