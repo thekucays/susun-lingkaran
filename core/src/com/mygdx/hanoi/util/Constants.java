@@ -72,5 +72,9 @@ public class Constants {
 	public static final String MODE_SURVIVAL = "survival";
 	public static final String MODE_MOVE = "move";
 	
-	public static final String GAME_MODES [][] = {{"a"}, {"b"}};
+	//public static final String GAME_MODES [][] = {{"a"}, {"b"}};
+	public static final int GAME_MODES [][] = {  // buat settingan game nya {jumlahRIng, jumlahTiang}
+		{1, 2},
+		{2, 2}
+	};
 }
