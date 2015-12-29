@@ -77,4 +77,12 @@ public class TiangB extends Image{
 		
 		return hasil;
 	}
+	
+	public void setTopY(float y){
+		this.topRingY = y;
+	}
+	
+	public float getTopY(){
+		return this.topRingY;
+	}
 }
