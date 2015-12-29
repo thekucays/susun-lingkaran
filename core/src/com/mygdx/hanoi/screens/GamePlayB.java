@@ -9,6 +9,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -21,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.hanoi.game.objects.RingB;
 import com.mygdx.hanoi.game.objects.TiangB;
@@ -117,7 +119,16 @@ public class GamePlayB extends AbstractGameScreen{
 
 	private void buildRings(){
 		for(int i=0; i<this.jmlRing; i++){
-			rings.add(new RingB(skin_object, "ring-default", "jenis", 1));
+			RingB ring = new RingB(skin_object, "ring-default", "jenis", 1);
+			ring.addListener(new ClickListener(){
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					//super.clicked(event, x, y);
+					Gdx.app.log("RING", "RING clicked");
+				}
+			});
+			rings.add(ring);
+			
 		}
 	}
 	private void buildTiangs(){
