@@ -163,6 +163,10 @@ public class GamePlayB extends AbstractGameScreen{
 		timer.cancel(); */ 
 	}
 	
+	private void stopTimer(){
+		timer.cancel();
+	}
+	
 	public void hitungWaktu(){
 		this.waktu--;
 	}
@@ -177,6 +181,8 @@ public class GamePlayB extends AbstractGameScreen{
 			public void changed(ChangeEvent event, Actor actor) {
 				pause = true;
 				windowPause.setVisible(true);
+				
+				stopTimer();
 			}
 		});
 		btnHint = new Button(skin_ui, "btnHint");
@@ -269,6 +275,8 @@ public class GamePlayB extends AbstractGameScreen{
 			public void changed(ChangeEvent event, Actor actor) {
 				pause = false;
 				windowPause.setVisible(false);
+				
+				executeTimer();
 			}
 		});
 		
@@ -347,7 +355,7 @@ public class GamePlayB extends AbstractGameScreen{
 		btnUlangi.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				
+				windowLose.setVisible(false);
 			}
 		});
 		
@@ -357,6 +365,7 @@ public class GamePlayB extends AbstractGameScreen{
 		isi.add(btnUlangi).spaceRight(Constants.GAP_MEDIUM);
 		isi.add(btnKeluar);
 		isi.pad(Constants.GAP_BIG);
+		isi.debug();
 		
 		windowLose.add(isi);
 		windowLose.pack();
