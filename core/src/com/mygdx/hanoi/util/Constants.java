@@ -57,12 +57,14 @@ public class Constants {
 	public static final String LOSE_TITLE = "Kalah";
 	public static final String LOSE_NOTE = "Waktu Habis. Kamu Kalah!";
 	public static final String LOSE_OK = "Oke";
+	public static final String LOSE_BTN_KEMBALI = "Kembali ke menu";
+	public static final String LOSE_BTN_ULANGI = "Ulangi permainan";
 	
 	public static final String WIN_TITLE = "Menang";
 	public static final String WIN_NOTE = "Selamat! Kamu Menang!";
-	public static final String WIN_KELUAR = "Keluar";
-	public static final String WIN_ULANGI = "Ulangi";
-	public static final String WIN_LANJUT = "Lanjut";
+	public static final String WIN_BTN_KELUAR = "Keluar";
+	public static final String WIN_BTN_ULANGI = "Ulangi";
+	public static final String WIN_BTN_LANJUT = "Lanjut";
 	
 	
 	
