@@ -121,6 +121,7 @@ public class GamePlayB extends AbstractGameScreen{
 	private void buildRings(){
 		for(int i=0; i<this.jmlRing; i++){
 			RingB ring = new RingB(skin_object, this.resRing, "jenis", 5);
+			ring.setScale(2, 1);
 			ring.setPosition(tiangs.get(0).getX(), tiangs.get(0).getY());  // tes taruh di tiang
 			ring.addListener(new ClickListener(){
 				@Override
