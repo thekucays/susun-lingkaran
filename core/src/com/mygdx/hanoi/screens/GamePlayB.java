@@ -38,8 +38,8 @@ public class GamePlayB extends AbstractGameScreen{
 	
 	// GUI Labels
 	private Label lblMode, lblWaktu, lblHint, lblMode_, lblWaktu_, lblHint_;
-	private Button btnPause, btnHint, btnMainLagi, btnUlangi, btnKeluar, btnYa, btnTidak;
-	private Window windowPause, windowConfirm;
+	private Button btnPause, btnHint, btnMainLagi, btnUlangi, btnKeluar, btnYa, btnTidak, btnLanjut;
+	private Window windowPause, windowConfirm, windowWin, windowLose;
 	
 	private Image imgBackground;
 	private List<RingB> rings = new ArrayList<RingB>(); //private RingB[] rings;
@@ -326,14 +326,43 @@ public class GamePlayB extends AbstractGameScreen{
 		return windowConfirm;
 	}
 	private Table buildLayerWin(){		
-		Table layer = new Table();
+		windowWin = new Window(Constants.WIN_TITLE, skin_window);
+		windowWin.setVisible(false);
 		
-		return layer;
+		
+		return windowWin;
 	}
 	private Table buildLayerLose(){		
-		Table layer = new Table();
+		windowLose = new Window(Constants.LOSE_TITLE, skin_window);
+		windowLose.setVisible(false);
 		
-		return layer;
+		btnKeluar = new TextButton(Constants.LOSE_BTN_KELUAR, skin_window);
+		btnKeluar.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				
+			}
+		});
+		btnUlangi = new TextButton(Constants.LOSE_BTN_ULANGI, skin_window);
+		btnUlangi.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				
+			}
+		});
+		
+		Table isi = new Table(skin_window);
+		isi.center();
+		isi.add(Constants.LOSE_NOTE).row();
+		isi.add(btnUlangi).spaceRight(Constants.GAP_MEDIUM);
+		isi.add(btnKeluar);
+		isi.pad(Constants.GAP_BIG);
+		
+		windowLose.add(isi);
+		windowLose.pack();
+		windowLose.setPosition((Constants.VIEWPORT_GUI_WIDTH/2)-(windowLose.getWidth()/2), (Constants.VIEWPORT_GUI_HEIGHT/2)-(windowLose.getHeight()/2));  // taruh di tengah
+		
+		return windowLose;
 	}
 	
 	@Override
@@ -361,6 +390,7 @@ public class GamePlayB extends AbstractGameScreen{
 		
 		if(this.gameMode.equals(Constants.MODE_TIMED) && this.waktu <= 0){
 			timer.cancel();
+			windowLose.setVisible(true);
 		}
 		this.lblWaktu.setText(String.valueOf(this.waktu));
 		this.lblHint.setText(String.valueOf(this.hint));
