@@ -134,9 +134,28 @@ public class GamePlayB extends AbstractGameScreen{
 		}
 	}
 	private void buildTiangs(){
+		int counter = 0;
+		
 		for(int i=0; i<this.jmlTiang; i++){
 			final TiangB tiang = new TiangB(skin_object, this.resTiang, this.jmlRing);
-			tiang.setPosition(Constants.VIEWPORT_GUI_WIDTH/2, Constants.VIEWPORT_GUI_HEIGHT/2);
+			//tiang.setPosition(Constants.VIEWPORT_GUI_WIDTH/2-tiang.getWidth()/2, Constants.VIEWPORT_GUI_HEIGHT/2);
+			
+			if(this.jmlTiang == 3){
+				if(counter == 0){
+					tiang.setPosition(Constants.GAP_BIG, Constants.VIEWPORT_GUI_HEIGHT/2);
+				}
+				else if(counter == 1){
+					tiang.setPosition(Constants.VIEWPORT_GUI_WIDTH/2 - tiang.getWidth()/2, Constants.VIEWPORT_GUI_HEIGHT/2);
+					//tiang.setPosition(Constants.VIEWPORT_GUI_WIDTH - (Constants.GAP_BIG + tiang.getWidth()), Constants.VIEWPORT_GUI_HEIGHT/2);
+				}
+				else if(counter == 2){
+					tiang.setPosition(Constants.VIEWPORT_GUI_WIDTH - (Constants.GAP_BIG + tiang.getWidth()), Constants.VIEWPORT_GUI_HEIGHT/2);
+				}
+			}
+			else if(this.jmlTiang == 4){
+				
+			}
+			
 			tiang.addListener(new ClickListener(){
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
@@ -146,8 +165,11 @@ public class GamePlayB extends AbstractGameScreen{
 					ringPeek.setPosition(ringPeek.getX(), ringPeek.getY()+Constants.GAP_MEDIUM);
 				}
 			});
-			tiangs.add(tiang);
+			tiangs.add(tiang);  Gdx.app.log("TIANG", String.valueOf(this.jmlTiang));
+			counter++;
 		}
+		
+		counter = 0;
 	}
 	
 	private void executeTimer(){
