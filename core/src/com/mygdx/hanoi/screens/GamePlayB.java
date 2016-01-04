@@ -121,7 +121,7 @@ public class GamePlayB extends AbstractGameScreen{
 	private void buildRings(){
 		for(int i=0; i<this.jmlRing; i++){
 			RingB ring = new RingB(skin_object, this.resRing, "jenis", 5);
-			ring.setScale(ring.getLength(), 1);
+			//ring.setScale(ring.getLength(), 1);
 			ring.setPosition(tiangs.get(0).getX(), tiangs.get(0).getY());  // tes taruh di tiang
 			ring.addListener(new ClickListener(){
 				@Override
@@ -142,14 +142,13 @@ public class GamePlayB extends AbstractGameScreen{
 			
 			if(this.jmlTiang == 3){
 				if(counter == 0){
-					tiang.setPosition(Constants.GAP_BIG, Constants.VIEWPORT_GUI_HEIGHT/2);
+					tiang.setPosition(Constants.GAP_BIG, Constants.GAP_BIG);
 				}
 				else if(counter == 1){
-					tiang.setPosition(Constants.VIEWPORT_GUI_WIDTH/2 - tiang.getWidth()/2, Constants.VIEWPORT_GUI_HEIGHT/2);
-					//tiang.setPosition(Constants.VIEWPORT_GUI_WIDTH - (Constants.GAP_BIG + tiang.getWidth()), Constants.VIEWPORT_GUI_HEIGHT/2);
+					tiang.setPosition(Constants.VIEWPORT_GUI_WIDTH/2 - tiang.getWidth()/2, Constants.GAP_BIG);
 				}
 				else if(counter == 2){
-					tiang.setPosition(Constants.VIEWPORT_GUI_WIDTH - (Constants.GAP_BIG + tiang.getWidth()), Constants.VIEWPORT_GUI_HEIGHT/2);
+					tiang.setPosition(Constants.VIEWPORT_GUI_WIDTH - (Constants.GAP_BIG + tiang.getWidth()), Constants.GAP_BIG);
 				}
 			}
 			else if(this.jmlTiang == 4){
