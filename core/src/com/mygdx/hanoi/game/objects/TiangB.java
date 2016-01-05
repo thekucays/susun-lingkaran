@@ -1,5 +1,6 @@
 package com.mygdx.hanoi.game.objects;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -40,8 +41,15 @@ public class TiangB extends Image{
 		return popped;
 	}
 	public RingB peek(){
-		RingB peeked = (RingB)this.tumpukan.peek();
-		return peeked;
+		RingB peeked = null;
+		
+		try{
+			peeked = (RingB)this.tumpukan.peek();
+			return peeked;
+		}
+		catch(EmptyStackException ese){
+			return null;
+		}
 	}
 	public boolean push(RingB ring){
 		boolean hasil = true;
