@@ -122,7 +122,10 @@ public class GamePlayB extends AbstractGameScreen{
 		for(int i=0; i<this.jmlRing; i++){
 			RingB ring = new RingB(skin_object, this.resRing, "jenis", 5);
 			//ring.setScale(ring.getLength(), 1);
-			ring.setPosition(tiangs.get(0).getX(), tiangs.get(0).getY());  // tes taruh di tiang
+			
+			ring.setPosition(tiangs.get(0).getX(), tiangs.get(0).getTopY());  // tes taruh di tiang  getY()+Constants.GAP_MEDIUM
+			tiangs.get(0).setTopY(tiangs.get(0).getTopY() + ring.getHeight());
+			
 			ring.addListener(new ClickListener(){
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
@@ -131,6 +134,11 @@ public class GamePlayB extends AbstractGameScreen{
 				}
 			});
 			rings.add(ring);
+			
+			Gdx.app.log("RING", "1. " + tiangs.get(0).getTopY());
+			Gdx.app.log("RING", "2. " + tiangs.get(0).getY()+Constants.GAP_MEDIUM);
+			Gdx.app.log("RING", "3. " + tiangs.get(0).getY());
+			Gdx.app.log("RING", "4. " + ring.getHeight());
 		}
 	}
 	private void buildTiangs(){
@@ -138,6 +146,9 @@ public class GamePlayB extends AbstractGameScreen{
 		
 		for(int i=0; i<this.jmlTiang; i++){
 			final TiangB tiang = new TiangB(skin_object, this.resTiang, this.jmlRing);
+			
+			// set top Y pertama kali
+			tiang.setTopY(Constants.GAP_TIANG_BOTTOM_DEFAULT);
 
 			// posisi tiang pertama selalu sama 
 			if(counter == 0){
