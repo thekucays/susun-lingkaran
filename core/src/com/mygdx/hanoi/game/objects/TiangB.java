@@ -38,6 +38,7 @@ public class TiangB extends Image{
 	// Modified existing java.util.Stack features
 	public RingB pop(){
 		RingB popped = (RingB)this.tumpukan.pop();
+		this.currLoad--;
 		return popped;
 	}
 	public RingB peek(){
