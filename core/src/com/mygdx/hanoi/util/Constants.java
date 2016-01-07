@@ -14,6 +14,7 @@ public class Constants {
 	public static final float GAP_SMALL = 5.0f;
 	public static final float GAP_MEDIUM = 10.0f;
 	public static final float GAP_BIG = 20.0f;
+	public static final float GAP_RING = 28.0f;
 	public static final float GAP_TIANG_BOTTOM_DEFAULT  = 30.0f;
 	public static final float GAP_TIANG_4_LEFT = 150.0f;
 	public static final float GAP_TIANG_4_RIGHT = 50.0f;
@@ -43,6 +44,7 @@ public class Constants {
 	public static final String pref_hint = "hintUser";
 	
 	// gameplay related
+	public static final float RING_SCALE_FACTOR = 0.4f;
 	public static final String TEXTURE_ATLAS_OBJECTS = "ui/gameplay/objects/objects.pack";
 	public static final String TEXTURE_ATLAS_DECORATION = "ui/gameplay/decorations/decorations.pack";
 	public static final String TEXTURE_ATLAS_GUI = "ui/gameplay/ui-game/ui-game.pack";
