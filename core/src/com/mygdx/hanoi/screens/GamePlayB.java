@@ -120,11 +120,12 @@ public class GamePlayB extends AbstractGameScreen{
 
 	private void buildRings(){
 		for(int i=0; i<this.jmlRing; i++){
-			RingB ring = new RingB(skin_object, this.resRing, "jenis", 5);
-			//ring.setScale(ring.getLength(), 1);
+			RingB ring = new RingB(skin_object, this.resRing, "jenis", 1);
+			ring.setScale(ring.getLength()*Constants.RING_SCALE_FACTOR, 1);
+			ring.setOriginX(ring.getX() + ring.getWidth()/2);       // Math.round(ring.getWidth()/2));
 			
-			ring.setPosition(tiangs.get(0).getX(), tiangs.get(0).getTopY());  // tes taruh di tiang  getY()+Constants.GAP_MEDIUM
-			tiangs.get(0).setTopY(tiangs.get(0).getTopY() + ring.getHeight());
+			ring.setPosition(tiangs.get(1).getX(), tiangs.get(0).getTopY());  // tiangs.get(0).getX()+ring.getOriginX()
+			tiangs.get(0).setTopY(tiangs.get(0).getTopY() + 28.0f);
 			
 			ring.addListener(new ClickListener(){
 				@Override
@@ -139,6 +140,10 @@ public class GamePlayB extends AbstractGameScreen{
 			Gdx.app.log("RING", "2. " + tiangs.get(0).getY()+Constants.GAP_MEDIUM);
 			Gdx.app.log("RING", "3. " + tiangs.get(0).getY());
 			Gdx.app.log("RING", "4. " + ring.getHeight());
+			Gdx.app.log("RING", "5. " + ring.getOriginX());
+			
+			Gdx.app.log("RING", "6. " + ring.getX());
+			Gdx.app.log("RING", "7. " + tiangs.get(0).getX());
 		}
 	}
 	private void buildTiangs(){
