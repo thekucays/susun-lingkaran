@@ -55,6 +55,11 @@ public class GamePlayB extends AbstractGameScreen{
 	private String resRing, resBg, resTiang;
 	private Timer timer;
 	
+	// variabel temporary untuk mindahin ring/tiang
+	private List<Object> firstObj, secondObj;
+	private TiangB firstTiang, secondTiang;
+	private RingB firstRing, secondRing;
+	
 	public GamePlayB(Game game, String gMode, int hint, int waktu, int jmlRing, int jmlTiang) {
 		super(game);
 		this.isFirstClick = false;
@@ -72,6 +77,15 @@ public class GamePlayB extends AbstractGameScreen{
 	}
 	
 	private void rebuildStage(){
+		// set variabel temporary ke null
+		/*this.firstRing = null;
+		this.firstTiang = null;
+		this.secondRing = null;
+		this.secondTiang = null; */
+		this.firstObj = new ArrayList<Object>();
+		this.secondObj = new ArrayList<Object>();
+		
+		
 		atlas_object = new TextureAtlas("ui/gameplay/objects/objects.pack");
 		atlas_decorations = new TextureAtlas("ui/gameplay/decorations/decorations.pack");
 		atlas_ui = new TextureAtlas("ui/gameplay/ui-game/ui-game.pack");
@@ -117,15 +131,39 @@ public class GamePlayB extends AbstractGameScreen{
 			executeTimer();
 		}
 	}
+	
+	private void setFirst(TiangB t, RingB r){
+		this.firstObj.add(t);
+		this.firstObj.add(r);
+	}
+	private List getFirst(){
+		return this.firstObj;
+	}
+	private void clearTemp(){
+		this.secondObj.clear();
+		this.firstObj.clear();
+	}
+	private void setSecond(TiangB t, RingB r){
+		this.secondObj.add(t);
+		this.secondObj.add(r);
+	}
+	private List getSecond(){
+		return this.secondObj;
+	}
+	
 
 	private void buildRings(){
-		for(int i=0; i<this.jmlRing; i++){
-			RingB ring = new RingB(skin_object, this.resRing, "jenis", 1);
+		int count = this.jmlRing;
+		
+		for(int i=this.jmlRing; i>0; i--){  // reverse for loop.. supaya bisa di-push ke tiang nya
+			RingB ring = new RingB(skin_object, this.resRing, "jenis", i);
+			count--;
+			
 			ring.setScale(ring.getLength()*Constants.RING_SCALE_FACTOR, 1);
 			ring.setOriginX(ring.getX() + ring.getWidth()/2);       // Math.round(ring.getWidth()/2));
 			
-			ring.setPosition(tiangs.get(1).getX(), tiangs.get(0).getTopY());  // tiangs.get(0).getX()+ring.getOriginX()
-			tiangs.get(0).setTopY(tiangs.get(0).getTopY() + 28.0f);
+			ring.setPosition(tiangs.get(0).getX(), tiangs.get(0).getTopY());  // tiangs.get(0).getX()+ring.getOriginX()
+			tiangs.get(0).setTopY(tiangs.get(0).getTopY() + Constants.GAP_RING);
 			
 			ring.addListener(new ClickListener(){
 				@Override
@@ -186,7 +224,90 @@ public class GamePlayB extends AbstractGameScreen{
 					//super.clicked(event, x, y);
 					Gdx.app.log("TIANG", "tiang clicked");
 					RingB ringPeek = tiang.peek();
-					ringPeek.setPosition(ringPeek.getX(), ringPeek.getY()+Constants.GAP_MEDIUM);
+					//ringPeek.setPosition(ringPeek.getX(), ringPeek.getY()+Constants.GAP_MEDIUM);
+					//Gdx.app.log("tiang click", String.valueOf(ringPeek.getY()));
+					
+					
+					// klik 1, tiang 1 ada isinya
+					if(ringPeek!=null && firstObj.isEmpty()){
+						setFirst(tiang, ringPeek);
+						Gdx.app.log("tiang klik", "klik 1, tiang 1 ada isinya");
+					}
+
+					// klik 1, tiang 1 kosong
+					else if(ringPeek==null && firstObj.isEmpty()){
+						// do nothing
+						Gdx.app.log("tiang klik", "klik 1, tiang 1 kosong");
+					}
+					
+					// klik 2, tiang 2 ada isinya (compare)
+					else if(!firstObj.isEmpty()){
+						Gdx.app.log("tiang klik", "klik 2, tiang 2 ada isinya (compare)");
+						boolean isPushed = tiang.push((RingB)getFirst().get(1));
+						
+						if(isPushed){   
+							// kalo berhasil di push ke stack nya, baru dipindahin posisi ring di screen nya
+							// ..logika berhasil push atau enggak di tiang nya, bukan disini
+							RingB ring1 = (RingB)getFirst().get(1);
+							ring1.setPosition(tiang.getX(), tiang.getTopY());
+							TiangB tiang1 = (TiangB)getFirst().get(0);
+							tiang1.pop();
+							
+							Gdx.app.log("isPushed", "pushed");
+						}
+						
+						clearTemp();
+					}
+					
+					/*
+					// klik 2, tiang 2 kosong (langsung pindahin)
+					else if(ringPeek==null && !firstObj.isEmpty()){
+						Gdx.app.log("tiang klik", "klik 2, tiang 2 kosong (langsung pindahin)");
+						
+						setSecond(tiang, ringPeek);
+						
+						TiangB tiang1 = (TiangB)getFirst().get(0);
+						RingB ring1 = (RingB)getFirst().get(1);
+						TiangB tiang2 = (TiangB)getFirst().get(0);
+						RingB ring2 = (RingB)getSecond().get(1);
+
+						ring1 = tiang1.pop();
+						tiang1.setTopY(tiang1.getTopY() - Constants.GAP_RING);
+						
+						ring1.setPosition(tiang2.getX(), tiang2.getTopY());
+						tiang2.push(ring1);
+						tiang2.setTopY(tiang2.getTopY() + Constants.GAP_RING);
+						
+						clearTemp();
+					}
+					*/
+					
+					
+					
+					// pertama kali klik
+					/*if(firstObj.isEmpty()){
+						setFirst(tiang, ringPeek);
+					}
+					else{
+						setSecond(tiang, ringPeek);
+						
+						TiangB tiang1 = (TiangB)getFirst().get(0);
+						RingB ring1 = (RingB)getFirst().get(1);
+						TiangB tiang2 = (TiangB)getFirst().get(0);
+						RingB ring2 = (RingB)getSecond().get(1);
+						
+						// compare length nya
+						if(ring1.getLength() < ring2.getLength()){
+							ring1 = tiang1.pop();
+							tiang1.setTopY(tiang1.getTopY() - Constants.GAP_RING);
+							
+							ring1.setPosition(tiang2.getX(), tiang2.getTopY());
+							tiang2.push(ring1);
+							tiang2.setTopY(tiang2.getTopY() + Constants.GAP_RING);
+						}
+						
+						clearTemp();
+					} */
 				}
 			});
 			tiangs.add(tiang);  Gdx.app.log("TIANG", String.valueOf(tiang.getWidth()));
@@ -290,7 +411,10 @@ public class GamePlayB extends AbstractGameScreen{
 		}
 		
 		// test pushing
-		tiangs.get(0).push(rings.get(0));
+		for(int i=0; i<rings.size(); i++){
+			tiangs.get(0).push(rings.get(i));
+			Gdx.app.log("test push", String.valueOf(rings.get(i).getY()));
+		}
 		
 		return layer;
 	}
