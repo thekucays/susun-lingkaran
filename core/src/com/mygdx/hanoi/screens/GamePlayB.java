@@ -38,8 +38,10 @@ public class GamePlayB extends AbstractGameScreen{
 	
 	// GUI Labels
 	private Label lblMode, lblWaktu, lblHint, lblMode_, lblWaktu_, lblHint_;
-	private Button btnPause, btnHint, btnMainLagi, btnUlangi, btnKeluar, btnYa, btnTidak, btnLanjut;
-	private Window windowPause, windowConfirm, windowWin, windowLose;
+	private Button btnPause, btnHint, btnMainLagi, btnUlangi, btnKeluar, btnYa, btnTidak;
+	private Button btnLanjut, btnUlangi_, btnMenu; // untuk window menang (masih ada level selanjutnya)
+	private Button btnOK; // untuk window menang (level udah abis)
+	private Window windowPause, windowConfirm, windowWinA, windowWinB, windowLose;
 	
 	private Image imgBackground;
 	private List<RingB> rings = new ArrayList<RingB>(); //private RingB[] rings;
@@ -62,6 +64,9 @@ public class GamePlayB extends AbstractGameScreen{
 	
 	// variabel unttuk nentuin apakah window notif (win, lose) sudah tampil apa belum, di-render apa engga
 	private boolean notifShown;
+	
+	// variabel untuk nyimpen skor permainan
+	private int skor;
 	
 	public GamePlayB(Game game, String gMode, int hint, int waktu, int jmlRing, int jmlTiang) {
 		super(game);
@@ -88,6 +93,7 @@ public class GamePlayB extends AbstractGameScreen{
 		this.firstObj = new ArrayList<Object>();
 		this.secondObj = new ArrayList<Object>();
 		this.notifShown = false;
+		this.skor = 0;
 		
 		
 		atlas_object = new TextureAtlas("ui/gameplay/objects/objects.pack");
@@ -113,7 +119,8 @@ public class GamePlayB extends AbstractGameScreen{
 		// window untuk pause menu, menang, dan kalah
 		Table layerPause = buildLayerPause();
 		Table layerConfirm = buildLayerConfirm();
-		Table layerWin = buildLayerWin();
+		Table layerWinA = buildLayerWinA();
+		Table layerWinB = buildLayerWinB();
 		Table layerLose = buildLayerLose();
 		
 		stage.clear();
@@ -128,7 +135,8 @@ public class GamePlayB extends AbstractGameScreen{
 		
 		stage.addActor(layerPause);
 		stage.addActor(layerConfirm);
-		stage.addActor(layerWin);
+		stage.addActor(layerWinA);
+		stage.addActor(layerWinB);
 		stage.addActor(layerLose);
 		
 		if(gameMode.equals(Constants.MODE_TIMED)){
@@ -267,6 +275,7 @@ public class GamePlayB extends AbstractGameScreen{
 							boolean isOver = tiangs.get(tiangs.size()-1).cekIfComplete();
 							if(isOver){
 								Gdx.app.log("isOver", "complete!");
+								windowWinB.setVisible(true);
 							}
 						}
 						
@@ -518,12 +527,70 @@ public class GamePlayB extends AbstractGameScreen{
 		
 		return windowConfirm;
 	}
-	private Table buildLayerWin(){		
-		windowWin = new Window(Constants.WIN_TITLE, skin_window);
-		windowWin.setVisible(false);
+	private Table buildLayerWinA(){		
+		windowWinA = new Window(Constants.WIN_TITLE, skin_window);
+		windowWinA.setVisible(false);
 		
+		btnMenu = new TextButton(Constants.WIN_BTN_MENU, skin_window);
+		btnMenu.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				
+			}
+		});
+		btnUlangi_ = new TextButton(Constants.WIN_BTN_ULANGI, skin_window);
+		btnUlangi_.addListener(new ChangeListener(){
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				
+			}
+		});
+		btnLanjut = new TextButton(Constants.WIN_BTN_LANJUT, skin_window);
+		btnLanjut.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				
+			}
+		});
 		
-		return windowWin;
+		Table isi = new Table(skin_window);
+		isi.center();
+		isi.add(Constants.WIN_NOTE).row();
+		isi.add(Constants.WIN_NOTE_POIN + this.skor).row();
+		isi.add(btnMenu);
+		isi.add(btnUlangi_);
+		isi.add(btnLanjut);
+		
+		windowWinA.add(isi);
+		windowWinA.pack();
+		windowWinA.setPosition((Constants.VIEWPORT_GUI_WIDTH/2)-(windowWinA.getWidth()/2), (Constants.VIEWPORT_GUI_HEIGHT/2)-(windowWinA.getHeight()/2));
+		
+		return windowWinA;
+	}
+	private Table buildLayerWinB(){		
+		windowWinB = new Window(Constants.WIN_TITLE, skin_window);
+		windowWinB.setVisible(false);
+		
+		btnOK = new TextButton(Constants.WIN_BTN_OK, skin_window);
+		btnOK.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				// just for tes
+				windowWinB.setVisible(false);
+			}
+		});
+		
+		Table isi = new Table(skin_window);
+		isi.center();
+		isi.add(Constants.WIN_NOTE).row();
+		isi.add(Constants.WIN_NOTE_POIN + this.skor).row();
+		isi.add(btnOK);
+		
+		windowWinB.add(isi);
+		windowWinB.pack();
+		windowWinB.setPosition((Constants.VIEWPORT_GUI_WIDTH/2)-(windowWinB.getWidth()/2), (Constants.VIEWPORT_GUI_HEIGHT/2)-(windowWinB.getHeight()/2));
+		
+		return windowWinB;
 	}
 	private Table buildLayerLose(){		
 		windowLose = new Window(Constants.LOSE_TITLE, skin_window);
