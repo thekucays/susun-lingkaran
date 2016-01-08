@@ -226,18 +226,18 @@ public class GamePlayB extends AbstractGameScreen{
 					RingB ringPeek = tiang.peek();
 					//ringPeek.setPosition(ringPeek.getX(), ringPeek.getY()+Constants.GAP_MEDIUM);
 					//Gdx.app.log("tiang click", String.valueOf(ringPeek.getY()));
-					
+					Gdx.app.log("currLoad", String.valueOf(tiang.getIsi()));
 					
 					// klik 1, tiang 1 ada isinya
 					if(ringPeek!=null && firstObj.isEmpty()){
 						setFirst(tiang, ringPeek);
-						Gdx.app.log("tiang klik", "klik 1, tiang 1 ada isinya");
+						//Gdx.app.log("tiang klik", "klik 1, tiang 1 ada isinya");
 					}
 
 					// klik 1, tiang 1 kosong
 					else if(ringPeek==null && firstObj.isEmpty()){
 						// do nothing
-						Gdx.app.log("tiang klik", "klik 1, tiang 1 kosong");
+						//Gdx.app.log("tiang klik", "klik 1, tiang 1 kosong");
 					}
 					
 					// klik 2, tiang 2 ada isinya (compare)
@@ -252,6 +252,10 @@ public class GamePlayB extends AbstractGameScreen{
 							ring1.setPosition(tiang.getX(), tiang.getTopY());
 							TiangB tiang1 = (TiangB)getFirst().get(0);
 							tiang1.pop();
+							
+							// re-set the tiang's topY coordinates
+							tiang1.setTopY(tiang1.getTopY() - Constants.GAP_RING);
+							tiang.setTopY(tiang.getTopY() + Constants.GAP_RING);
 							
 							Gdx.app.log("isPushed", "pushed");
 						}
