@@ -34,6 +34,9 @@ public class TiangB extends Image{
 		this.tumpukan = new Stack<RingB>();
 	}
 	
+	public int getIsi(){
+		return this.currLoad;
+	}
 	
 	// Modified existing java.util.Stack features
 	public RingB pop(){
@@ -65,7 +68,7 @@ public class TiangB extends Image{
  				this.tumpukan.push(ring);
 		 		this.currLoad++;
  			}
- 			else if(peek().getLength() < ring.getLength()){
+ 			else if((peek().getLength() < ring.getLength()) || (peek().getLength() == ring.getLength())){
  				hasil = false;
  			}
 		}
