@@ -60,6 +60,9 @@ public class GamePlayB extends AbstractGameScreen{
 	private TiangB firstTiang, secondTiang;
 	private RingB firstRing, secondRing;
 	
+	// variabel unttuk nentuin apakah window notif (win, lose) sudah tampil apa belum, di-render apa engga
+	private boolean notifShown;
+	
 	public GamePlayB(Game game, String gMode, int hint, int waktu, int jmlRing, int jmlTiang) {
 		super(game);
 		this.isFirstClick = false;
@@ -84,6 +87,7 @@ public class GamePlayB extends AbstractGameScreen{
 		this.secondTiang = null; */
 		this.firstObj = new ArrayList<Object>();
 		this.secondObj = new ArrayList<Object>();
+		this.notifShown = false;
 		
 		
 		atlas_object = new TextureAtlas("ui/gameplay/objects/objects.pack");
@@ -579,8 +583,11 @@ public class GamePlayB extends AbstractGameScreen{
 		stage.draw();
 		
 		if(this.gameMode.equals(Constants.MODE_TIMED) && this.waktu <= 0){
-			timer.cancel();
-			windowLose.setVisible(true);
+			if(!this.notifShown){
+				windowLose.setVisible(true);
+				timer.cancel();
+			}
+			this.notifShown = true;
 		}
 		this.lblWaktu.setText(String.valueOf(this.waktu));
 		this.lblHint.setText(String.valueOf(this.hint));
