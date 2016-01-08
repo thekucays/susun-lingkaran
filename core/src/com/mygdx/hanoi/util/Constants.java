@@ -67,9 +67,12 @@ public class Constants {
 	
 	public static final String WIN_TITLE = "Menang";
 	public static final String WIN_NOTE = "Selamat! Kamu Menang!";
+	public static final String WIN_NOTE_POIN = "Poin : ";
 	public static final String WIN_BTN_KELUAR = "Keluar";
 	public static final String WIN_BTN_ULANGI = "Ulangi";
 	public static final String WIN_BTN_LANJUT = "Lanjut";
+	public static final String WIN_BTN_MENU = "Menu";
+	public static final String WIN_BTN_OK = "OK";
 	
 	
 	
