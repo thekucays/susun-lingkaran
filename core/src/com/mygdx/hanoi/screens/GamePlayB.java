@@ -258,6 +258,12 @@ public class GamePlayB extends AbstractGameScreen{
 							tiang.setTopY(tiang.getTopY() + Constants.GAP_RING);
 							
 							Gdx.app.log("isPushed", "pushed");
+							
+							// cek apakah udah selesai semua.. cek tiang terakhir nya
+							boolean isOver = tiangs.get(tiangs.size()-1).cekIfComplete();
+							if(isOver){
+								Gdx.app.log("isOver", "complete!");
+							}
 						}
 						
 						clearTemp();
