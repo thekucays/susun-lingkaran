@@ -68,6 +68,10 @@ public class GamePlayB extends AbstractGameScreen{
 	// variabel untuk nyimpen skor permainan
 	private int skor;
 	
+	// TODO add to diagram
+	// variabel untuk nyimpen jumlah gerakan pemain.. digunakan juga untuk nge-generate poin yang didapatkan
+	private int move, optimalMove;
+	
 	public GamePlayB(Game game, String gMode, int hint, int waktu, int jmlRing, int jmlTiang) {
 		super(game);
 		this.isFirstClick = false;
@@ -94,6 +98,8 @@ public class GamePlayB extends AbstractGameScreen{
 		this.secondObj = new ArrayList<Object>();
 		this.notifShown = false;
 		this.skor = 0;
+		move = 0;
+		optimalMove = getOptimalMove();
 		
 		
 		atlas_object = new TextureAtlas("ui/gameplay/objects/objects.pack");
@@ -144,6 +150,7 @@ public class GamePlayB extends AbstractGameScreen{
 		}
 	}
 	
+	// TODO add to diagram
 	private void setFirst(TiangB t, RingB r){
 		this.firstObj.add(t);
 		this.firstObj.add(r);
@@ -257,6 +264,9 @@ public class GamePlayB extends AbstractGameScreen{
 						Gdx.app.log("tiang klik", "klik 2, tiang 2 ada isinya (compare)");
 						boolean isPushed = tiang.push((RingB)getFirst().get(1));
 						
+						// mau tiang nya salah/bener, klik pada tiang kedua akan selalu menambah jumlah move
+						move++;
+						
 						if(isPushed){   
 							// kalo berhasil di push ke stack nya, baru dipindahin posisi ring di screen nya
 							// ..logika berhasil push atau enggak di tiang nya, bukan disini
@@ -352,6 +362,47 @@ public class GamePlayB extends AbstractGameScreen{
 		
 		Gdx.app.log("TIMER", "Cancelling timer");
 		timer.cancel(); */ 
+	}
+	
+	// TODO add to diagram
+	private int getOptimalMove(){
+		return (int)Math.pow(2, this.jmlRing-1);
+	}
+	
+	// TODO add to diagram
+	private int getLevelPoin(){
+		int poin = 0;
+		switch(this.gameMode){   // mode free ga dapet poin
+			case Constants.MODE_MOVE : 
+				// cari jumlah move yang akan dihitung sebagai poin nya
+				if(move > optimalMove){
+					move = optimalMove - (move - optimalMove);
+				}
+				else{
+					move = optimalMove + (move - optimalMove);
+				}
+				
+				// kalau ternyata move nya sangat banyak sehingga hasil rumus nya minus, dibuat 0 aja
+				if(move < 0){
+					move = 0;
+				}
+				
+				// kalikan dengan multiplier untuk mendapatkan poin
+				poin = (this.jmlRing < 7) ? move*Constants.MULTIPLIER_MOVE_SMALL : move*Constants.MULTIPLIER_MOVE_BIG;
+				break;
+				
+			case Constants.MODE_SURVIVAL : 
+				poin = move * Constants.MULTIPLIER_SURVIVAL;
+				break;
+				
+			case Constants.MODE_TIMED : 
+				poin = this.waktu * Constants.MULTIPLIER_TIMED;
+				break;
+				
+			default : 
+				poin = 0;
+		}
+		return poin;
 	}
 	
 	private void stopTimer(){
