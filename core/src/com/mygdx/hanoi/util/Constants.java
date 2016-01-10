@@ -89,7 +89,7 @@ public class Constants {
 	public static final int MULTIPLIER_MOVE_SMALL = 10;	// jmlRing < 7
 	
 	//public static final String GAME_MODES [][] = {{"a"}, {"b"}};
-	public static final int GAME_MODES [][] = {  // buat settingan game nya {jumlahRIng, jumlahTiang}
+	public static final int GAME_LEVEL_CONFIG [][] = {  // buat settingan game nya {jumlahRIng, jumlahTiang}
 		{3, 4},
 		{5, 4},
 		{3, 3},
