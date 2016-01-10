@@ -295,13 +295,27 @@ public class GamePlayB extends AbstractGameScreen{
 							boolean isOver = tiangs.get(tiangs.size()-1).cekIfComplete();
 							if(isOver){
 								timer.cancel();
-								Gdx.app.log("isOver", String.valueOf(getLevelPoin()));
 								skor = getLevelPoin();
 								
-								// construct window win nya disini.. supaya bisa dinamis
-								Table win = buildLayerWinB();
-								stage.addActor(win);
-								windowWinB.setVisible(true);
+								Gdx.app.log("isover", String.valueOf(levelConfigIndex));
+								
+								try{
+									// coba ambil config untuk level selanjutnya
+									int tesindex = Constants.GAME_LEVEL_CONFIG[levelConfigIndex+1][0];
+									Table winA = buildLayerWinA();
+									stage.addActor(winA);
+									windowWinA.setVisible(true);
+									
+									Gdx.app.log("ok", "ok");
+								}
+								catch(ArrayIndexOutOfBoundsException aioub){
+									// ga ada berarti level udah selesai semua
+									Table winB = buildLayerWinB();
+									stage.addActor(winB);
+									windowWinB.setVisible(true);
+									
+									Gdx.app.log("catch", "catch");
+								}
 							}
 						}
 						
@@ -594,6 +608,7 @@ public class GamePlayB extends AbstractGameScreen{
 		
 		return windowConfirm;
 	}
+	// ini window kalau masih ada level selanjutnya
 	private Table buildLayerWinA(){		
 		windowWinA = new Window(Constants.WIN_TITLE, skin_window);
 		windowWinA.setVisible(false);
@@ -602,7 +617,7 @@ public class GamePlayB extends AbstractGameScreen{
 		btnMenu.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				
+				game.setScreen(new MainMenu(game));
 			}
 		});
 		btnUlangi_ = new TextButton(Constants.WIN_BTN_ULANGI, skin_window);
@@ -616,7 +631,8 @@ public class GamePlayB extends AbstractGameScreen{
 		btnLanjut.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				
+				levelConfigIndex += 1;
+				rebuildStage();
 			}
 		});
 		
@@ -634,6 +650,7 @@ public class GamePlayB extends AbstractGameScreen{
 		
 		return windowWinA;
 	}
+	// ini window kalo udah sampe level terakhir
 	private Table buildLayerWinB(){		
 		windowWinB = new Window(Constants.WIN_TITLE, skin_window);
 		windowWinB.setVisible(false);
@@ -642,8 +659,10 @@ public class GamePlayB extends AbstractGameScreen{
 		btnOK.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				// just for tes
+				// sebelum pindah ke main menu, cek database nya untuk highscore nya, kalo high score baru, simpen
+				
 				windowWinB.setVisible(false);
+				game.setScreen(new MainMenu(game));
 			}
 		});
 		
