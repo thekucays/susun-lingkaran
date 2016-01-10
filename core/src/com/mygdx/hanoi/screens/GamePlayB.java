@@ -90,8 +90,6 @@ public class GamePlayB extends AbstractGameScreen{
 		
 		// pertama kali di-construct dari screen ModeSelect, ambil index pertama dari konfig yang ada di constants.java nya
 		this.levelConfigIndex = 0;
-		this.jmlRing = Constants.GAME_LEVEL_CONFIG[this.levelConfigIndex][0];
-		this.jmlTiang = Constants.GAME_LEVEL_CONFIG[this.levelConfigIndex][1];
 	}
 	
 	private void rebuildStage(){
@@ -104,6 +102,10 @@ public class GamePlayB extends AbstractGameScreen{
 		this.secondObj = new ArrayList<Object>();
 		this.notifShown = false;
 		this.skor = 0;
+		
+		this.jmlRing = Constants.GAME_LEVEL_CONFIG[this.levelConfigIndex][0];
+		this.jmlTiang = Constants.GAME_LEVEL_CONFIG[this.levelConfigIndex][1];
+		
 		move = 0;
 		optimalMove = getOptimalMove();
 		
@@ -131,8 +133,8 @@ public class GamePlayB extends AbstractGameScreen{
 		// window untuk pause menu, menang, dan kalah
 		Table layerPause = buildLayerPause();
 		Table layerConfirm = buildLayerConfirm();
-		Table layerWinA = buildLayerWinA();
-		Table layerWinB = buildLayerWinB();
+		//Table layerWinA = buildLayerWinA();
+		//Table layerWinB = buildLayerWinB();
 		Table layerLose = buildLayerLose();
 		
 		stage.clear();
@@ -147,8 +149,8 @@ public class GamePlayB extends AbstractGameScreen{
 		
 		stage.addActor(layerPause);
 		stage.addActor(layerConfirm);
-		stage.addActor(layerWinA);
-		stage.addActor(layerWinB);
+		//stage.addActor(layerWinA);
+		//stage.addActor(layerWinB);
 		stage.addActor(layerLose);
 		
 		if(gameMode.equals(Constants.MODE_TIMED)){
@@ -292,7 +294,13 @@ public class GamePlayB extends AbstractGameScreen{
 							// cek apakah udah selesai semua.. cek tiang terakhir nya
 							boolean isOver = tiangs.get(tiangs.size()-1).cekIfComplete();
 							if(isOver){
-								Gdx.app.log("isOver", "complete!");
+								timer.cancel();
+								Gdx.app.log("isOver", String.valueOf(getLevelPoin()));
+								skor = getLevelPoin();
+								
+								// construct window win nya disini.. supaya bisa dinamis
+								Table win = buildLayerWinB();
+								stage.addActor(win);
 								windowWinB.setVisible(true);
 							}
 						}
@@ -642,7 +650,7 @@ public class GamePlayB extends AbstractGameScreen{
 		Table isi = new Table(skin_window);
 		isi.center();
 		isi.add(Constants.WIN_NOTE).row();
-		isi.add(Constants.WIN_NOTE_POIN + this.skor).row();
+		isi.add(Constants.WIN_NOTE_POIN + getSkor()).row();
 		isi.add(btnOK);
 		
 		windowWinB.add(isi);
@@ -650,6 +658,9 @@ public class GamePlayB extends AbstractGameScreen{
 		windowWinB.setPosition((Constants.VIEWPORT_GUI_WIDTH/2)-(windowWinB.getWidth()/2), (Constants.VIEWPORT_GUI_HEIGHT/2)-(windowWinB.getHeight()/2));
 		
 		return windowWinB;
+	}
+	private int getSkor(){
+		return skor;
 	}
 	private Table buildLayerLose(){		
 		windowLose = new Window(Constants.LOSE_TITLE, skin_window);
