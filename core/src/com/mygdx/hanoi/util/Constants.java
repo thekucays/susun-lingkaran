@@ -82,6 +82,12 @@ public class Constants {
 	public static final String MODE_SURVIVAL = "survival";
 	public static final String MODE_MOVE = "move";
 	
+	// poin generator multiplier constants
+	public static final int MULTIPLIER_TIMED = 10;
+	public static final int MULTIPLIER_SURVIVAL = 5;
+	public static final int MULTIPLIER_MOVE_BIG = 5; 	// jmlRing >= 7
+	public static final int MULTIPLIER_MOVE_SMALL = 10;	// jmlRing < 7
+	
 	//public static final String GAME_MODES [][] = {{"a"}, {"b"}};
 	public static final int GAME_MODES [][] = {  // buat settingan game nya {jumlahRIng, jumlahTiang}
 		{1, 2},
