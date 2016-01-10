@@ -5,29 +5,29 @@ filter: Nearest,Nearest
 repeat: none
 tiang-default
   rotate: false
-  xy: 0, 0
-  size: 113, 188
-  orig: 113, 188
-  offset: 0, 0
-  index: -1
-ring-default
-  rotate: false
-  xy: 113, 154
-  size: 122, 34
-  orig: 122, 34
+  xy: 0, 134
+  size: 113, 280
+  orig: 113, 280
   offset: 0, 0
   index: -1
 ring-pie-greentea
   rotate: false
-  xy: 113, 104
+  xy: 0, 84
   size: 101, 50
   orig: 101, 50
   offset: 0, 0
   index: -1
 ring-pie-coklat
   rotate: false
-  xy: 113, 54
+  xy: 0, 34
   size: 100, 50
   orig: 100, 50
+  offset: 0, 0
+  index: -1
+ring-default
+  rotate: false
+  xy: 0, 0
+  size: 122, 34
+  orig: 122, 34
   offset: 0, 0
   index: -1
