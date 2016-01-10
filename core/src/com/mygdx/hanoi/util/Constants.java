@@ -90,7 +90,10 @@ public class Constants {
 	
 	//public static final String GAME_MODES [][] = {{"a"}, {"b"}};
 	public static final int GAME_MODES [][] = {  // buat settingan game nya {jumlahRIng, jumlahTiang}
-		{1, 2},
-		{2, 2}
+		{3, 4},
+		{5, 4},
+		{3, 3},
+		{5, 3},
+		{7, 3}
 	};
 }
