@@ -72,6 +72,10 @@ public class GamePlayB extends AbstractGameScreen{
 	// variabel untuk nyimpen jumlah gerakan pemain.. digunakan juga untuk nge-generate poin yang didapatkan
 	private int move, optimalMove;
 	
+	// TODO add to diagram
+	// variabel buat nyimpen sekarang udah level berapa? (config nya index berapa)
+	private int levelConfigIndex;
+	
 	public GamePlayB(Game game, String gMode, int hint, int waktu, int jmlRing, int jmlTiang) {
 		super(game);
 		this.isFirstClick = false;
@@ -84,8 +88,10 @@ public class GamePlayB extends AbstractGameScreen{
 		this.resRing = "ring-default";
 		this.resTiang = "tiang-default";
 		
-		this.jmlRing = jmlRing;
-		this.jmlTiang = jmlTiang;
+		// pertama kali di-construct dari screen ModeSelect, ambil index pertama dari konfig yang ada di constants.java nya
+		this.levelConfigIndex = 0;
+		this.jmlRing = Constants.GAME_LEVEL_CONFIG[this.levelConfigIndex][0];
+		this.jmlTiang = Constants.GAME_LEVEL_CONFIG[this.levelConfigIndex][1];
 	}
 	
 	private void rebuildStage(){
@@ -173,6 +179,7 @@ public class GamePlayB extends AbstractGameScreen{
 
 	private void buildRings(){
 		int count = this.jmlRing;
+		rings.clear();
 		
 		for(int i=this.jmlRing; i>0; i--){  // reverse for loop.. supaya bisa di-push ke tiang nya
 			RingB ring = new RingB(skin_object, this.resRing, "jenis", i);
@@ -205,6 +212,7 @@ public class GamePlayB extends AbstractGameScreen{
 	}
 	private void buildTiangs(){
 		int counter = 0;
+		tiangs.clear();  // di-clear dulu, biar pas restart ga numpuk 
 		
 		for(int i=0; i<this.jmlTiang; i++){
 			final TiangB tiang = new TiangB(skin_object, this.resTiang, this.jmlRing);
@@ -725,6 +733,15 @@ public class GamePlayB extends AbstractGameScreen{
 	
 	@Override
 	public void dispose(){
+		skin_decorations.dispose();
+		skin_object.dispose();
+		skin_ui.dispose();
+		skin_window.dispose();
 		
+		atlas_decorations.dispose();
+		atlas_object.dispose();
+		atlas_ui.dispose();
+		atlas_window.dispose();
+		stage.dispose();
 	}
 }
