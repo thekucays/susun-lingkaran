@@ -15,7 +15,7 @@ public class Constants {
 	public static final float GAP_MEDIUM = 10.0f;
 	public static final float GAP_BIG = 20.0f;
 	public static final float GAP_RING = 28.0f;
-	public static final float GAP_TIANG_BOTTOM_DEFAULT  = 30.0f;
+	public static final float GAP_TIANG_BOTTOM_DEFAULT  = 42.0f;
 	public static final float GAP_TIANG_4_LEFT = 150.0f;
 	public static final float GAP_TIANG_4_RIGHT = 50.0f;
 	
