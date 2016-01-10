@@ -48,7 +48,7 @@ public class GamePlayB extends AbstractGameScreen{
 	private List<TiangB> tiangs = new ArrayList<TiangB>(); //private TiangB[] tiangs;
 	private String gameMode;
 	private String confirmOption;  // isinya bisa main lagi, ulangi, keluar.. buat nentuin event di window confirm nya
-	private int hint, waktu, jmlRing, jmlTiang;
+	private int hint, waktu, waktuOrigin, jmlRing, jmlTiang;
 	
 	// listener buat tiang nya
 	private boolean isFirstClick, pause;
@@ -66,7 +66,7 @@ public class GamePlayB extends AbstractGameScreen{
 	private boolean notifShown;
 	
 	// variabel untuk nyimpen skor permainan
-	private int skor;
+	private int skor, totalSkor;
 	
 	// TODO add to diagram
 	// variabel untuk nyimpen jumlah gerakan pemain.. digunakan juga untuk nge-generate poin yang didapatkan
@@ -82,6 +82,7 @@ public class GamePlayB extends AbstractGameScreen{
 		this.gameMode = gMode;
 		this.hint = hint;
 		this.waktu = waktu;
+		this.waktuOrigin = waktu;  // ini untuk nyimpen jumlah waktu yang akan dipake di level selanjutnya
 		this.pause = false;
 		
 		this.resBg = "bg-default";
@@ -90,6 +91,8 @@ public class GamePlayB extends AbstractGameScreen{
 		
 		// pertama kali di-construct dari screen ModeSelect, ambil index pertama dari konfig yang ada di constants.java nya
 		this.levelConfigIndex = 0;
+		
+		this.totalSkor = 0;
 	}
 	
 	private void rebuildStage(){
@@ -296,6 +299,7 @@ public class GamePlayB extends AbstractGameScreen{
 							if(isOver){
 								timer.cancel();
 								skor = getLevelPoin();
+								totalSkor += skor;
 								
 								Gdx.app.log("isover", String.valueOf(levelConfigIndex));
 								
