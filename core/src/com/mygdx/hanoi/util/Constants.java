@@ -44,7 +44,7 @@ public class Constants {
 	public static final String pref_hint = "hintUser";
 	
 	// gameplay related
-	public static final float RING_SCALE_FACTOR = 0.4f;
+	public static final float RING_SCALE_FACTOR = 0.3f;
 	public static final String TEXTURE_ATLAS_OBJECTS = "ui/gameplay/objects/objects.pack";
 	public static final String TEXTURE_ATLAS_DECORATION = "ui/gameplay/decorations/decorations.pack";
 	public static final String TEXTURE_ATLAS_GUI = "ui/gameplay/ui-game/ui-game.pack";
