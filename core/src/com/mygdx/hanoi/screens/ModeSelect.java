@@ -85,7 +85,8 @@ public class ModeSelect extends AbstractGameScreen {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				Gdx.app.log("Control", "btnFree pressed");
-				game.setScreen(new GamePlay(game));
+				//game.setScreen(new GamePlay(game));
+				game.setScreen(new GamePlayB(game, Constants.MODE_FREE, 5));
 			}
 		});
 		
@@ -95,7 +96,8 @@ public class ModeSelect extends AbstractGameScreen {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				Gdx.app.log("Control", "btnSurvival pressed");
-				game.setScreen((Screen) new TowerOfHanoiMain());
+				//game.setScreen((Screen) new TowerOfHanoiMain());
+				game.setScreen(new GamePlayB(game, Constants.MODE_SURVIVAL, Constants.SURVIVAL_MODE_HINT));
 			}
 		});
 		
@@ -105,7 +107,7 @@ public class ModeSelect extends AbstractGameScreen {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				Gdx.app.log("Control", "btnTimed pressed");
-				game.setScreen(new GamePlayB(game, Constants.MODE_TIMED, 5, 10, 1, 1));
+				game.setScreen(new GamePlayB(game, Constants.MODE_TIMED, 5));   //  jmlRing, jmlTiang));
 			}
 		});
 		
@@ -115,6 +117,7 @@ public class ModeSelect extends AbstractGameScreen {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				Gdx.app.log("Control", "btnMove pressed");
+				game.setScreen(new GamePlayB(game, Constants.MODE_MOVE, 5));
 			}
 		});
 		
