@@ -343,56 +343,6 @@ public class GamePlayB extends AbstractGameScreen{
 						
 						clearTemp();
 					}
-					
-					/*
-					// klik 2, tiang 2 kosong (langsung pindahin)
-					else if(ringPeek==null && !firstObj.isEmpty()){
-						Gdx.app.log("tiang klik", "klik 2, tiang 2 kosong (langsung pindahin)");
-						
-						setSecond(tiang, ringPeek);
-						
-						TiangB tiang1 = (TiangB)getFirst().get(0);
-						RingB ring1 = (RingB)getFirst().get(1);
-						TiangB tiang2 = (TiangB)getFirst().get(0);
-						RingB ring2 = (RingB)getSecond().get(1);
-
-						ring1 = tiang1.pop();
-						tiang1.setTopY(tiang1.getTopY() - Constants.GAP_RING);
-						
-						ring1.setPosition(tiang2.getX(), tiang2.getTopY());
-						tiang2.push(ring1);
-						tiang2.setTopY(tiang2.getTopY() + Constants.GAP_RING);
-						
-						clearTemp();
-					}
-					*/
-					
-					
-					
-					// pertama kali klik
-					/*if(firstObj.isEmpty()){
-						setFirst(tiang, ringPeek);
-					}
-					else{
-						setSecond(tiang, ringPeek);
-						
-						TiangB tiang1 = (TiangB)getFirst().get(0);
-						RingB ring1 = (RingB)getFirst().get(1);
-						TiangB tiang2 = (TiangB)getFirst().get(0);
-						RingB ring2 = (RingB)getSecond().get(1);
-						
-						// compare length nya
-						if(ring1.getLength() < ring2.getLength()){
-							ring1 = tiang1.pop();
-							tiang1.setTopY(tiang1.getTopY() - Constants.GAP_RING);
-							
-							ring1.setPosition(tiang2.getX(), tiang2.getTopY());
-							tiang2.push(ring1);
-							tiang2.setTopY(tiang2.getTopY() + Constants.GAP_RING);
-						}
-						
-						clearTemp();
-					} */
 				}
 			});
 			tiangs.add(tiang);  Gdx.app.log("TIANG", String.valueOf(tiang.getWidth()));
@@ -409,12 +359,6 @@ public class GamePlayB extends AbstractGameScreen{
 			
 			timer.scheduleAtFixedRate(taskWaktu, 1000, 1000);
 		}
-		/*try{
-			Thread.sleep(10000);
-		} catch(InterruptedException ie){ Gdx.app.log("TIMER", "timer error"); }
-		
-		Gdx.app.log("TIMER", "Cancelling timer");
-		timer.cancel(); */ 
 	}
 	
 	// TODO add to diagram
