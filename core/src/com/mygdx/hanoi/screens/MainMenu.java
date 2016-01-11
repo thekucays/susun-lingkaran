@@ -86,7 +86,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		this.survival = survival;
 		this.move = move;
 		
-		int uang = Integer.parseInt((String) persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin));
+		int uang = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin);
 		
 		// bikin layer buat tampilannya.. layer pake tabel
 		Table layerBackground = buildLayerBackground();
