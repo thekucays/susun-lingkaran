@@ -27,10 +27,13 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.hanoi.game.objects.RingB;
 import com.mygdx.hanoi.game.objects.TiangB;
 import com.mygdx.hanoi.util.Constants;
+import com.mygdx.hanoi.util.DataPersister2;
 import com.mygdx.hanoi.util.GameTimer;
 
 public class GamePlayB extends AbstractGameScreen{
 
+	private DataPersister2 persister;
+	
 	private Stage stage;
 	private Skin skin_object, skin_decorations, skin_window, skin_ui;
 	private TextureAtlas atlas_object, atlas_decorations, atlas_window, atlas_ui;
@@ -83,6 +86,7 @@ public class GamePlayB extends AbstractGameScreen{
 		this.hint = hint;
 		this.waktuOrigin = waktu;  // ini untuk nyimpen jumlah waktu yang akan dipake di level selanjutnya
 		this.pause = false;
+		persister = new DataPersister2();
 		
 		this.resBg = "bg-default";
 		this.resRing = "ring-default";
@@ -295,6 +299,16 @@ public class GamePlayB extends AbstractGameScreen{
 						// mau tiang nya salah/bener, klik pada tiang kedua akan selalu menambah jumlah move
 						increaseMove();
 						
+						// survival mode, jegal disini dulu udah abis apa belum move nya, kalo udah, kalah
+						if(gameMode.equals(Constants.MODE_SURVIVAL) && sisaMove == 0){
+							windowLose.setVisible(true);
+							isPushed = false;
+							
+							addPoinToDb(skor);
+							if(isNewHScore()){
+								
+							}
+						}
 						
 						if(isPushed){   
 							// kalo berhasil di push ke stack nya, baru dipindahin posisi ring di screen nya
@@ -319,7 +333,11 @@ public class GamePlayB extends AbstractGameScreen{
 								skor = getLevelPoin();
 								totalSkor += skor;
 								
-								Gdx.app.log("isover", String.valueOf(levelConfigIndex));
+								// level ini selesai, masukin poin nya ke database, lalu cek hscore nya
+								addPoinToDb(skor);
+								if(isNewHScore()){
+									
+								}
 								
 								try{
 									// coba ambil config untuk level selanjutnya
@@ -350,6 +368,16 @@ public class GamePlayB extends AbstractGameScreen{
 		}
 		
 		counter = 0;
+	}
+	
+	// TODO add to diagram
+	private void addPoinToDb(int poin){
+		
+	}
+	
+	// TODO add to diagram
+	private boolean isNewHScore(){
+		return true;
 	}
 	
 	private void executeTimer(){
@@ -734,6 +762,11 @@ public class GamePlayB extends AbstractGameScreen{
 			if(!this.notifShown){
 				windowLose.setVisible(true);
 				timer.cancel();
+				
+				addPoinToDb(skor);
+				if(isNewHScore()){
+					
+				}
 			}
 			this.notifShown = true;
 		}
