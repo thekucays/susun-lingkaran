@@ -7,6 +7,7 @@ import java.util.TimerTask;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -32,7 +33,9 @@ import com.mygdx.hanoi.util.GameTimer;
 
 public class GamePlayB extends AbstractGameScreen{
 
+	// TODO add to diagram
 	private DataPersister2 persister;
+	private Preferences hScore, userpref;
 	
 	private Stage stage;
 	private Skin skin_object, skin_decorations, skin_window, skin_ui;
@@ -86,10 +89,13 @@ public class GamePlayB extends AbstractGameScreen{
 		this.hint = hint;
 		this.waktuOrigin = waktu;  // ini untuk nyimpen jumlah waktu yang akan dipake di level selanjutnya
 		this.pause = false;
-		persister = new DataPersister2();
 		
-		this.resBg = "bg-default";
-		this.resRing = "ring-default";
+		persister = new DataPersister2();
+		hScore = persister.getOrCreatePreferences(Constants.pref_highscore);
+		userpref = persister.getOrCreatePreferences(Constants.pref_userpref);
+		
+		this.resBg = (String)persister.getPreferencesData(userpref).get(Constants.pref_userpref_background);
+		this.resRing = (String) persister.getPreferencesData(userpref).get(Constants.pref_userpref_ring);
 		this.resTiang = "tiang-default";
 		
 		// pertama kali di-construct dari screen ModeSelect, ambil index pertama dari konfig yang ada di constants.java nya
