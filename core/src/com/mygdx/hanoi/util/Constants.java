@@ -82,6 +82,10 @@ public class Constants {
 	public static final String MODE_SURVIVAL = "survival";
 	public static final String MODE_MOVE = "move";
 	
+	public static final int TIMED_MODE_TIME = 1800;
+	public static final int SURVIVAL_MODE_MOVE_EXPAND = 5;
+	public static final int SURVIVAL_MODE_HINT = 3;
+	
 	// poin generator multiplier constants
 	public static final int MULTIPLIER_TIMED = 10;
 	public static final int MULTIPLIER_SURVIVAL = 5;
