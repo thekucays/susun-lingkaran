@@ -39,9 +39,16 @@ public class Constants {
 	
 	// preferences related
 	public static final String pref_highscore = "highScores";
-	public static final String pref_poin = "poinUser";
-	public static final String pref_background = "backgroundUser";
-	public static final String pref_hint = "hintUser";
+	public static final String pref_highscore_timed = "timed";
+	public static final String pref_highscore_survival = "survival";
+	public static final String pref_highscore_move = "move";
+	public static final String pref_userpref = "userPref";
+	public static final String pref_userpref_background = "background";
+	public static final String pref_userpref_background_def = "bg-default";
+	public static final String pref_userpref_ring = "ring";
+	public static final String pref_userpref_ring_def = "ring-default";
+	public static final String pref_userpref_poin = "poin";
+	public static final String pref_userpref_hint = "hint";
 	
 	// gameplay related
 	public static final float RING_SCALE_FACTOR = 0.3f;
@@ -88,7 +95,7 @@ public class Constants {
 	
 	// poin generator multiplier constants
 	public static final int MULTIPLIER_TIMED = 10;
-	public static final int MULTIPLIER_SURVIVAL = 5;
+	public static final int MULTIPLIER_SURVIVAL = 15;
 	public static final int MULTIPLIER_MOVE_BIG = 5; 	// jmlRing >= 7
 	public static final int MULTIPLIER_MOVE_SMALL = 10;	// jmlRing < 7
 	

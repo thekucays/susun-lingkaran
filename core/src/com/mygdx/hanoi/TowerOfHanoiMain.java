@@ -7,6 +7,8 @@ import java.util.Map;
 //import sun.java2d.pipe.hw.ExtendedBufferCapabilities.VSyncType;
 
 
+
+
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
@@ -19,6 +21,8 @@ import com.mygdx.hanoi.game.WorldController;
 import com.mygdx.hanoi.game.WorldRenderer;
 import com.mygdx.hanoi.screens.MainMenu;
 import com.mygdx.hanoi.screens.SplashScreen;
+import com.mygdx.hanoi.util.Constants;
+import com.mygdx.hanoi.util.DataPersister2;
 
 public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 	public static final String TAG = TowerOfHanoiMain.class.getName();
@@ -30,6 +34,31 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 	
 	@Override
 	public void create(){
+		// setting up database
+		DataPersister2 persister = new DataPersister2();
+		Preferences hScore = persister.getOrCreatePreferences(Constants.pref_highscore);
+		Preferences userpref = persister.getOrCreatePreferences(Constants.pref_userpref);
+		
+		// kalo belum ada preferensi nya, bikin dulu
+		if(persister.getPreferencesData(hScore).get(Constants.pref_userpref_background) == null){
+			Map hsmap = new HashMap();
+			hsmap.put(Constants.pref_highscore_move, 0);
+			hsmap.put(Constants.pref_highscore_survival, 11);
+			hsmap.put(Constants.pref_highscore_timed, 0);
+			
+			persister.insertPreferences(hScore, hsmap);
+		}
+		
+		if(persister.getPreferencesData(userpref).get(Constants.pref_highscore_move) == null){
+			Map usermap = new HashMap();
+			usermap.put(Constants.pref_userpref_background, Constants.pref_userpref_background_def);
+			usermap.put(Constants.pref_userpref_ring, Constants.pref_userpref_ring_def);
+			usermap.put(Constants.pref_userpref_poin, 0);
+			usermap.put(Constants.pref_userpref_hint, 5); // awal permainan dikasih 5 hint
+			
+			persister.insertPreferences(userpref, usermap);
+		}
+		
 		setScreen(new SplashScreen(this)); //pake this supaya this.game di AbstractGameScreen keisi..jadi bisa dipanggil semua
 		/*Assets.instance.init(new AssetManager(), "bg-default", "ring-default");
 		
