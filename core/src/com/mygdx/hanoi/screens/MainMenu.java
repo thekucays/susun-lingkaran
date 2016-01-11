@@ -64,7 +64,9 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 	private int timed, survival, move;
 	
 	private DataPersister2 persister;
-	private Preferences userpref;
+	private Preferences userpref, hscore;
+	
+	private int uang;
 	
 	public MainMenu(Game game) {
 		super(game);
@@ -72,6 +74,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		
 		persister = new DataPersister2();
 		userpref = persister.getOrCreatePreferences(Constants.pref_userpref);
+		hscore = persister.getOrCreatePreferences(Constants.pref_highscore);
 		
 		//Gdx.app.log("poin", "poin : " + persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin));
 	}
@@ -86,7 +89,7 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		this.survival = survival;
 		this.move = move;
 		
-		int uang = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin);
+		uang = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin);
 		
 		// bikin layer buat tampilannya.. layer pake tabel
 		Table layerBackground = buildLayerBackground();
@@ -192,6 +195,12 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 				btnHscore.setVisible(false);
 				btnToko.setVisible(false);
 				btnInfo.setVisible(false);
+				
+				// tes masukin highscorenya
+				Map hs = persister.getPreferencesData(hscore);
+				hs.put(Constants.pref_highscore_move, 100);
+				
+				persister.insertPreferences(hscore, hs);
 			}
 		});
 		
@@ -293,9 +302,10 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		stage = new Stage(new StretchViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT));
 		Gdx.input.setInputProcessor(stage);
 		
-		int timed = 10;
-		int survival = 12;
-		int move = 15;
+		int timed = (int)persister.getPreferencesData(hscore).get(Constants.pref_highscore_timed);
+		int survival = (int)persister.getPreferencesData(hscore).get(Constants.pref_highscore_survival);
+		int move = (int)persister.getPreferencesData(hscore).get(Constants.pref_highscore_move);
+		uang = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin);
 		rebuildStage(timed, survival, move);  // sebelum jalanin ini, ada proses untuk query ke database dulu untuk ambil highscore, baru masukin parameter ke sini
 		
 		
