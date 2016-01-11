@@ -37,7 +37,7 @@ public class GamePlayB extends AbstractGameScreen{
 	private Table table;
 	
 	// GUI Labels
-	private Label lblMode, lblWaktu, lblHint, lblMode_, lblWaktu_, lblHint_;
+	private Label lblMode, lblWaktu, lblHint, lblMode_, lblWaktu_, lblHint_, lblSisaMove_, lblSisaMove, lblMove_, lblMove;
 	private Button btnPause, btnHint, btnMainLagi, btnUlangi, btnKeluar, btnYa, btnTidak;
 	private Button btnLanjut, btnUlangi_, btnMenu; // untuk window menang (masih ada level selanjutnya)
 	private Button btnOK; // untuk window menang (level udah abis)
@@ -70,18 +70,17 @@ public class GamePlayB extends AbstractGameScreen{
 	
 	// TODO add to diagram
 	// variabel untuk nyimpen jumlah gerakan pemain.. digunakan juga untuk nge-generate poin yang didapatkan
-	private int move, optimalMove;
+	private int move, optimalMove, sisaMove;
 	
 	// TODO add to diagram
 	// variabel buat nyimpen sekarang udah level berapa? (config nya index berapa)
 	private int levelConfigIndex;
 	
-	public GamePlayB(Game game, String gMode, int hint, int waktu, int jmlRing, int jmlTiang) {
+	public GamePlayB(Game game, String gMode, int hint) {
 		super(game);
 		this.isFirstClick = false;
 		this.gameMode = gMode;
 		this.hint = hint;
-		this.waktu = waktu;
 		this.waktuOrigin = waktu;  // ini untuk nyimpen jumlah waktu yang akan dipake di level selanjutnya
 		this.pause = false;
 		
@@ -93,6 +92,11 @@ public class GamePlayB extends AbstractGameScreen{
 		this.levelConfigIndex = 0;
 		
 		this.totalSkor = 0;
+		
+		// timed mode
+		if(this.gameMode.equals(Constants.MODE_TIMED)){
+			this.waktu = Constants.TIMED_MODE_TIME;
+		}
 	}
 	
 	private void rebuildStage(){
@@ -109,8 +113,9 @@ public class GamePlayB extends AbstractGameScreen{
 		this.jmlRing = Constants.GAME_LEVEL_CONFIG[this.levelConfigIndex][0];
 		this.jmlTiang = Constants.GAME_LEVEL_CONFIG[this.levelConfigIndex][1];
 		
-		move = 0;
-		optimalMove = getOptimalMove();
+		this.move = 0;
+		this.optimalMove = getOptimalMove();
+		this.sisaMove = this.optimalMove + Constants.SURVIVAL_MODE_MOVE_EXPAND; // ini unutk nge set move yang bisa dijalanin (mode survival)
 		
 		
 		atlas_object = new TextureAtlas("ui/gameplay/objects/objects.pack");
@@ -180,7 +185,17 @@ public class GamePlayB extends AbstractGameScreen{
 	private List getSecond(){
 		return this.secondObj;
 	}
-	
+	private void increaseMove(){
+		if(this.gameMode.equals(Constants.MODE_MOVE) || this.gameMode.equals(Constants.MODE_TIMED)){
+			this.move++;
+		}
+		else if(this.gameMode.equals(Constants.MODE_SURVIVAL)){
+			this.sisaMove--;
+		}
+	}
+	private int getMove(){
+		return this.move;
+	}
 
 	private void buildRings(){
 		int count = this.jmlRing;
@@ -278,7 +293,8 @@ public class GamePlayB extends AbstractGameScreen{
 						boolean isPushed = tiang.push((RingB)getFirst().get(1));
 						
 						// mau tiang nya salah/bener, klik pada tiang kedua akan selalu menambah jumlah move
-						move++;
+						increaseMove();
+						
 						
 						if(isPushed){   
 							// kalo berhasil di push ke stack nya, baru dipindahin posisi ring di screen nya
@@ -297,7 +313,9 @@ public class GamePlayB extends AbstractGameScreen{
 							// cek apakah udah selesai semua.. cek tiang terakhir nya
 							boolean isOver = tiangs.get(tiangs.size()-1).cekIfComplete();
 							if(isOver){
-								timer.cancel();
+								if(gameMode.equals(Constants.MODE_TIMED)){
+									timer.cancel();
+								}
 								skor = getLevelPoin();
 								totalSkor += skor;
 								
@@ -385,11 +403,12 @@ public class GamePlayB extends AbstractGameScreen{
 	}
 	
 	private void executeTimer(){
-		timer = new Timer();
-		TimerTask taskWaktu = new GameTimer(this);
-		
-		timer.scheduleAtFixedRate(taskWaktu, 1000, 1000);
-		
+		if(this.gameMode.equals(Constants.MODE_TIMED)){
+			timer = new Timer();
+			TimerTask taskWaktu = new GameTimer(this);
+			
+			timer.scheduleAtFixedRate(taskWaktu, 1000, 1000);
+		}
 		/*try{
 			Thread.sleep(10000);
 		} catch(InterruptedException ie){ Gdx.app.log("TIMER", "timer error"); }
@@ -409,24 +428,24 @@ public class GamePlayB extends AbstractGameScreen{
 		switch(this.gameMode){   // mode free ga dapet poin
 			case Constants.MODE_MOVE : 
 				// cari jumlah move yang akan dihitung sebagai poin nya
-				if(move > optimalMove){
-					move = optimalMove - (move - optimalMove);
+				if(this.move > this.optimalMove){
+					this.move = this.optimalMove - (this.move - this.optimalMove);
 				}
 				else{
-					move = optimalMove + (move - optimalMove);
+					this.move = this.optimalMove + (this.move - this.optimalMove);
 				}
 				
 				// kalau ternyata move nya sangat banyak sehingga hasil rumus nya minus, dibuat 0 aja
-				if(move < 0){
-					move = 0;
+				if(this.move < 0){
+					this.move = 0;
 				}
 				
 				// kalikan dengan multiplier untuk mendapatkan poin
-				poin = (this.jmlRing < 7) ? move*Constants.MULTIPLIER_MOVE_SMALL : move*Constants.MULTIPLIER_MOVE_BIG;
+				poin = (this.jmlRing < 7) ? this.move*Constants.MULTIPLIER_MOVE_SMALL : this.move*Constants.MULTIPLIER_MOVE_BIG;
 				break;
 				
 			case Constants.MODE_SURVIVAL : 
-				poin = move * Constants.MULTIPLIER_SURVIVAL;
+				poin = this.sisaMove * Constants.MULTIPLIER_SURVIVAL;
 				break;
 				
 			case Constants.MODE_TIMED : 
@@ -440,7 +459,9 @@ public class GamePlayB extends AbstractGameScreen{
 	}
 	
 	private void stopTimer(){
-		timer.cancel();
+		if(this.gameMode.equals(Constants.MODE_TIMED)){
+			timer.cancel();
+		}
 	}
 	
 	public void hitungWaktu(){
@@ -485,14 +506,37 @@ public class GamePlayB extends AbstractGameScreen{
 		this.lblWaktu = new Label(String.valueOf(this.waktu), skin_ui);
 		this.lblHint_ = new Label("Hint : ", skin_ui);
 		this.lblHint = new Label(String.valueOf(this.hint), skin_ui);
-		
+		this.lblSisaMove_ = new Label("Sisa Move : ", skin_ui);
+		this.lblSisaMove = new Label(String.valueOf(this.sisaMove), skin_ui);
+		this.lblMove_ = new Label("Move : ", skin_ui);
+		this.lblMove = new Label(String.valueOf(this.move), skin_ui);
 		
 		layer.add(this.lblMode_).align(Align.left);
 		layer.add(this.lblMode).align(Align.left).row();
-		layer.add(this.lblWaktu_).align(Align.left);
-		layer.add(this.lblWaktu).align(Align.left).row();
-		layer.add(this.lblHint_).align(Align.left);
-		layer.add(this.lblHint).align(Align.left).row();
+		
+		switch(this.gameMode){ 
+			case Constants.MODE_TIMED :
+				layer.add(this.lblWaktu_).align(Align.left);
+				layer.add(this.lblWaktu).align(Align.left).row();
+				layer.add(this.lblHint_).align(Align.left);
+				layer.add(this.lblHint).align(Align.left).row();
+				break;
+				
+			case Constants.MODE_SURVIVAL : 
+				layer.add(this.lblSisaMove_).align(Align.left);
+				layer.add(this.lblSisaMove).align(Align.left).row();
+				layer.add(this.lblHint_).align(Align.left);
+				layer.add(this.lblHint).align(Align.left).row();
+				break;
+				
+			case Constants.MODE_MOVE : 
+				layer.add(this.lblMove_).align(Align.left);
+				layer.add(this.lblMove).align(Align.left).row();
+				layer.add(this.lblHint_).align(Align.left);
+				layer.add(this.lblHint).align(Align.left).row();
+				break;
+		}
+		
 		
 		return layer;
 	}
@@ -751,7 +795,8 @@ public class GamePlayB extends AbstractGameScreen{
 		}
 		this.lblWaktu.setText(String.valueOf(this.waktu));
 		this.lblHint.setText(String.valueOf(this.hint));
-		
+		this.lblSisaMove.setText(String.valueOf(this.sisaMove));
+		this.lblMove.setText(String.valueOf(this.move));
 		
 	}
 
