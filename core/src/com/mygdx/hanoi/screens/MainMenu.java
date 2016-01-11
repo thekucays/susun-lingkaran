@@ -63,12 +63,17 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 	// highscore variables;
 	private int timed, survival, move;
 	
+	private DataPersister2 persister;
+	private Preferences userpref;
+	
 	public MainMenu(Game game) {
 		super(game);
 		Gdx.app.log("Main Server", "Hello, MainMenu class was just started.. Have Fun! ");
-		// buat inputan nya di-init di show() 
-		// jadi urutan nya show() dulu, baru render()
-		// semua styling udah dipindah ke json file
+		
+		persister = new DataPersister2();
+		userpref = persister.getOrCreatePreferences(Constants.pref_userpref);
+		
+		//Gdx.app.log("poin", "poin : " + persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin));
 	}
 	
 	// start to following ebook
@@ -81,11 +86,11 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		this.survival = survival;
 		this.move = move;
 		
-		int dummyUang = 9999;
+		int uang = Integer.parseInt((String) persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin));
 		
 		// bikin layer buat tampilannya.. layer pake tabel
 		Table layerBackground = buildLayerBackground();
-		Table layerUang = buildLayerUang(dummyUang);
+		Table layerUang = buildLayerUang(uang);
 		Table layerLogo = bulidLayerLogo();
 		Table layerControls = buildLayerControls();
 		Table layerInfo = buildLayerInfo();
