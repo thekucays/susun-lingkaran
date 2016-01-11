@@ -38,6 +38,7 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 		DataPersister2 persister = new DataPersister2();
 		Preferences hScore = persister.getOrCreatePreferences(Constants.pref_highscore);
 		Preferences userpref = persister.getOrCreatePreferences(Constants.pref_userpref);
+		Preferences toko = persister.getOrCreatePreferences(Constants.pref_toko);
 		
 		int init = 0;
 		int initHint = 5;
@@ -61,6 +62,18 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 			usermap.put(Constants.pref_userpref_hint, initHint); // awal permainan dikasih 5 hint
 			
 			persister.insertPreferences(userpref, usermap);
+		}
+		
+		// nanti nge-looping nya refer kesini http://stackoverflow.com/questions/1066589/iterate-through-a-hashmap
+		if(persister.getPreferencesData(toko).isEmpty()){
+			Map tokomap = new HashMap();
+			tokomap.put(Constants.pref_toko_item, new String[]{"bg-default", Constants.pref_toko_background, "Background default", "500", "0", "70"});
+			tokomap.put(Constants.pref_toko_item, new String[]{"bg-clouds", Constants.pref_toko_background, "Background clouds", "500", "0", "70"});
+			tokomap.put(Constants.pref_toko_item, new String[]{"ring-default", Constants.pref_toko_ring, "Ring default", "500", "0", "70"});
+			tokomap.put(Constants.pref_toko_item, new String[]{"ring-pie-coklat", Constants.pref_toko_ring, "Ring pie coklat", "500", "0", "70"});
+			tokomap.put(Constants.pref_toko_item, new String[]{"ring-pie-greentea", Constants.pref_toko_ring, "Ring pie greentea", "500", "0", "70"});
+			
+			persister.insertPreferences(toko, tokomap);
 		}
 		
 		setScreen(new SplashScreen(this)); //pake this supaya this.game di AbstractGameScreen keisi..jadi bisa dipanggil semua

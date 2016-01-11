@@ -49,6 +49,13 @@ public class Constants {
 	public static final String pref_userpref_ring_def = "ring-default";
 	public static final String pref_userpref_poin = "poin";
 	public static final String pref_userpref_hint = "hint";
+	public static final String pref_toko = "toko";
+	public static final String pref_toko_background = "Background";
+	public static final String pref_toko_ring = "Ring";
+	public static final String pref_toko_item = "item";
+	public static final String pref_toko_nama = "nama";
+	public static final String pref_toko_jenis = "jenis";
+	public static final String pref_toko_harga = "harga";
 	
 	// gameplay related
 	public static final float RING_SCALE_FACTOR = 0.3f;
