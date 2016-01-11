@@ -39,12 +39,16 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 		Preferences hScore = persister.getOrCreatePreferences(Constants.pref_highscore);
 		Preferences userpref = persister.getOrCreatePreferences(Constants.pref_userpref);
 		
+		int init = 0;
+		int initHint = 5;
+		
+		
 		// kalo belum ada preferensi nya, bikin dulu
 		if(persister.getPreferencesData(hScore).get(Constants.pref_userpref_background) == null){
 			Map hsmap = new HashMap();
-			hsmap.put(Constants.pref_highscore_move, 0);
-			hsmap.put(Constants.pref_highscore_survival, 11);
-			hsmap.put(Constants.pref_highscore_timed, 0);
+			hsmap.put(Constants.MODE_MOVE, init);
+			hsmap.put(Constants.MODE_SURVIVAL, init);
+			hsmap.put(Constants.MODE_TIMED, init);
 			
 			persister.insertPreferences(hScore, hsmap);
 		}
@@ -53,8 +57,8 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 			Map usermap = new HashMap();
 			usermap.put(Constants.pref_userpref_background, Constants.pref_userpref_background_def);
 			usermap.put(Constants.pref_userpref_ring, Constants.pref_userpref_ring_def);
-			usermap.put(Constants.pref_userpref_poin, 0);
-			usermap.put(Constants.pref_userpref_hint, 5); // awal permainan dikasih 5 hint
+			usermap.put(Constants.pref_userpref_poin, init);
+			usermap.put(Constants.pref_userpref_hint, initHint); // awal permainan dikasih 5 hint
 			
 			persister.insertPreferences(userpref, usermap);
 		}
