@@ -44,7 +44,7 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 		
 		
 		// kalo belum ada preferensi nya, bikin dulu
-		if(persister.getPreferencesData(hScore).get(Constants.pref_userpref_background) == null){
+		if(persister.getPreferencesData(hScore).isEmpty()){
 			Map hsmap = new HashMap();
 			hsmap.put(Constants.MODE_MOVE, init);
 			hsmap.put(Constants.MODE_SURVIVAL, init);
@@ -53,7 +53,7 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 			persister.insertPreferences(hScore, hsmap);
 		}
 		
-		if(persister.getPreferencesData(userpref).get(Constants.pref_highscore_move) == null){
+		if(persister.getPreferencesData(userpref).isEmpty()){
 			Map usermap = new HashMap();
 			usermap.put(Constants.pref_userpref_background, Constants.pref_userpref_background_def);
 			usermap.put(Constants.pref_userpref_ring, Constants.pref_userpref_ring_def);
