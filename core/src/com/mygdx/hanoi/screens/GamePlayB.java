@@ -2,6 +2,7 @@ package com.mygdx.hanoi.screens;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -311,9 +312,7 @@ public class GamePlayB extends AbstractGameScreen{
 							isPushed = false;
 							
 							addPoinToDb(skor);
-							if(isNewHScore()){
-								
-							}
+							addNewHscore();
 						}
 						
 						if(isPushed){   
@@ -341,9 +340,7 @@ public class GamePlayB extends AbstractGameScreen{
 								
 								// level ini selesai, masukin poin nya ke database, lalu cek hscore nya
 								addPoinToDb(skor);
-								if(isNewHScore()){
-									
-								}
+								addNewHscore();
 								
 								try{
 									// coba ambil config untuk level selanjutnya
@@ -378,12 +375,25 @@ public class GamePlayB extends AbstractGameScreen{
 	
 	// TODO add to diagram
 	private void addPoinToDb(int poin){
+		int poinTemp = 0;
+		switch(Gdx.app.getType()){
+			case Desktop :
+				poinTemp = Integer.parseInt((String)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin));
+				break;
+			case Android : 
+				poinTemp = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin);
+				break;
+		}
 		
+		Map mapUser = persister.getPreferencesData(userpref);
+		mapUser.put(Constants.pref_userpref_poin, poinTemp + poin);
+		
+		persister.insertPreferences(userpref, mapUser);
 	}
 	
 	// TODO add to diagram
-	private boolean isNewHScore(){
-		return true;
+	private void addNewHscore(){
+		
 	}
 	
 	private void executeTimer(){
@@ -770,9 +780,7 @@ public class GamePlayB extends AbstractGameScreen{
 				timer.cancel();
 				
 				addPoinToDb(skor);
-				if(isNewHScore()){
-					
-				}
+				addNewHscore();
 			}
 			this.notifShown = true;
 		}
