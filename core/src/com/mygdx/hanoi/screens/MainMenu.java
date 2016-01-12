@@ -76,6 +76,15 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		userpref = persister.getOrCreatePreferences(Constants.pref_userpref);
 		hscore = persister.getOrCreatePreferences(Constants.pref_highscore);
 		
+		
+		Preferences toko = persister.getOrCreatePreferences(Constants.pref_toko);
+		if(!persister.getPreferencesData(toko).isEmpty()){
+			//Gdx.app.log("listtoko", String.valueOf(listToko.size()));
+			Gdx.app.log("listtoko", "noteempty");
+		}
+		else{
+			Gdx.app.log("listtoko", "empty");
+		}
 		//Gdx.app.log("poin", "poin : " + persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin));
 	}
 	
