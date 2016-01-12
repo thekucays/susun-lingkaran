@@ -62,6 +62,20 @@ public class Toko extends AbstractGameScreen {
 		rebuildStage(dummyUang);
 	}
 	
+	// TODO add to diagram (public biar bisa di akses sama TokoTbl)
+	public void showNotifAfterTran(int status){
+		// tampilin notifikasi udah berhasil beli apa engga disini
+		// terus refresh screen nya
+		
+		if(status == 1){  // berhasil beli
+			// windowNotifOK.setVisible(true);
+		}
+		else{
+			// windowNotifNO.setVisible(true);
+		}
+		
+	}
+	
 	private void rebuildStage(int dummyUang){
 		atlas = new TextureAtlas("ui/toko/toko.pack");
 		skin = new Skin(Gdx.files.internal("ui/toko/toko.json"), atlas);
@@ -139,7 +153,7 @@ public class Toko extends AbstractGameScreen {
 			// tes output data nya
 			Gdx.app.log("1", ((String[])new Json().fromJson(ArrayList.class, String[].class, (String)itemList.get(Constants.pref_toko_item) ).get(i)) [0]);
 			
-			Table temp = new TokoTbl().generateContainer(skin, ((String[])new Json().fromJson(ArrayList.class, String[].class, (String)itemList.get(Constants.pref_toko_item) ).get(i)), pix);
+			Table temp = new TokoTbl().generateContainer(skin, ((String[])new Json().fromJson(ArrayList.class, String[].class, (String)itemList.get(Constants.pref_toko_item) ).get(i)), pix, this, i);
 			
 			innerContainer.add(temp).expand().fill();
 			innerContainer.getCell(temp).spaceTop(10).spaceBottom(10);
