@@ -1,8 +1,10 @@
 package com.mygdx.hanoi.screens;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
@@ -18,14 +20,105 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Json;
 import com.mygdx.hanoi.util.Constants;
+import com.mygdx.hanoi.util.DataPersister2;
 
 public class TokoTbl {
-	public Table generateContainer(Skin skin, String[] listData, Pixmap pix){
+	public Toko tokoContext;
+	private DataPersister2 persister;
+	private Preferences userpref, toko;
+	private int index;  // buat nentuin item ini ada di list berapa di list toko (untuk update status nya setelah di beli)
+	
+	public void equipItem(String[] listData){
+		persister = new DataPersister2();
+		userpref = persister.getOrCreatePreferences(Constants.pref_userpref);
+		Map insert = persister.getPreferencesData(userpref);
+		
+		if(listData[1].equals("Background")){
+			insert.put(Constants.pref_userpref_background, listData[0]);
+		}
+		else if(listData[1].equals("Ring")){
+			insert.put(Constants.pref_userpref_ring, listData[0]);
+		}
+		
+		persister.insertPreferences(userpref, insert);
+		this.tokoContext.showNotifAfterTran(1);
+	}
+	
+	public void purchaseItem(String[] listData){
+		persister = new DataPersister2();
+		userpref = persister.getOrCreatePreferences(Constants.pref_userpref);
+		toko = persister.getOrCreatePreferences(Constants.pref_toko);
+		
+		// cek dulu, poin nya cukup gak
+		int poin = 0;
+		switch(Gdx.app.getType()){
+			case Desktop :
+				poin = Integer.parseInt((String)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin));
+				break;
+			case Android : 
+				poin = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin);
+				break;
+		}
+		
+		// kalo poin cukup
+		if(poin >= Integer.parseInt(listData[3])){  
+			// kurangin uangnya
+			Map insert = persister.getPreferencesData(userpref);
+			insert.put(Constants.pref_userpref_poin, poin - Integer.parseInt(listData[3]));
+			
+			// set ke userpref nya
+			if(listData[1].equals("Background")){
+				insert.put(Constants.pref_userpref_background, listData[0]);
+			}
+			else if(listData[1].equals("Ring")){
+				insert.put(Constants.pref_userpref_ring, listData[0]);
+			}
+			else if(listData[1].equals("Hint")){
+				// ambil hint yang udah ada
+				int hint = 0;
+				switch(Gdx.app.getType()){
+					case Desktop :
+						hint = Integer.parseInt((String)persister.getPreferencesData(userpref).get(Constants.pref_userpref_hint));
+						break;
+					case Android : 
+						hint = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_hint);
+						break;
+					default :
+						Gdx.app.log("hint purchasing", "app type not supported yet");
+						break;
+				}	
+				
+				// tambah hint nya (sementara aja, ngambilnya dari scale factor nya aja)
+				insert.put(Constants.pref_userpref_hint, hint + listData[5]);
+			}
+			
+			// set item yang dibeli, isPurchased nya set ke "1"
+			Map insertToko = persister.getPreferencesData(toko);  //ArrayList<String[]> itemList = (ArrayList<String[]>) persister.getPreferencesData(toko).get(Constants.pref_toko_item);
+			ArrayList<String[]> itemList = new Json().fromJson(ArrayList.class, String[].class, (String)insertToko.get(Constants.pref_toko_item));
+			itemList.get(this.index)[4] = "1";
+			insertToko.put(Constants.pref_toko_item, new Json().toJson(itemList));
+			
+			// flush datanya
+			persister.insertPreferences(userpref, insert);
+			persister.insertPreferences(toko, insertToko);
+			Gdx.app.log("ispurchase test", "purchased");
+			this.tokoContext.showNotifAfterTran(1);
+		}
+		else{
+			Gdx.app.log("ispurchase test", "poin ga cukup");
+			this.tokoContext.showNotifAfterTran(0);  // gagal
+		}
+	}
+	
+	public Table generateContainer(Skin skin, final String[] listData, Pixmap pix, Toko toko, int i){
 		/*
 		 * listData format : (drawableName, jenis, nama, harga, isPurchased, scaleFactor)
 		 */
 		
+		this.tokoContext = toko;
+		this.index = i;
 		final String isPurchased = listData[4];  // 1 udah kebeli, 0 belum kebeli
 		
 		Image imgThumbnail;
@@ -39,9 +132,11 @@ public class TokoTbl {
 				Gdx.app.log("aksi", "button clicked!");
 				if(isPurchased.equals("1")){
 					Gdx.app.log("aksi", "item purchased");
+					equipItem(listData);
 				}
 				else{
 					Gdx.app.log("aksi", "item not purchased yet");
+					purchaseItem(listData);
 				}
 			}
 		});
