@@ -49,6 +49,7 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 		Preferences toko = persister.getOrCreatePreferences(Constants.pref_toko);
 		
 		int init = 0;
+		int initUang = 10000;
 		int initHint = 5;
 		
 		
@@ -66,7 +67,7 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 			Map usermap = new HashMap();
 			usermap.put(Constants.pref_userpref_background, Constants.pref_userpref_background_def);
 			usermap.put(Constants.pref_userpref_ring, Constants.pref_userpref_ring_def);
-			usermap.put(Constants.pref_userpref_poin, init);
+			usermap.put(Constants.pref_userpref_poin, initUang);
 			usermap.put(Constants.pref_userpref_hint, initHint); // awal permainan dikasih 5 hint
 			
 			Gdx.app.log("userpref", "tes");
@@ -82,11 +83,13 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 			
 			// taruh pakai arraylist, lalu di convert ke json
 			ArrayList<String[]> itemList = new ArrayList<String[]>();
-			itemList.add(new String[] {"bg-default", "Background", "Background default", "0", "0", "70"});
+			itemList.add(new String[] {"bg-default", "Background", "Background default", "0", "1", "70"});
 			itemList.add(new String[] {"bg-clouds", "Background", "Background clouds", "1500", "0", "70"});
-			itemList.add(new String[] {"ring-default", "Ring", "Ring default", "0", "0", "70"});
-			itemList.add(new String[] {"ring-pie-coklat", "Ring", "Ring pie coklat", "500", "0", "70"});
+			itemList.add(new String[] {"ring-default", "Ring", "Ring default", "0", "1", "70"});
+			itemList.add(new String[] {"ring-pie-coklat", "Ring", "Ring pie coklat", "500", "1", "70"});
 			itemList.add(new String[] {"ring-pie-greentea", "Ring", "Ring pie green tea", "500", "0", "70"});
+			itemList.add(new String[] {"hint-5", "Hint", "Hint +5", "500", "1", "5"});
+			itemList.add(new String[] {"hint-10", "Hint", "Hint +10", "500", "1", "10"});
 			
 			Map tokomap = new HashMap();
 			tokomap.put(Constants.pref_toko_item, new Json().toJson(itemList));
