@@ -89,7 +89,21 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		this.survival = survival;
 		this.move = move;
 		
-		uang = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin);
+		//uang = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin);
+		switch(Gdx.app.getType()){
+			case Desktop :
+				uang = Integer.parseInt((String)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin));
+				break;
+				
+			case Android : 
+				uang = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin);
+				
+			default : 
+				Gdx.app.log("error", "app type not implemented yet");
+				break;
+		}
+		
+		
 		
 		// bikin layer buat tampilannya.. layer pake tabel
 		Table layerBackground = buildLayerBackground();
@@ -302,11 +316,28 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		stage = new Stage(new StretchViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT));
 		Gdx.input.setInputProcessor(stage);
 		
-		int timed = (int)persister.getPreferencesData(hscore).get(Constants.pref_highscore_timed);
-		int survival = (int)persister.getPreferencesData(hscore).get(Constants.pref_highscore_survival);
-		int move = (int)persister.getPreferencesData(hscore).get(Constants.pref_highscore_move);
-		uang = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin);
-		rebuildStage(timed, survival, move);  // sebelum jalanin ini, ada proses untuk query ke database dulu untuk ambil highscore, baru masukin parameter ke sini
+		switch (Gdx.app.getType()){
+			case Desktop : 
+				timed = Integer.parseInt((String) persister.getPreferencesData(hscore).get(Constants.pref_highscore_timed));
+				survival = Integer.parseInt((String)persister.getPreferencesData(hscore).get(Constants.pref_highscore_survival));
+				move = Integer.parseInt((String)persister.getPreferencesData(hscore).get(Constants.pref_highscore_move));
+				uang = Integer.parseInt((String)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin));
+				break;
+			
+			case Android : 
+				timed = (int)persister.getPreferencesData(hscore).get(Constants.pref_highscore_timed);
+				survival = (int)persister.getPreferencesData(hscore).get(Constants.pref_highscore_survival);
+				move = (int)persister.getPreferencesData(hscore).get(Constants.pref_highscore_move);
+				uang = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin);
+				break;
+				
+			default : 
+				Gdx.app.log("error", "app type not implemented yet");
+				break;
+		}
+		
+		
+		rebuildStage(timed, survival, move);
 		
 		
 		/*
@@ -375,6 +406,10 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 		shake = MathUtils.sin(rotation) * 5.0f;
 		imgLogo.setOrigin(imgLogo.getX()/2, imgLogo.getY()/2);
 		imgLogo.setRotation(shake);
+		
+		/*timed = (int)persister.getPreferencesData(hscore).get(Constants.pref_highscore_timed);
+		survival = (int)persister.getPreferencesData(hscore).get(Constants.pref_highscore_survival);
+		move = (int)persister.getPreferencesData(hscore).get(Constants.pref_highscore_move); */
 		
 		stage.act(delta);
 		stage.draw();
