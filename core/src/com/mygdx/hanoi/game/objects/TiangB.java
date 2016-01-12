@@ -83,9 +83,7 @@ public class TiangB extends Image{
 		if(this.currLoad == this.maxLoad){  // udah penuh
 			hasil = true;
 		}
-		else{
-			
-		}
+		else{}
 		
 		return hasil;
 	}
