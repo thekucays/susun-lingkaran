@@ -9,6 +9,13 @@ import java.util.Map;
 
 
 
+
+
+
+
+
+
+
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
@@ -16,6 +23,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.utils.Json;
 import com.mygdx.hanoi.game.Assets;
 import com.mygdx.hanoi.game.WorldController;
 import com.mygdx.hanoi.game.WorldRenderer;
@@ -61,18 +69,30 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 			usermap.put(Constants.pref_userpref_poin, init);
 			usermap.put(Constants.pref_userpref_hint, initHint); // awal permainan dikasih 5 hint
 			
+			Gdx.app.log("userpref", "tes");
+			
 			persister.insertPreferences(userpref, usermap);
 		}
 		
 		// nanti nge-looping nya refer kesini http://stackoverflow.com/questions/1066589/iterate-through-a-hashmap
 		if(persister.getPreferencesData(toko).isEmpty()){
-			Map tokomap = new HashMap();
-			tokomap.put(Constants.pref_toko_item, new String[]{"bg-default", Constants.pref_toko_background, "Background default", "500", "0", "70"});
-			tokomap.put(Constants.pref_toko_item, new String[]{"bg-clouds", Constants.pref_toko_background, "Background clouds", "500", "0", "70"});
-			tokomap.put(Constants.pref_toko_item, new String[]{"ring-default", Constants.pref_toko_ring, "Ring default", "500", "0", "70"});
-			tokomap.put(Constants.pref_toko_item, new String[]{"ring-pie-coklat", Constants.pref_toko_ring, "Ring pie coklat", "500", "0", "70"});
-			tokomap.put(Constants.pref_toko_item, new String[]{"ring-pie-greentea", Constants.pref_toko_ring, "Ring pie greentea", "500", "0", "70"});
+			//Map tokomap = new HashMap();
+			//Map<String, String[]> tokomap = new HashMap<String, String[]>();
+			//tokomap.put(Constants.pref_toko_item + " 1", new String[]{"bg-default", Constants.pref_toko_background, "Background default", "500", "0", "70"});
 			
+			// taruh pakai arraylist, lalu di convert ke json
+			ArrayList<String[]> itemList = new ArrayList<String[]>();
+			itemList.add(new String[] {"bg-default", "Background", "Background default", "0", "0", "70"});
+			itemList.add(new String[] {"bg-clouds", "Background", "Background clouds", "1500", "0", "70"});
+			itemList.add(new String[] {"ring-default", "Ring", "Ring default", "0", "0", "70"});
+			itemList.add(new String[] {"ring-pie-coklat", "Ring", "Ring pie coklat", "500", "0", "70"});
+			itemList.add(new String[] {"ring-pie-greentea", "Ring", "Ring pie green tea", "500", "0", "70"});
+			
+			Map tokomap = new HashMap();
+			tokomap.put(Constants.pref_toko_item, new Json().toJson(itemList));
+			
+			//Gdx.app.log("map toh main", String.valueOf(tokomap.size()));
+			Gdx.app.log("new map length", String.valueOf(new Json().fromJson(ArrayList.class, String[].class, (String)tokomap.get(Constants.pref_toko_item)).size()));
 			persister.insertPreferences(toko, tokomap);
 		}
 		
