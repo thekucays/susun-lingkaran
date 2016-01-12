@@ -1,9 +1,11 @@
 package com.mygdx.hanoi.screens;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -21,9 +23,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
+import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.hanoi.util.Constants;
 //import com.sun.java.swing.plaf.windows.WindowsTreeUI.ExpandedIcon;
+import com.mygdx.hanoi.util.DataPersister2;
 
 public class Toko extends AbstractGameScreen {
 
@@ -34,6 +38,8 @@ public class Toko extends AbstractGameScreen {
 	private Button btnBack;
 	private Image imgHeading, imgCoin, imgBackground;
 	private Label lblUang;
+	private DataPersister2 persister;
+	private Preferences toko;
 	
 	// ini buat keperluan list nya
 	private Table container;
@@ -41,7 +47,9 @@ public class Toko extends AbstractGameScreen {
 	
 	public Toko(Game game) {
 		super(game);
-		// TODO Auto-generated constructor stub
+		
+		persister = new DataPersister2();
+		toko = persister.getOrCreatePreferences(Constants.pref_toko);
 	}
 
 	@Override
@@ -57,6 +65,8 @@ public class Toko extends AbstractGameScreen {
 	private void rebuildStage(int dummyUang){
 		atlas = new TextureAtlas("ui/toko/toko.pack");
 		skin = new Skin(Gdx.files.internal("ui/toko/toko.json"), atlas);
+		//toko = persister.getOrCreatePreferences(Constants.pref_toko);
+		
 		
 		// table untuk layer tampilan nya
 		Table layerBackground = buildLayerBackground();
@@ -119,10 +129,17 @@ public class Toko extends AbstractGameScreen {
 		dummyToko.add(new String[] {"bg-default", "Background", "Background default", "500", "1", "70"});
 		dummyToko.add(new String[] {"bg-default", "Background", "Background default", "500", "1", "70"});
 		
+		// real toko data
+		Map itemList = persister.getPreferencesData(toko);
+		int length = new Json().fromJson(ArrayList.class, String[].class, (String)itemList.get(Constants.pref_toko_item)).size();
+		
 		// inner table buat atur list nya
 		Table innerContainer = new Table();
-		for(int i=0; i<dummyToko.size(); i++){
-			Table temp = new TokoTbl().generateContainer(skin, dummyToko.get(i), pix);
+		for(int i=0; i<length; i++){
+			// tes output data nya
+			Gdx.app.log("1", ((String[])new Json().fromJson(ArrayList.class, String[].class, (String)itemList.get(Constants.pref_toko_item) ).get(i)) [0]);
+			
+			Table temp = new TokoTbl().generateContainer(skin, ((String[])new Json().fromJson(ArrayList.class, String[].class, (String)itemList.get(Constants.pref_toko_item) ).get(i)), pix);
 			
 			innerContainer.add(temp).expand().fill();
 			innerContainer.getCell(temp).spaceTop(10).spaceBottom(10);
@@ -174,7 +191,7 @@ public class Toko extends AbstractGameScreen {
 		stage.act(deltaTime);
 		stage.draw();
 		
-		Gdx.app.log("log", "delta time");
+		//Gdx.app.log("log", "delta time");
 	}
 
 	@Override
