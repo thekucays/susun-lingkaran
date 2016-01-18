@@ -75,15 +75,18 @@ public class TokoTbl {
 			else if(listData[1].equals("Ring")){
 				insert.put(Constants.pref_userpref_ring, listData[0]);
 			}
-			else if(listData[1].equals("Hint")){
+			else if(listData[1].equals("hint")){
 				// ambil hint yang udah ada
 				int hint = 0;
+				int hintPurchased = 0;
 				switch(Gdx.app.getType()){
 					case Desktop :
 						hint = Integer.parseInt((String)persister.getPreferencesData(userpref).get(Constants.pref_userpref_hint));
+						hintPurchased = Integer.parseInt((String)listData[5]); 
 						break;
 					case Android : 
 						hint = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_hint);
+						hintPurchased = Integer.parseInt(listData[5]);//(int)listData[5];
 						break;
 					default :
 						Gdx.app.log("hint purchasing", "app type not supported yet");
@@ -91,7 +94,7 @@ public class TokoTbl {
 				}	
 				
 				// tambah hint nya (sementara aja, ngambilnya dari scale factor nya aja)
-				insert.put(Constants.pref_userpref_hint, hint + listData[5]);
+				insert.put(Constants.pref_userpref_hint, hint + hintPurchased);
 			}
 			
 			// set item yang dibeli, isPurchased nya set ke "1"
