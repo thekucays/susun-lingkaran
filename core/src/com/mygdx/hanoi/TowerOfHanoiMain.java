@@ -88,8 +88,8 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 			itemList.add(new String[] {"ring-default", "Ring", "Ring default", "0", "1", "70"});
 			itemList.add(new String[] {"ring-pie-coklat", "Ring", "Ring pie coklat", "500", "1", "70"});
 			itemList.add(new String[] {"ring-pie-greentea", "Ring", "Ring pie green tea", "500", "0", "70"});
-			itemList.add(new String[] {"hint-5", "Hint", "Hint +5", "500", "1", "5"});
-			itemList.add(new String[] {"hint-10", "Hint", "Hint +10", "500", "1", "10"});
+			itemList.add(new String[] {"hint-5", "hint", "Hint +5", "500", "0", "5"});
+			itemList.add(new String[] {"hint-10", "hint", "Hint +10", "500", "0", "10"});
 			
 			Map tokomap = new HashMap();
 			tokomap.put(Constants.pref_toko_item, new Json().toJson(itemList));
