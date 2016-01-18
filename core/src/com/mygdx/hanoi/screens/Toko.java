@@ -39,7 +39,7 @@ public class Toko extends AbstractGameScreen {
 	private Image imgHeading, imgCoin, imgBackground;
 	private Label lblUang;
 	private DataPersister2 persister;
-	private Preferences toko;
+	private Preferences toko, userpref;
 	
 	// ini buat keperluan list nya
 	private Table container;
@@ -50,6 +50,7 @@ public class Toko extends AbstractGameScreen {
 		
 		persister = new DataPersister2();
 		toko = persister.getOrCreatePreferences(Constants.pref_toko);
+		userpref = persister.getOrCreatePreferences(Constants.pref_userpref);
 	}
 
 	@Override
@@ -59,14 +60,14 @@ public class Toko extends AbstractGameScreen {
 		
 		int dummyUang = 9999;
 		
-		rebuildStage(dummyUang);
+		rebuildStage();
 	}
 	
 	// TODO add to diagram (public biar bisa di akses sama TokoTbl)
 	public void showNotifAfterTran(int status){
 		// tampilin notifikasi udah berhasil beli apa engga disini
 		// terus refresh screen nya
-		
+		rebuildStage();
 		if(status == 1){  // berhasil beli
 			// windowNotifOK.setVisible(true);
 		}
@@ -76,15 +77,28 @@ public class Toko extends AbstractGameScreen {
 		
 	}
 	
-	private void rebuildStage(int dummyUang){
+	private void rebuildStage(){
 		atlas = new TextureAtlas("ui/toko/toko.pack");
 		skin = new Skin(Gdx.files.internal("ui/toko/toko.json"), atlas);
 		//toko = persister.getOrCreatePreferences(Constants.pref_toko);
 		
+		int uang = 0;
+		
+		switch(Gdx.app.getType()){
+			case Desktop : 
+				uang = Integer.parseInt((String)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin));
+				break;
+			case Android : 
+				uang = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_poin);
+				break;
+			default : 
+				Gdx.app.log("error", "app type not implemented yet");
+				break;
+		}
 		
 		// table untuk layer tampilan nya
 		Table layerBackground = buildLayerBackground();
-		Table layerUang = buildLayerUang(dummyUang);
+		Table layerUang = buildLayerUang(uang);
 		Table layerHeader = buildLayerHeader();
 		Table layerListItem = buildLayerListItem();
 		Table layerBack = buildLayerBack(); // sepertinya perlu dipisah karena posisinya di pojok kanan atas sendiri
