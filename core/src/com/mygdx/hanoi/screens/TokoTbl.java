@@ -97,11 +97,13 @@ public class TokoTbl {
 				insert.put(Constants.pref_userpref_hint, hint + hintPurchased);
 			}
 			
-			// set item yang dibeli, isPurchased nya set ke "1"
+			// set item yang dibeli, isPurchased nya set ke "1"(kecuali kalo hint, jangan di set karena bisa dibeli terus)
 			Map insertToko = persister.getPreferencesData(toko);  //ArrayList<String[]> itemList = (ArrayList<String[]>) persister.getPreferencesData(toko).get(Constants.pref_toko_item);
-			ArrayList<String[]> itemList = new Json().fromJson(ArrayList.class, String[].class, (String)insertToko.get(Constants.pref_toko_item));
-			itemList.get(this.index)[4] = "1";
-			insertToko.put(Constants.pref_toko_item, new Json().toJson(itemList));
+			if(!listData[1].equals("hint")){
+				ArrayList<String[]> itemList = new Json().fromJson(ArrayList.class, String[].class, (String)insertToko.get(Constants.pref_toko_item));
+				itemList.get(this.index)[4] = "1";
+				insertToko.put(Constants.pref_toko_item, new Json().toJson(itemList));
+			}
 			
 			// flush datanya
 			persister.insertPreferences(userpref, insert);
