@@ -393,7 +393,17 @@ public class GamePlayB extends AbstractGameScreen{
 	
 	// TODO add to diagram
 	private void addNewHscore(){
-		
+		switch(this.gameMode){
+			case Constants.MODE_MOVE : 
+				
+				break;
+			case Constants.MODE_SURVIVAL : 
+				
+				break;
+			case Constants.MODE_TIMED : 
+				
+				break;
+		}
 	}
 	
 	private void executeTimer(){
