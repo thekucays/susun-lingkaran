@@ -59,8 +59,8 @@ public class Constants {
 	
 	// toko related
 	public static final String TOKO_NOTIF_TITLE = "Toko";
-	public static final String TOKO_NOTIF_SUKSES = "Pembelian berhasil!";
-	public static final String TOKO_NOTIF_GAGAL = "Pembelian gagal, cek jumlah poin";
+	public static final String TOKO_NOTIF_SUKSES = "Transaksi berhasil!";
+	public static final String TOKO_NOTIF_GAGAL = "Transaksi gagal, cek jumlah poin";
 	public static final String TOKO_NOTIF_BTN = "OK";
 	
 	// gameplay related
