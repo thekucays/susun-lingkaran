@@ -57,6 +57,12 @@ public class Constants {
 	public static final String pref_toko_jenis = "jenis";
 	public static final String pref_toko_harga = "harga";
 	
+	// toko related
+	public static final String TOKO_NOTIF_TITLE = "Toko";
+	public static final String TOKO_NOTIF_SUKSES = "Pembelian berhasil!";
+	public static final String TOKO_NOTIF_GAGAL = "Pembelian gagal, cek jumlah poin";
+	public static final String TOKO_NOTIF_BTN = "OK";
+	
 	// gameplay related
 	public static final float RING_SCALE_FACTOR = 0.3f;
 	public static final String TEXTURE_ATLAS_OBJECTS = "ui/gameplay/objects/objects.pack";
