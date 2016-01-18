@@ -1,7 +1,10 @@
 package com.mygdx.hanoi.screens;
 
+import java.util.Map;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -17,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.hanoi.TowerOfHanoiMain;
 import com.mygdx.hanoi.util.Constants;
+import com.mygdx.hanoi.util.DataPersister2;
 
 public class ModeSelect extends AbstractGameScreen {
 	
@@ -26,9 +30,28 @@ public class ModeSelect extends AbstractGameScreen {
 	private Table table;
 	private Button btnFree, btnTimed, btnSurvival, btnMove, btnBack;
 	private Image imgHeading, imgBackground;
+	private int hint;
+	private Preferences userpref;
+	private DataPersister2 persister;
 	
 	public ModeSelect(Game game) {
 		super(game);
+		
+		// ambil preferences untuk ambil hint nya (mode timed dan move)
+		persister = new DataPersister2();
+		userpref = persister.getOrCreatePreferences(Constants.pref_userpref);
+		switch(Gdx.app.getType()){
+			case Desktop: 
+				hint = Integer.parseInt((String)persister.getPreferencesData(userpref).get(Constants.pref_userpref_hint));
+				break;
+			case Android:
+				hint = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_hint);
+				break;
+			default: 
+				Gdx.app.log("HINT", "app type not implemented yet");
+				break;
+		}
+		
 	}
 	
 	@Override
@@ -107,7 +130,7 @@ public class ModeSelect extends AbstractGameScreen {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				Gdx.app.log("Control", "btnTimed pressed");
-				game.setScreen(new GamePlayB(game, Constants.MODE_TIMED, 5));   //  jmlRing, jmlTiang));
+				game.setScreen(new GamePlayB(game, Constants.MODE_TIMED, hint));   //  jmlRing, jmlTiang));
 			}
 		});
 		
@@ -117,7 +140,7 @@ public class ModeSelect extends AbstractGameScreen {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				Gdx.app.log("Control", "btnMove pressed");
-				game.setScreen(new GamePlayB(game, Constants.MODE_MOVE, 5));
+				game.setScreen(new GamePlayB(game, Constants.MODE_MOVE, hint));
 			}
 		});
 		
