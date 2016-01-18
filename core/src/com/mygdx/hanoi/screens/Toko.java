@@ -20,6 +20,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
@@ -32,18 +34,24 @@ import com.mygdx.hanoi.util.DataPersister2;
 public class Toko extends AbstractGameScreen {
 
 	private Stage stage;
-	private TextureAtlas atlas;
-	private Skin skin;
+	private TextureAtlas atlas, atlas_ui;
+	private Skin skin, skin_ui;
 	private Table table;
-	private Button btnBack;
+	private Button btnBack, btnOK;
 	private Image imgHeading, imgCoin, imgBackground;
-	private Label lblUang;
+	private Label lblUang, lblNotif;
 	private DataPersister2 persister;
 	private Preferences toko, userpref;
 	
 	// ini buat keperluan list nya
 	private Table container;
 	private ScrollPane scrollPane;
+	
+	// TODO add to diagram
+	// ini buat window sukses/gagal setelah melakukan pembelian
+	private Window windowNotif;
+	private String currNotif;
+	
 	
 	public Toko(Game game) {
 		super(game);
@@ -61,25 +69,31 @@ public class Toko extends AbstractGameScreen {
 		int dummyUang = 9999;
 		
 		rebuildStage();
+		windowNotif.setVisible(true);
 	}
 	
 	// TODO add to diagram (public biar bisa di akses sama TokoTbl)
 	public void showNotifAfterTran(int status){
 		// tampilin notifikasi udah berhasil beli apa engga disini
 		// terus refresh screen nya
-		rebuildStage();
 		if(status == 1){  // berhasil beli
+			this.currNotif = Constants.TOKO_NOTIF_SUKSES;
 			// windowNotifOK.setVisible(true);
 		}
 		else{
+			this.currNotif = Constants.TOKO_NOTIF_GAGAL;
 			// windowNotifNO.setVisible(true);
 		}
 		
+		rebuildStage();
+		windowNotif.setVisible(true);
 	}
 	
 	private void rebuildStage(){
 		atlas = new TextureAtlas("ui/toko/toko.pack");
+		atlas_ui = new TextureAtlas("ui/uiskin/uiskin.atlas");
 		skin = new Skin(Gdx.files.internal("ui/toko/toko.json"), atlas);
+		skin_ui = new Skin(Gdx.files.internal("ui/uiskin/uiskin.json"), atlas_ui);
 		//toko = persister.getOrCreatePreferences(Constants.pref_toko);
 		
 		int uang = 0;
@@ -101,6 +115,7 @@ public class Toko extends AbstractGameScreen {
 		Table layerUang = buildLayerUang(uang);
 		Table layerHeader = buildLayerHeader();
 		Table layerListItem = buildLayerListItem();
+		Table layerNotif = buildLayerNotif();
 		Table layerBack = buildLayerBack(); // sepertinya perlu dipisah karena posisinya di pojok kanan atas sendiri
 		
 		stage.clear();
@@ -113,6 +128,7 @@ public class Toko extends AbstractGameScreen {
 		stack.add(layerHeader);
 		stack.add(layerListItem);
 		stack.add(layerBack);
+		stack.add(layerNotif);
 	}
 	private Table buildLayerBackground(){
 		Table layer = new Table();
@@ -120,6 +136,31 @@ public class Toko extends AbstractGameScreen {
 		layer.add(imgBackground);
 		
 		return layer;
+	}
+	private Table buildLayerNotif(){
+		windowNotif = new Window(Constants.TOKO_NOTIF_TITLE, skin_ui);
+		windowNotif.setVisible(false);
+		
+		btnOK = new TextButton(Constants.TOKO_NOTIF_BTN, skin_ui);
+		btnOK.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				windowNotif.setVisible(false);
+			}
+		});
+		
+		Table isi = new Table(skin_ui);
+		isi.center();
+		isi.add(currNotif).row();
+		isi.add(btnOK);
+		
+		windowNotif.add(isi);
+		windowNotif.pack();
+		windowNotif.setPosition((Constants.VIEWPORT_GUI_WIDTH/2)-(windowNotif.getWidth()/2), (Constants.VIEWPORT_GUI_HEIGHT/2)-(windowNotif.getHeight()/2));  // taruh di tengah
+		
+		
+		return windowNotif;
+		
 	}
 	private Table buildLayerHeader(){
 		Table layer = new Table();
