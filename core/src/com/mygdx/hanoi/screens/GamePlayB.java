@@ -466,6 +466,11 @@ public class GamePlayB extends AbstractGameScreen{
 		this.waktu--;
 	}
 	
+	//	TODO add to diagram
+	private boolean hint(){
+		return true;
+	}
+	
 	private Table buildLayerGuiRight(){
 		Table layer = new Table();
 		layer.top().right();
@@ -484,8 +489,28 @@ public class GamePlayB extends AbstractGameScreen{
 		btnHint.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				Gdx.app.log("GuiRight", "btnHint pressed");
-				waktu--;
+				if(hint >0 && hint()){
+					hint--;
+					if(gameMode.equals(Constants.MODE_MOVE) || gameMode.equals(Constants.MODE_TIMED)){
+						// kurangin hint yang ada di db
+						int hintDB = 0;
+						switch(Gdx.app.getType()){
+							case Desktop:
+								hintDB = Integer.parseInt((String)persister.getPreferencesData(userpref).get(Constants.pref_userpref_hint));
+								break;
+							case Android: 
+								hintDB = (int)persister.getPreferencesData(userpref).get(Constants.pref_userpref_hint);
+								break;
+							default:
+								Gdx.app.log("HINT", "app type not implemented yet");
+								break;
+						}
+						
+						Map user = persister.getPreferencesData(userpref);
+						user.put(Constants.pref_userpref_hint, hintDB - 1);
+						persister.insertPreferences(userpref, user);
+					}
+				}
 			}
 		});
 		
