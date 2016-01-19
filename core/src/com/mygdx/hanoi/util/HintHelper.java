@@ -1,5 +1,6 @@
 package com.mygdx.hanoi.util;
 
+import com.badlogic.gdx.Gdx;
 import com.mygdx.hanoi.game.objects.RingB;
 import com.mygdx.hanoi.screens.GamePlayB;
 
@@ -19,6 +20,7 @@ public class HintHelper {
 	
 	public boolean hint(){
 		boolean hasil = false;
+		Gdx.app.log("hint helper", "hint exec");
 		
 		// sort tiang untuk cari ring yang paling kecil
 		for(int i=0; i<this.gpb.tiangs.size(); i++){
@@ -44,6 +46,7 @@ public class HintHelper {
 			// kalo null, ada tiang kosong, langsung set kesitu
 			if(tempRing == null){
 				hiIndex = i;
+				break;
 			}
 			else{
 				if(hiIndex != 0){
@@ -60,6 +63,12 @@ public class HintHelper {
 		if(lowIndex != hiIndex){
 			this.gpb.clickTiangs(this.gpb.tiangs.get(lowIndex));
 			this.gpb.clickTiangs(this.gpb.tiangs.get(hiIndex));
+			
+			tempIndex = 0;
+			tempLength = 0;
+			lowIndex = 0;
+			hiIndex = 0;
+			firstFlag = true;
 			
 			hasil = true;
 		}
