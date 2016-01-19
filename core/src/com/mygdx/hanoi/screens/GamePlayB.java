@@ -288,90 +288,6 @@ public class GamePlayB extends AbstractGameScreen{
 				public void clicked(InputEvent event, float x, float y) {
 					clickTiangs(tiang);
 					//super.clicked(event, x, y);
-					/*Gdx.app.log("TIANG", "tiang clicked");
-					RingB ringPeek = tiang.peek();
-					//ringPeek.setPosition(ringPeek.getX(), ringPeek.getY()+Constants.GAP_MEDIUM);
-					//Gdx.app.log("tiang click", String.valueOf(ringPeek.getY()));
-					Gdx.app.log("currLoad", String.valueOf(tiang.getIsi()));
-					
-					// klik 1, tiang 1 ada isinya
-					if(ringPeek!=null && firstObj.isEmpty()){
-						setFirst(tiang, ringPeek);
-						//Gdx.app.log("tiang klik", "klik 1, tiang 1 ada isinya");
-					}
-
-					// klik 1, tiang 1 kosong
-					else if(ringPeek==null && firstObj.isEmpty()){
-						// do nothing
-						//Gdx.app.log("tiang klik", "klik 1, tiang 1 kosong");
-					}
-					
-					// klik 2, tiang 2 ada isinya (compare)
-					else if(!firstObj.isEmpty()){
-						Gdx.app.log("tiang klik", "klik 2, tiang 2 ada isinya (compare)");
-						boolean isPushed = tiang.push((RingB)getFirst().get(1));
-						
-						// mau tiang nya salah/bener, klik pada tiang kedua akan selalu menambah jumlah move
-						increaseMove();
-						
-						// survival mode, jegal disini dulu udah abis apa belum move nya, kalo udah, kalah
-						if(gameMode.equals(Constants.MODE_SURVIVAL) && sisaMove == 0){
-							windowLose.setVisible(true);
-							isPushed = false;
-							
-							addPoinToDb(skor);
-							addNewHscore();
-						}
-						
-						if(isPushed){   
-							// kalo berhasil di push ke stack nya, baru dipindahin posisi ring di screen nya
-							// ..logika berhasil push atau enggak di tiang nya, bukan disini
-							RingB ring1 = (RingB)getFirst().get(1);
-							ring1.setPosition(tiang.getX(), tiang.getTopY());
-							TiangB tiang1 = (TiangB)getFirst().get(0);
-							tiang1.pop();
-							
-							// re-set the tiang's topY coordinates
-							tiang1.setTopY(tiang1.getTopY() - Constants.GAP_RING);
-							tiang.setTopY(tiang.getTopY() + Constants.GAP_RING);
-							
-							Gdx.app.log("isPushed", "pushed");
-							
-							// cek apakah udah selesai semua.. cek tiang terakhir nya
-							boolean isOver = tiangs.get(tiangs.size()-1).cekIfComplete();
-							if(isOver){
-								if(gameMode.equals(Constants.MODE_TIMED)){
-									timer.cancel();
-								}
-								skor = getLevelPoin();
-								totalSkor += skor;
-								
-								// level ini selesai, masukin poin nya ke database, lalu cek hscore nya
-								addPoinToDb(skor);
-								addNewHscore();
-								
-								try{
-									// coba ambil config untuk level selanjutnya
-									int tesindex = Constants.GAME_LEVEL_CONFIG[levelConfigIndex+1][0];
-									Table winA = buildLayerWinA();
-									stage.addActor(winA);
-									windowWinA.setVisible(true);
-									
-									Gdx.app.log("ok", "ok");
-								}
-								catch(ArrayIndexOutOfBoundsException aioub){
-									// ga ada berarti level udah selesai semua
-									Table winB = buildLayerWinB();
-									stage.addActor(winB);
-									windowWinB.setVisible(true);
-									
-									Gdx.app.log("catch", "catch");
-								}
-							}
-						}
-						
-						clearTemp();
-					} */
 				}
 			});
 			tiangs.add(tiang);  Gdx.app.log("TIANG", String.valueOf(tiang.getWidth()));
@@ -488,16 +404,48 @@ public class GamePlayB extends AbstractGameScreen{
 	
 	// TODO add to diagram
 	private void addNewHscore(){
+		// ambil hscore nya
+		Map hscoreMap = persister.getPreferencesData(hScore);
+		int currHscore = 0;
+		
+		// ambil highscore yang udahh ada berdasarkan mode game yang lagi dimainin
 		switch(this.gameMode){
 			case Constants.MODE_MOVE : 
-				
+				switch(Gdx.app.getType()){
+					case Desktop:
+						currHscore = Integer.parseInt((String)persister.getPreferencesData(hScore).get(Constants.MODE_MOVE));
+						break;
+					case Android:
+						currHscore = (int)persister.getPreferencesData(hScore).get(Constants.MODE_MOVE);
+						break;
+				}
 				break;
 			case Constants.MODE_SURVIVAL : 
-				
+				switch(Gdx.app.getType()){
+				case Desktop:
+					currHscore = Integer.parseInt((String)persister.getPreferencesData(hScore).get(Constants.MODE_SURVIVAL));
+					break;
+				case Android:
+					currHscore = (int)persister.getPreferencesData(hScore).get(Constants.MODE_SURVIVAL);
+					break;
+			}
 				break;
 			case Constants.MODE_TIMED : 
-				
+				switch(Gdx.app.getType()){
+				case Desktop:
+					currHscore = Integer.parseInt((String)persister.getPreferencesData(hScore).get(Constants.MODE_TIMED));
+					break;
+				case Android:
+					currHscore = (int)persister.getPreferencesData(hScore).get(Constants.MODE_TIMED);
+					break;
+				}
 				break;
+		}
+		
+		// kalo lebih gede dari highscore yang udah ada, update db nya
+		if(skor > currHscore){
+			hscoreMap.put(this.gameMode, skor);
+			persister.insertPreferences(hScore, hscoreMap);
 		}
 	}
 	
