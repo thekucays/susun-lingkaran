@@ -489,7 +489,11 @@ public class GamePlayB extends AbstractGameScreen{
 		btnHint.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				if(hint >0 && hint()){
+				// free mode bebas pake hint
+				if(gameMode.equals(Constants.MODE_FREE)){
+					hint();
+				}
+				else if(hint >0 && hint()){
 					hint--;
 					if(gameMode.equals(Constants.MODE_MOVE) || gameMode.equals(Constants.MODE_TIMED)){
 						// kurangin hint yang ada di db
