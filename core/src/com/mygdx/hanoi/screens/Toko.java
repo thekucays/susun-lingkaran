@@ -69,7 +69,7 @@ public class Toko extends AbstractGameScreen {
 		int dummyUang = 9999;
 		
 		rebuildStage();
-		windowNotif.setVisible(true);
+		//windowNotif.setVisible(true);
 	}
 	
 	// TODO add to diagram (public biar bisa di akses sama TokoTbl)
