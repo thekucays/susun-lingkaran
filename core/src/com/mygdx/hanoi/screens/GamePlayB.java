@@ -1,5 +1,6 @@
 package com.mygdx.hanoi.screens;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,7 @@ import com.mygdx.hanoi.game.objects.TiangB;
 import com.mygdx.hanoi.util.Constants;
 import com.mygdx.hanoi.util.DataPersister2;
 import com.mygdx.hanoi.util.GameTimer;
+import com.mygdx.hanoi.util.HintHelper;
 
 public class GamePlayB extends AbstractGameScreen{
 
@@ -51,8 +53,11 @@ public class GamePlayB extends AbstractGameScreen{
 	private Window windowPause, windowConfirm, windowWinA, windowWinB, windowLose;
 	
 	private Image imgBackground;
-	private List<RingB> rings = new ArrayList<RingB>(); //private RingB[] rings;
-	private List<TiangB> tiangs = new ArrayList<TiangB>(); //private TiangB[] tiangs;
+	
+	// public biar bisa dipanggil sama HintHelper  TODO add to diagram 
+	public List<RingB> rings = new ArrayList<RingB>(); 
+	public List<TiangB> tiangs = new ArrayList<TiangB>();
+	
 	private String gameMode;
 	private String confirmOption;  // isinya bisa main lagi, ulangi, keluar.. buat nentuin event di window confirm nya
 	private int hint, waktu, waktuOrigin, jmlRing, jmlTiang;
@@ -83,6 +88,8 @@ public class GamePlayB extends AbstractGameScreen{
 	// variabel buat nyimpen sekarang udah level berapa? (config nya index berapa)
 	private int levelConfigIndex;
 	
+	private HintHelper hh;
+	
 	public GamePlayB(Game game, String gMode, int hint) {
 		super(game);
 		this.isFirstClick = false;
@@ -109,6 +116,10 @@ public class GamePlayB extends AbstractGameScreen{
 			this.waktu = Constants.TIMED_MODE_TIME;
 			this.waktuOrigin = Constants.TIMED_MODE_TIME;
 		}
+		
+		// init the hint helper
+		this.hh = new HintHelper(this);
+		
 	}
 	
 	private void rebuildStage(){
@@ -275,8 +286,9 @@ public class GamePlayB extends AbstractGameScreen{
 			tiang.addListener(new ClickListener(){
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
+					clickTiangs(tiang);
 					//super.clicked(event, x, y);
-					Gdx.app.log("TIANG", "tiang clicked");
+					/*Gdx.app.log("TIANG", "tiang clicked");
 					RingB ringPeek = tiang.peek();
 					//ringPeek.setPosition(ringPeek.getX(), ringPeek.getY()+Constants.GAP_MEDIUM);
 					//Gdx.app.log("tiang click", String.valueOf(ringPeek.getY()));
@@ -359,7 +371,7 @@ public class GamePlayB extends AbstractGameScreen{
 						}
 						
 						clearTemp();
-					}
+					} */
 				}
 			});
 			tiangs.add(tiang);  Gdx.app.log("TIANG", String.valueOf(tiang.getWidth()));
@@ -367,6 +379,93 @@ public class GamePlayB extends AbstractGameScreen{
 		}
 		
 		counter = 0;
+	}
+	
+	// TODO add to diagram
+	public void clickTiangs(TiangB tiang){
+		Gdx.app.log("TIANG", "tiang clicked");
+		RingB ringPeek = tiang.peek();
+		//ringPeek.setPosition(ringPeek.getX(), ringPeek.getY()+Constants.GAP_MEDIUM);
+		//Gdx.app.log("tiang click", String.valueOf(ringPeek.getY()));
+		Gdx.app.log("currLoad", String.valueOf(tiang.getIsi()));
+		
+		// klik 1, tiang 1 ada isinya
+		if(ringPeek!=null && firstObj.isEmpty()){
+			setFirst(tiang, ringPeek);
+			//Gdx.app.log("tiang klik", "klik 1, tiang 1 ada isinya");
+		}
+
+		// klik 1, tiang 1 kosong
+		else if(ringPeek==null && firstObj.isEmpty()){
+			// do nothing
+		}
+		
+		// klik 2, tiang 2 ada isinya (compare)
+		else if(!firstObj.isEmpty()){
+			Gdx.app.log("tiang klik", "klik 2, tiang 2 ada isinya (compare)");
+			boolean isPushed = tiang.push((RingB)getFirst().get(1));
+			
+			// mau tiang nya salah/bener, klik pada tiang kedua akan selalu menambah jumlah move
+			increaseMove();
+			
+			// survival mode, jegal disini dulu udah abis apa belum move nya, kalo udah, kalah
+			if(gameMode.equals(Constants.MODE_SURVIVAL) && sisaMove == 0){
+				windowLose.setVisible(true);
+				isPushed = false;
+				
+				addPoinToDb(skor);
+				addNewHscore();
+			}
+			
+			if(isPushed){   
+				// kalo berhasil di push ke stack nya, baru dipindahin posisi ring di screen nya
+				// ..logika berhasil push atau enggak di tiang nya, bukan disini
+				RingB ring1 = (RingB)getFirst().get(1);
+				ring1.setPosition(tiang.getX(), tiang.getTopY());
+				TiangB tiang1 = (TiangB)getFirst().get(0);
+				tiang1.pop();
+				
+				// re-set the tiang's topY coordinates
+				tiang1.setTopY(tiang1.getTopY() - Constants.GAP_RING);
+				tiang.setTopY(tiang.getTopY() + Constants.GAP_RING);
+				
+				Gdx.app.log("isPushed", "pushed");
+				
+				// cek apakah udah selesai semua.. cek tiang terakhir nya
+				boolean isOver = tiangs.get(tiangs.size()-1).cekIfComplete();
+				if(isOver){
+					if(gameMode.equals(Constants.MODE_TIMED)){
+						timer.cancel();
+					}
+					skor = getLevelPoin();
+					totalSkor += skor;
+					
+					// level ini selesai, masukin poin nya ke database, lalu cek hscore nya
+					addPoinToDb(skor);
+					addNewHscore();
+					
+					try{
+						// coba ambil config untuk level selanjutnya
+						int tesindex = Constants.GAME_LEVEL_CONFIG[levelConfigIndex+1][0];
+						Table winA = buildLayerWinA();
+						stage.addActor(winA);
+						windowWinA.setVisible(true);
+						
+						Gdx.app.log("ok", "ok");
+					}
+					catch(ArrayIndexOutOfBoundsException aioub){
+						// ga ada berarti level udah selesai semua
+						Table winB = buildLayerWinB();
+						stage.addActor(winB);
+						windowWinB.setVisible(true);
+						
+						Gdx.app.log("catch", "catch");
+					}
+				}
+			}
+			
+			clearTemp();
+		}
 	}
 	
 	// TODO add to diagram
@@ -462,11 +561,6 @@ public class GamePlayB extends AbstractGameScreen{
 		this.waktu--;
 	}
 	
-	//	TODO add to diagram
-	private boolean hint(){
-		return true;
-	}
-	
 	private Table buildLayerGuiRight(){
 		Table layer = new Table();
 		layer.top().right();
@@ -487,9 +581,9 @@ public class GamePlayB extends AbstractGameScreen{
 			public void changed(ChangeEvent event, Actor actor) {
 				// free mode bebas pake hint
 				if(gameMode.equals(Constants.MODE_FREE)){
-					hint();
+					hh.hint();
 				}
-				else if(hint >0 && hint()){
+				else if(hint >0 && hh.hint()){
 					hint--;
 					if(gameMode.equals(Constants.MODE_MOVE) || gameMode.equals(Constants.MODE_TIMED)){
 						// kurangin hint yang ada di db
