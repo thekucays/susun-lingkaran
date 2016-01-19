@@ -220,10 +220,10 @@ public class MainMenu extends AbstractGameScreen{  //implements Screen { //
 				btnInfo.setVisible(false);
 				
 				// tes masukin highscorenya
-				Map hs = persister.getPreferencesData(hscore);
-				hs.put(Constants.pref_highscore_move, 100);
+				//Map hs = persister.getPreferencesData(hscore);
+				//hs.put(Constants.pref_highscore_move, 100);
 				
-				persister.insertPreferences(hscore, hs);
+				//persister.insertPreferences(hscore, hs);
 			}
 		});
 		
