@@ -107,15 +107,11 @@ public class GamePlayB extends AbstractGameScreen{
 		// timed mode
 		if(this.gameMode.equals(Constants.MODE_TIMED)){
 			this.waktu = Constants.TIMED_MODE_TIME;
+			this.waktuOrigin = Constants.TIMED_MODE_TIME;
 		}
 	}
 	
 	private void rebuildStage(){
-		// set variabel temporary ke null
-		/*this.firstRing = null;
-		this.firstTiang = null;
-		this.secondRing = null;
-		this.secondTiang = null; */
 		this.firstObj = new ArrayList<Object>();
 		this.secondObj = new ArrayList<Object>();
 		this.notifShown = false;
@@ -659,9 +655,16 @@ public class GamePlayB extends AbstractGameScreen{
 					pause = false;
 					Gdx.app.log("Confirm", "option ulangi");
 					
+					// reset lagi hint nya ke hint fix nya (mode survival)
 					if(gameMode.equals(Constants.MODE_SURVIVAL)){
-						hint = Constants.SURVIVAL_MODE_HINT;  // reset lagi hint nya ke hint fix nya (mode survival)
+						hint = Constants.SURVIVAL_MODE_HINT;  
 					}
+					
+					// reset time nya ke pas baru mulai (mode timed)
+					if(gameMode.equals(Constants.MODE_TIMED)){
+						waktu = waktuOrigin;
+					}
+					
 					rebuildStage();
 				}
 			}
@@ -710,6 +713,11 @@ public class GamePlayB extends AbstractGameScreen{
 		btnLanjut.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
+				// timed mode, waktu sekarang dicatet supaya kalo di restart game nya waktu nya bisa balik lagi
+				if(gameMode.equals(Constants.MODE_TIMED)){
+					waktuOrigin = waktu;
+				}
+				
 				levelConfigIndex += 1;
 				rebuildStage();
 			}
