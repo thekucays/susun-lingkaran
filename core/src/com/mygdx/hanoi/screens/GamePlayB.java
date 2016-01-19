@@ -658,6 +658,10 @@ public class GamePlayB extends AbstractGameScreen{
 				else if(confirmOption.equals(Constants.PAUSE_OPTION_ULANGI)){
 					pause = false;
 					Gdx.app.log("Confirm", "option ulangi");
+					
+					if(gameMode.equals(Constants.MODE_SURVIVAL)){
+						hint = Constants.SURVIVAL_MODE_HINT;  // reset lagi hint nya ke hint fix nya (mode survival)
+					}
 					rebuildStage();
 				}
 			}
