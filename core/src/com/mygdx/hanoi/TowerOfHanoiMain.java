@@ -49,7 +49,7 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 		Preferences toko = persister.getOrCreatePreferences(Constants.pref_toko);
 		
 		int init = 0;
-		int initUang = 10000;
+		int initUang = 0;
 		int initHint = 5;
 		
 		
