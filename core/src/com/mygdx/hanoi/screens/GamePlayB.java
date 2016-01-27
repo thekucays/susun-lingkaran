@@ -748,7 +748,7 @@ public class GamePlayB extends AbstractGameScreen{
 		btnUlangi_.addListener(new ChangeListener(){
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				
+				rebuildStage();
 			}
 		});
 		btnLanjut = new TextButton(Constants.WIN_BTN_LANJUT, skin_window);
@@ -767,8 +767,8 @@ public class GamePlayB extends AbstractGameScreen{
 		
 		Table isi = new Table(skin_window);
 		isi.center();
-		isi.add(Constants.WIN_NOTE).row();
-		isi.add(Constants.WIN_NOTE_POIN + this.skor).row();
+		isi.add(Constants.WIN_NOTE).colspan(3).row();
+		isi.add(Constants.WIN_NOTE_POIN + this.skor).colspan(3).row();
 		isi.add(btnMenu);
 		isi.add(btnUlangi_);
 		isi.add(btnLanjut);
