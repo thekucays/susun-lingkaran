@@ -221,22 +221,24 @@ public class GamePlayB extends AbstractGameScreen{
 		rings.clear();
 		
 		// mode move, tumpukan ring nya di acak
+		ArrayList<Integer> list = new ArrayList<Integer>(this.jmlRing);
+		Random rand = new Random();
 		if(this.gameMode.equals(Constants.MODE_MOVE)){
-			ArrayList<Integer> list = new ArrayList<Integer>(this.jmlRing);
-			Random rand = new Random();
 			for (int i=1; i<=this.jmlRing; i++){
 				list.add(i);
-			}
-			
-			for(int i=this.jmlRing; i>0; i--){
-				int index = rand.nextInt(list.size());
-				Gdx.app.log("random buildring", String.valueOf(list.remove(index)));
 			}
 		}
 		
 		
 		for(int i=this.jmlRing; i>0; i--){  // reverse for loop.. supaya bisa di-push ke tiang nya
-			RingB ring = new RingB(skin_object, this.resRing, "jenis", i);
+			RingB ring;
+			if(this.gameMode.equals(Constants.MODE_MOVE)){
+				int index = rand.nextInt(list.size());
+				ring = new RingB(skin_object, this.resRing, "jenis", list.remove(index));
+			}
+			else{
+				ring = new RingB(skin_object, this.resRing, "jenis", i);
+			}
 			count--;
 			
 			ring.setScale(ring.getLength()*Constants.RING_SCALE_FACTOR, 1);
@@ -254,14 +256,14 @@ public class GamePlayB extends AbstractGameScreen{
 			});
 			rings.add(ring);
 			
-			Gdx.app.log("RING", "1. " + tiangs.get(0).getTopY());
+			/*Gdx.app.log("RING", "1. " + tiangs.get(0).getTopY());
 			Gdx.app.log("RING", "2. " + tiangs.get(0).getY()+Constants.GAP_MEDIUM);
 			Gdx.app.log("RING", "3. " + tiangs.get(0).getY());
 			Gdx.app.log("RING", "4. " + ring.getHeight());
 			Gdx.app.log("RING", "5. " + ring.getOriginX());
 			
 			Gdx.app.log("RING", "6. " + ring.getX());
-			Gdx.app.log("RING", "7. " + tiangs.get(0).getX());
+			Gdx.app.log("RING", "7. " + tiangs.get(0).getX());*/
 		}
 	}
 	private void buildTiangs(){
@@ -650,7 +652,7 @@ public class GamePlayB extends AbstractGameScreen{
 		
 		// test pushing
 		for(int i=0; i<rings.size(); i++){
-			tiangs.get(0).push(rings.get(i));
+			tiangs.get(0).push(rings.get(i), true);
 			Gdx.app.log("test push", String.valueOf(rings.get(i).getY()));
 		}
 		
