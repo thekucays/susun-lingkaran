@@ -49,6 +49,7 @@ public class Constants {
 	public static final String pref_userpref_ring_def = "ring-default";
 	public static final String pref_userpref_poin = "poin";
 	public static final String pref_userpref_hint = "hint";
+	public static final String pref_userpref_prefId = "id_pref";
 	public static final String pref_toko = "toko";
 	public static final String pref_toko_background = "Background";
 	public static final String pref_toko_ring = "Ring";

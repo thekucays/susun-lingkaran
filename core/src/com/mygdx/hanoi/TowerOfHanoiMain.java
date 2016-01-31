@@ -1,10 +1,13 @@
 package com.mygdx.hanoi;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 //import sun.java2d.pipe.hw.ExtendedBufferCapabilities.VSyncType;
+
+
 
 
 
@@ -39,6 +42,7 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 	private WorldRenderer worldRenderer;
 	
 	private boolean paused; //apakah game lagi di-pause?
+	private String prefId;
 	
 	@Override
 	public void create(){
@@ -52,6 +56,22 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 		int initUang = 0;
 		int initHint = 5;
 		
+		if(persister.getPreferencesData(userpref).isEmpty()){
+			// creating generic random string for pref_id
+			SecureRandom random = new SecureRandom();
+			prefId = new BigInteger(64, random).toString(32);
+			
+			Map usermap = new HashMap();
+			usermap.put(Constants.pref_userpref_background, Constants.pref_userpref_background_def);
+			usermap.put(Constants.pref_userpref_ring, Constants.pref_userpref_ring_def);
+			usermap.put(Constants.pref_userpref_poin, initUang);
+			usermap.put(Constants.pref_userpref_hint, initHint); // awal permainan dikasih 5 hint
+			usermap.put(Constants.pref_userpref_prefId, prefId);
+			
+			Gdx.app.log("userpref", "tes");
+			
+			persister.insertPreferences(userpref, usermap);
+		}
 		
 		// kalo belum ada preferensi nya, bikin dulu
 		if(persister.getPreferencesData(hScore).isEmpty()){
@@ -59,20 +79,9 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 			hsmap.put(Constants.MODE_MOVE, init);
 			hsmap.put(Constants.MODE_SURVIVAL, init);
 			hsmap.put(Constants.MODE_TIMED, init);
+			hsmap.put(Constants.pref_userpref_prefId, prefId);  // tambahin user id nya disini
 			
 			persister.insertPreferences(hScore, hsmap);
-		}
-		
-		if(persister.getPreferencesData(userpref).isEmpty()){
-			Map usermap = new HashMap();
-			usermap.put(Constants.pref_userpref_background, Constants.pref_userpref_background_def);
-			usermap.put(Constants.pref_userpref_ring, Constants.pref_userpref_ring_def);
-			usermap.put(Constants.pref_userpref_poin, initUang);
-			usermap.put(Constants.pref_userpref_hint, initHint); // awal permainan dikasih 5 hint
-			
-			Gdx.app.log("userpref", "tes");
-			
-			persister.insertPreferences(userpref, usermap);
 		}
 		
 		// nanti nge-looping nya refer kesini http://stackoverflow.com/questions/1066589/iterate-through-a-hashmap
@@ -83,13 +92,13 @@ public class TowerOfHanoiMain extends Game{  //extends ApplicationAdapter
 			
 			// taruh pakai arraylist, lalu di convert ke json
 			ArrayList<String[]> itemList = new ArrayList<String[]>();
-			itemList.add(new String[] {"bg-default", "Background", "Background default", "0", "1", "70"});
-			itemList.add(new String[] {"bg-clouds", "Background", "Background clouds", "1500", "0", "70"});
-			itemList.add(new String[] {"ring-default", "Ring", "Ring default", "0", "1", "70"});
-			itemList.add(new String[] {"ring-pie-coklat", "Ring", "Ring pie coklat", "500", "1", "70"});
-			itemList.add(new String[] {"ring-pie-greentea", "Ring", "Ring pie green tea", "500", "0", "70"});
-			itemList.add(new String[] {"hint-5", "hint", "Hint +5", "500", "0", "5"});
-			itemList.add(new String[] {"hint-10", "hint", "Hint +10", "500", "0", "10"});
+			itemList.add(new String[] {"bg-default", "Background", "Background default", "0", "1", "0", ""});
+			itemList.add(new String[] {"bg-clouds", "Background", "Background clouds", "1500", "0", "0", ""});
+			itemList.add(new String[] {"ring-default", "Ring", "Ring default", "0", "1", "0", ""});
+			itemList.add(new String[] {"ring-pie-coklat", "Ring", "Ring pie coklat", "500", "1", "0", ""});
+			itemList.add(new String[] {"ring-pie-greentea", "Ring", "Ring pie green tea", "500", "0", "0", ""});
+			itemList.add(new String[] {"hint-5", "hint", "Hint +5", "500", "0", "5", ""});
+			itemList.add(new String[] {"hint-10", "hint", "Hint +10", "500", "0", "10", ""});
 			
 			Map tokomap = new HashMap();
 			tokomap.put(Constants.pref_toko_item, new Json().toJson(itemList));
