@@ -9,6 +9,7 @@
 	},
 	"com.badlogic.gdx.scenes.scene2d.ui.Image": {
 		tiang-default: { drawable: tiang-default },
+		tiang-red: {drawable: tiang-red},
 		ring-default: { drawable: ring-default },
 		ring-pie-greentea: { drawable: ring-pie-greentea },
 		ring-pie-coklat: { drawable: ring-pie-coklat }

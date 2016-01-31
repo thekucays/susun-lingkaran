@@ -1,33 +1,40 @@
 
-objects.png
+object.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 tiang-default
   rotate: false
-  xy: 0, 134
+  xy: 0, 0
   size: 113, 280
   orig: 113, 280
   offset: 0, 0
   index: -1
+tiang-red
+  rotate: false
+  xy: 113, 0
+  size: 113, 280
+  orig: 113, 280
+  offset: 0, 0
+  index: -1
+ring-default
+  rotate: false
+  xy: 226, 246
+  size: 122, 34
+  orig: 122, 34
+  offset: 0, 0
+  index: -1
 ring-pie-greentea
   rotate: false
-  xy: 0, 84
+  xy: 226, 196
   size: 101, 50
   orig: 101, 50
   offset: 0, 0
   index: -1
 ring-pie-coklat
   rotate: false
-  xy: 0, 34
+  xy: 226, 146
   size: 100, 50
   orig: 100, 50
-  offset: 0, 0
-  index: -1
-ring-default
-  rotate: false
-  xy: 0, 0
-  size: 122, 34
-  orig: 122, 34
   offset: 0, 0
   index: -1
