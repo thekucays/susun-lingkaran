@@ -4,6 +4,7 @@ package com.mygdx.hanoi.screens;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -218,6 +219,21 @@ public class GamePlayB extends AbstractGameScreen{
 	private void buildRings(){
 		int count = this.jmlRing;
 		rings.clear();
+		
+		// mode move, tumpukan ring nya di acak
+		if(this.gameMode.equals(Constants.MODE_MOVE)){
+			ArrayList<Integer> list = new ArrayList<Integer>(this.jmlRing);
+			Random rand = new Random();
+			for (int i=1; i<=this.jmlRing; i++){
+				list.add(i);
+			}
+			
+			for(int i=this.jmlRing; i>0; i--){
+				int index = rand.nextInt(list.size());
+				Gdx.app.log("random buildring", String.valueOf(list.remove(index)));
+			}
+		}
+		
 		
 		for(int i=this.jmlRing; i>0; i--){  // reverse for loop.. supaya bisa di-push ke tiang nya
 			RingB ring = new RingB(skin_object, this.resRing, "jenis", i);
