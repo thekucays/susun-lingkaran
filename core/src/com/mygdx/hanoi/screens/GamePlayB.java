@@ -104,7 +104,7 @@ public class GamePlayB extends AbstractGameScreen{
 		
 		this.resBg = (String)persister.getPreferencesData(userpref).get(Constants.pref_userpref_background);
 		this.resRing = (String) persister.getPreferencesData(userpref).get(Constants.pref_userpref_ring);
-		this.resTiang = "tiang-default";
+		this.resTiang = Constants.TIANG_RES_DEFAULT;
 		
 		// pertama kali di-construct dari screen ModeSelect, ambil index pertama dari konfig yang ada di constants.java nya
 		this.levelConfigIndex = 0;
