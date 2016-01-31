@@ -84,7 +84,7 @@ public class Constants {
 	public static final String CONFIRM_NO = "Tidak";
 	
 	public static final String LOSE_TITLE = "Kalah";
-	public static final String LOSE_NOTE = "Waktu Habis. Kamu Kalah!";
+	public static final String LOSE_NOTE = "Permainan Selesai. Kamu Kalah!";
 	public static final String LOSE_OK = "Oke";
 	public static final String LOSE_BTN_KELUAR = "Keluar";
 	public static final String LOSE_BTN_ULANGI = "Ulangi";
@@ -120,6 +120,7 @@ public class Constants {
 	public static final int GAME_LEVEL_CONFIG [][] = {  // buat settingan game nya {jumlahRIng, jumlahTiang}
 		{3, 4},
 		{5, 4},
+		{9, 4},
 		{3, 3},
 		{5, 3},
 		{7, 3}
