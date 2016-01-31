@@ -192,7 +192,7 @@ public class GamePlayB extends AbstractGameScreen{
 	private List getFirst(){
 		return this.firstObj;
 	}
-	private void clearTemp(){
+	public void clearTemp(){
 		this.secondObj.clear();
 		this.firstObj.clear();
 	}
