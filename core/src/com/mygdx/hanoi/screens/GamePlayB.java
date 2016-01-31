@@ -308,6 +308,7 @@ public class GamePlayB extends AbstractGameScreen{
 		// klik 1, tiang 1 ada isinya
 		if(ringPeek!=null && firstObj.isEmpty()){
 			setFirst(tiang, ringPeek);
+			tiang.setDrawable(skin_object.getDrawable(Constants.TIANG_RES_RED));  //wohoo works! got this by viewing the LibGDX's image constructor
 			//Gdx.app.log("tiang klik", "klik 1, tiang 1 ada isinya");
 		}
 
@@ -316,7 +317,7 @@ public class GamePlayB extends AbstractGameScreen{
 			// do nothing
 		}
 		
-		// klik 2, tiang 2 ada isinya (compare)
+		// klik 2
 		else if(!firstObj.isEmpty()){
 			Gdx.app.log("tiang klik", "klik 2, tiang 2 ada isinya (compare)");
 			boolean isPushed = tiang.push((RingB)getFirst().get(1));
@@ -379,6 +380,10 @@ public class GamePlayB extends AbstractGameScreen{
 					}
 				}
 			}
+			
+			// tiang 1 nya balikin dulu warna nya ke coklat, baru temp nya di clear
+			TiangB t1 = (TiangB)getFirst().get(0);
+			t1.setDrawable(skin_object.getDrawable(Constants.TIANG_RES_DEFAULT));
 			
 			clearTemp();
 		}
