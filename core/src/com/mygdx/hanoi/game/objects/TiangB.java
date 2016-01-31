@@ -75,6 +75,14 @@ public class TiangB extends Image{
 		
 		return hasil;
 	}
+	public boolean push(RingB ring, boolean isInitStage){  // push() method overloading. dipake pas restart level / mulai level.. biar kalo mode move (acak) bisa ke push semua
+		if(isInitStage){
+			this.tumpukan.push(ring);
+			this.currLoad++;
+		}
+		
+		return isInitStage;
+	}
 	
 	// extended features
 	public boolean cekIfComplete(){
