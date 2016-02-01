@@ -21,6 +21,11 @@ public class HintHelper {
 	public boolean hint(){
 		boolean hasil = false;
 		Gdx.app.log("hint helper", "hint exec");
+		tempIndex = 0;
+		tempLength = 0;
+		lowIndex = 0;
+		hiIndex = 0;
+		firstFlag = true;
 		
 		// sort tiang untuk cari ring yang paling kecil
 		for(int i=0; i<this.gpb.tiangs.size(); i++){
@@ -49,14 +54,18 @@ public class HintHelper {
 				break;
 			}
 			else{
-				if(hiIndex != 0){
+				//if(hiIndex != 0){
 					// cari yang lebih besar length nya dari ring yang dipilih pertama 
 					if(tempRing.getLength() > tempLength){
 						hiIndex = i;
 					}
-				}
+				//}
 			}
 		}
+		
+		// coba print out lowindex sama hi indez
+		Gdx.app.log("lowindex", "lowindex : " + String.valueOf(lowIndex));
+		Gdx.app.log("hiindex", "hiindex : " + String.valueOf(hiIndex));
 		
 		// kedua target udah ketemu, pindahin ring nya
 		// .. dipakein if jaga2 aja supaya kalo ternyata ga ketemu target nya
