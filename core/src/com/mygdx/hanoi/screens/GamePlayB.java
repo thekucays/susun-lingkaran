@@ -841,7 +841,7 @@ public class GamePlayB extends AbstractGameScreen{
 		btnKeluar.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				
+				game.setScreen(new MainMenu(game));
 			}
 		});
 		btnUlangi = new TextButton(Constants.LOSE_BTN_ULANGI, skin_window);
@@ -849,16 +849,17 @@ public class GamePlayB extends AbstractGameScreen{
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				windowLose.setVisible(false);
+				rebuildStage();
 			}
 		});
 		
 		Table isi = new Table(skin_window);
 		isi.center();
-		isi.add(Constants.LOSE_NOTE).row();
+		isi.add(Constants.LOSE_NOTE).colspan(2).row();
 		isi.add(btnUlangi).spaceRight(Constants.GAP_MEDIUM);
 		isi.add(btnKeluar);
 		isi.pad(Constants.GAP_BIG);
-		isi.debug();
+		//isi.debug();
 		
 		windowLose.add(isi);
 		windowLose.pack();
