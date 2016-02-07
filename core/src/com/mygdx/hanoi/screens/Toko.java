@@ -188,16 +188,6 @@ public class Toko extends AbstractGameScreen {
 		pix.setColor(Color.valueOf("ff6600"));  //warna sama kaya warna button //pix.setColor(Color.CYAN); 
 		pix.fill();
 		
-		// dummy list data.. real nya nge-query dari preferences nya
-		ArrayList<String[]> dummyToko = new ArrayList<String[]>();  // declare apa yang mau ditaruh sini, biar ga error di kemudian method
-		dummyToko.add(new String[] {"ring-default", "Ring", "Pie Greentea", "500", "1", "50"});   // yang paling belakang "isPurchased", "scaleFactor"
-		dummyToko.add(new String[] {"bg-default", "Background", "Background default", "500", "0", "70"});
-		dummyToko.add(new String[] {"bg-default", "Background", "Background default", "500", "1", "70"});
-		dummyToko.add(new String[] {"bg-default", "Background", "Background default", "500", "1", "70"});
-		dummyToko.add(new String[] {"bg-default", "Background", "Background default", "500", "1", "70"});
-		dummyToko.add(new String[] {"bg-default", "Background", "Background default", "500", "1", "70"});
-		dummyToko.add(new String[] {"bg-default", "Background", "Background default", "500", "1", "70"});
-		
 		// real toko data
 		Map itemList = persister.getPreferencesData(toko);
 		int length = new Json().fromJson(ArrayList.class, String[].class, (String)itemList.get(Constants.pref_toko_item)).size();
